@@ -4,7 +4,7 @@
 - nodejs with `npm install -g sass`
 
 #### Sass basis
-```sass
+```scss
 // basic output
 sass input.sass output.css
 // watch the file anytime
