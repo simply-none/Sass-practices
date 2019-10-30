@@ -29,6 +29,7 @@ version    : 0.0.1-alpha
 |goodies|诱人的东西，好东西，糖果|
 |tinkering|摆弄，修补|
 |direct|直接（的），笔直的，指导，命令，指向|
+|directly|直接地，立刻，马上|
 |terminal|终端，终点站，端头|
 |watch|密切注意，关注，监视|
 |individual|单独的，个人的，个别的|
@@ -72,7 +73,10 @@ version    : 0.0.1-alpha
 |load|加载|
 |refer to|参考，涉及，引用|
 |based on|基于，以..为基础，根据|
+|note|注意，留意，记录，便签|
+|noted|注意，记录|
 |notice|注意，留意，通知|
+|compatible|兼容的|**[kəm'pætəb(ə)l]**|
 |compatibility|兼容性|**[kəm.pætə'bɪləti]**|
 |mixin|混合类型|
 |tedious|冗长的，乏味的|
@@ -102,3 +106,56 @@ version    : 0.0.1-alpha
 |convert|转换，换算|
 |percentage|百分比，百分数|**[pər'sentɪdʒ]**|
 |hassle|麻烦，困难|**['hæs(ə)l]**|
+|fully|完全地，最大程度地，充分地，整整|
+|syntax|语法，句法，规则|**['sɪn.tæks]**|
+|within|（在）内部，在..内部|**[wɪˈðɪn]**|
+|introduction|序言，导论，入门书|**[.ɪntrə'dʌkʃ(ə)n]**|
+|tutorial|教程，指南|**[tu'tɔriəl]**|
+|check out|查看，检查，了解清楚|
+|look up|查找，查阅|
+|built in|内建的，内置的|
+|look no further than|..是不二之选，没有比..更好的了|
+|reference|查阅，参考（书），引用，索引|
+|contents|内容，目录|
+|otherwise|除此之外，否则，要不然，另外|
+|it's up to you|由你决定，取决于你|
+|exception|例外，异常（情况）|
+|essentially|基本上，大体上，实质上|**[ɪ'senʃ(ə)li]**|
+|valid|有效的，正确的，合法的|**['vælɪd]**|
+|invalid|无效的，作废的，错误的|
+|as well|也，又，还，同样|
+|similarity|相似（性），类似|**[.sɪmɪ'lerəti]**|
+|superset|超集|
+|indented|缩进（式）|**[ɪn'dentɪd]**|
+|original|原始的，最初的，首创的|
+|counts|数量，认为，包括|
+|curly|卷曲的，绻缩的|
+|additional|另外的，附加的|
+|difference|区别，差异（性）|
+|overview|概述，概论，总览|
+|sequence|次序，序列，一连串|
+|parse|解析，作语法分析|**[pɑrs]**|
+|parsing|解析（过程），从语法上分析|
+|token|令牌，标记，记号|
+|stream|（数据）流，流动|
+|currently|现在，目前，普遍地|
+|as such|因此，照此，同样地|
+|initially|首先，最初的|**[ɪ'nɪʃ(ə)li]**|
+|available|可得到的，可获得的，可用的|**[ə'veɪləb(ə)l]**|
+|perform|表演，表现，执行|
+|order|命令，指令，规则，订单|
+|mark|标志，标记，符号|
+|corresponding|相应的，对应的，一致的|
+|plain|明显的，清楚的，显然|
+|determine|决定，决心，确定|
+|algorithm|算法，演算规则|**['ælɡə.rɪðəm]**|
+|encounter|遭遇，遇到，接触|
+|present|目前，现在，显示，出席|
+|presented|提供，展示，导致，目前|
+|specify|具体说明，指定，详列|**['spesɪ.faɪ]**|
+|rather than|而不是|
+|immediately|立刻，立即地，直接地|
+|pass through|通过，经过|
+|strictly|完全，仅限于，严格的|**['strɪk(t)li]**|
+|implementation|实现，实施|**[.ɪmpləmən'teɪʃ(ə)n]**|
+|access|访问，进入|

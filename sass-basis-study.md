@@ -1,10 +1,14 @@
 ### Sass
+
 #### install
+
 - use `koala`, `scout-app` or `GitHub repository with dart-sass`(need add it to your path)
 - nodejs with `npm install -g sass`
 
-#### Sass basis
+#### basic tutorial
+
 ```scss
+// in terminal
 // basic output
 sass input.sass output.css
 // watch the file anytime
@@ -31,7 +35,7 @@ nav {
 // refer to Sass partial file
 // _base.scss
 $font-stack: monospace, sans-serif;
-$primary-color: #333；
+$primary-color: #333;
 
 body {
     font: 100% $font-stack;
@@ -99,3 +103,40 @@ aside[role="complementary"] {
     width: 300px / 960px * 100%;
 }
 ```
+
+#### syntax
+
+##### overview
+
+two different syntaxes, each one can load the other，and sass have not braces and semicolons, is indented.
+
+```scss
+@mixin button-base() {
+    @include typography(button);
+    @include ripple-surface;
+    @include ripple-radius-bounded;
+
+    display: inline-flex;
+    position: relative;
+    height: $button-height;
+    border: none;
+    vertical-align: middle;
+
+    &:hover { cursor: pointer; }
+
+    &:disabled {
+        color: $mdc-button-disabled-ink-color;
+        cursor: default;
+        pointer-events: none;
+    }
+}
+```
+
+##### parsing a stylesheet
+
+- dart sass only support utf-8
+- sass decoding rules
+    - utf-8/16 with U+FFFF, used corresponding decoding
+    - used ASCII start with @charset, used 2 step css algorithm
+    - otherwise used utf-8
+- parse error will be presented to user with information
