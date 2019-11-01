@@ -1,4 +1,5 @@
 ### vocabulary for Sass
+
 ```
 create-time: 2019/10/29 15:29
 author     : yuyuanqiu(漆无)
@@ -29,7 +30,7 @@ version    : 0.0.1-alpha
 |goodies|诱人的东西，好东西，糖果|
 |tinkering|摆弄，修补|
 |direct|直接（的），笔直的，指导，命令，指向|
-|directly|直接地，立刻，马上|
+|directly|直接地，立刻，马上，紧跟着|
 |terminal|终端，终点站，端头|
 |watch|密切注意，关注，监视|
 |individual|单独的，个人的，个别的|
@@ -54,6 +55,9 @@ version    : 0.0.1-alpha
 |brace|大括号，花括号|
 |bracket|中括号，方括号|
 |parenthesis|小括号，圆括号|**[pə'renθəsɪs]**|
+|quote|引号，引用|
+|unquote|反引号，***没有引号的？？？***|
+|slash|斜杠|
 |nest|嵌套，套入|
 |visual|可视化，看得见的|
 |hierarchy|层级，层次， 分级结构|**['haɪə.rɑrki]**|
@@ -143,10 +147,10 @@ version    : 0.0.1-alpha
 |initially|首先，最初的|**[ɪ'nɪʃ(ə)li]**|
 |available|可得到的，可获得的，可用的|**[ə'veɪləb(ə)l]**|
 |perform|表演，表现，执行|
-|order|命令，指令，规则，订单|
+|order|命令，指令，规则，订单，顺序，次序|
 |mark|标志，标记，符号|
 |corresponding|相应的，对应的，一致的|
-|plain|明显的，清楚的，显然|
+|plain|明显的，清楚的，显然，普通的|
 |determine|决定，决心，确定|
 |algorithm|算法，演算规则|**['ælɡə.rɪðəm]**|
 |encounter|遭遇，遇到，接触|
@@ -159,3 +163,76 @@ version    : 0.0.1-alpha
 |strictly|完全，仅限于，严格的|**['strɪk(t)li]**|
 |implementation|实现，实施|**[.ɪmpləmən'teɪʃ(ə)n]**|
 |access|访问，进入|
+|structure|结构，构造|**['strʌktʃər]**|
+|make up|组成，构成，编造|
+|mainly|主要地，大多数地|
+|alongside|在..旁边，与..同时（存在/发生）|
+|defined|规定，定义的，明确|
+|definition|定义，释义，清晰，明确|
+|resulting|生产，造成，导致，结果|
+|in order to|为了，从而，以便|
+|evaluated|衡量，评估，可以评价为|
+|optional|可选择的，非强制的|
+|universal|普遍的，通用的，一般概念，通用原理|
+|flow|流（动），流程|
+|produce|生产，造成，产出，产品，提供|
+|statement|声明，陈述|
+|except|除..之外，不包括|
+|property|属性，特性|
+|argument|参数，争论|
+|right-hand|得力的|
+|manipulate|操纵，控制，处理|**[mə'nɪpjə.leɪt]**|
+|arithmetic|算法，计算，数据统计|**[.erɪθ'metɪk]**|
+|represent|相当于，代表着|
+|representation|表示，代表|
+|refer to|查阅，参考，指的是|
+|literal|常量，字面量|**['lɪt(ə)rəl]**|
+|singleton|单件（模式），单例模式，单身人士|**['sɪŋɡ(ə)ltən]**|
+|enclosed|封闭的|
+|square|方的，方块|
+|associate|关联，联系|
+|map|映射|
+|mathematical|数学（上）的|
+|usual|通常的，普通的，常见的|
+|meaning|含义|
+|match|与..相配，使..一致|
+|scientific|科学的，严谨的|
+|unit|单位，单元|
+|consider|认为，考虑，留意|
+|concatenate|连接（的）|**[kɑn'kæt(ə).neɪt]**|
+|explicitly|显式，直接地，明确地|**[ɪk'splɪsɪtlɪ]**|
+|precedence|优先级|
+|call|调用，访问|
+|called|称呼，被叫做|
+|function call|函数调用|
+|library|程序库，函数库|
+|hex|十六进制|
+|substantially|非常地，巨大地，大体上，总的来说|**[səbˈstænʃəlɪ]**|
+|similarly|相似地，同样，也|
+|emit|发出，发射，散发|**[ɪ'mɪt]**|
+|as far as..(is concerned)|就..而言，直到|
+|concern|关心，忧虑，就..而言，让..关注的|
+|as well|也，同样，倒不如|
+|as well as|也，和..一样，既..又|
+|silent|沉默的|
+|loud|大声的，响亮的|
+|allowed|允许，同意|
+|contrast|对比，相比之下，差异|**['kɑn.træst]**|
+|interpolation|插入（的）文字|
+|evaluated|求值，评估，评价|**[ɪ'vælju.eɪt]**|
+|strip|除去，剥去|
+|compress|压缩，压紧|
+|mode|模式，风格|
+|though|然而，不过，但是|
+|the rest of|其余的，剩下的|
+|comment out|标注出，注释|
+|annotation|注释，评注|
+|document|文档，记录，记载|
+|beneath|在..之下|
+|above|在..上面|
+|in detail|详细地|
+|exponent|指数，幂|
+|integer|整数|**['ɪntədʒər]**|
+|as-is|原样，不予改变|
+|inject|添加，投入，注入|
+|commonly|通常的，一般的|
