@@ -1,7 +1,7 @@
-### vocabulary for Sass
+# vocabulary for Sass
 
 ```
-create-time: 2019/10/29 15:29
+create-time: 2019/10/29 15:29:00
 author     : yuyuanqiu(漆无)
 version    : 0.0.1-alpha
 ```
@@ -56,7 +56,7 @@ version    : 0.0.1-alpha
 |bracket|中括号，方括号|
 |parenthesis|小括号，圆括号|**[pə'renθəsɪs]**|
 |quote|引号，引用|
-|unquote|反引号，***没有引号的？？？***|
+|unquote|反引号，***没有引号的***|
 |slash|斜杠|
 |nest|嵌套，套入|
 |visual|可视化，看得见的|
