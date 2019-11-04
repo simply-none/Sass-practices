@@ -197,18 +197,18 @@ two different syntaxes, each one can load the other，and sass have not braces a
 #### in scss
 
 - single-line comments(silent comments) start with `//`, don't produce anything in css
-- multi-line comments(loud comments) start with `/*` and end with `*/`, written somewhere if statement is allowed, can compiled to a css comment
+- multi-line comments(loud comments) start with `/*` and end with `*/`, written somewhere if statement is allowed, can compiled to a css comment 
     - contains interpolation will evaluated before css compiled
     - in compressed mode, that will strip, though begins with `/*!` will don't strip
 
     ```scss
     // this comment won't be included in css
-    
+
     /* but this comment will except in compressed mode */
 
     /* it can also contain interpolation:
      * 1 + 1 = #{1 + 1} */
-    
+
     /*! this comment will be included even in compressed mode */
 
     p /* multi-line comments can be written anywhere
@@ -259,7 +259,7 @@ two different syntaxes, each one can load the other，and sass have not braces a
         @return $result;
     }
     ```
-    
+
 ### special functions
 
 #### url()
@@ -267,6 +267,7 @@ two different syntaxes, each one can load the other，and sass have not braces a
 - `url()` can take either a quoted or unquoted url, when is a **unquoted url is invalid sass-exp**, so need special logic to parse it
 - url's arguments is valid unquoted url, parse it as-is, although may used interpolation
 - it's invalid unquoted url, it's parsed as a normal plain css function call
+
     ```scss
     $roboto-font-path: "../fonts/roboto";
 
@@ -294,12 +295,13 @@ two different syntaxes, each one can load the other，and sass have not braces a
         font-weight: 400;
     }
     ```
-    
+
 #### calc(), element(), progid:...(), and expression()
 
 - css spec(special parsing): calc() mathematical expressions conflict with sass's arithmetic and element()'s id could be parsed as colors
 - expression() beginning with progid: is ie-legacy, recent browsers no longer supports, and sass continue to parse them for backwards compatibility
 - **function calls allows any text, including nested parentheses, but interpolation inject dynamic values with exception, nothing is interpreted**
+
     ```scss
     .logo {
         $width: 800px;
@@ -315,6 +317,7 @@ two different syntaxes, each one can load the other，and sass have not braces a
 - libsass and rubsass parsed them as sass function, so create a plain css need using unquoted function call like`min(#{$padding}, env(safe-area-inset-left))`
 - call contains sassscript feature like variables or funtion calls, it's parsed as a call to sass's core min() or max()
 - call is valid plain css, like nested calls to calc(), env(), var(), min(), max() and interpolation, it's compiled to a css call
+
     ```scss
     $padding: 12px;
 
@@ -338,6 +341,7 @@ two different syntaxes, each one can load the other，and sass have not braces a
 #### nesting
 
 - automatically combine the outer rule's selector with the inner rules
+
     ```scss
     nav {
         ul {
@@ -354,8 +358,10 @@ two different syntaxes, each one can load the other，and sass have not braces a
             text-decoration: none;
         }
     }
+
 - heads-up should keep nested don't deep
 - selector lists: complex selector is nested separately and then combined back into a selector list
+
     ```scss
     .alert, .warning {
         ul, p {
@@ -365,7 +371,9 @@ two different syntaxes, each one can load the other，and sass have not braces a
         }
     }
     ```
+
 - selector combinators: put the combinator at the end of the outer selector, and the beginning of the inner selector, or even all on its own in between the two(两级之间)
+
     ```scss
     ul > {
         li {
@@ -388,3 +396,321 @@ two different syntaxes, each one can load the other，and sass have not braces a
         }
     }
     ```
+
+#### interpolation
+
+- use interpolation to inject values into selectors(useful for mixins)
+- sass only parses selector after interpolation is resolved
+- combine interpolation with parent selector(&), the @at-root, and selector function when dynamically generating selector.
+
+    ```scss
+    @mixin define-emoji($name, $glyph) {
+        // span.emoji-women-holding-hands {}
+        span.emoji-#{$name} {
+            font-family: IconFont;
+            font-variant: normal;
+            font-weight: normal;
+            content: $glyph;
+        }
+    }
+
+    @include define-emoji("women-holding-hands", "👭");
+    ```
+
+### property declarations
+
+#### interpolation
+
+- a declaration's value can be any sassscript expression and will be evaluated and included in the result
+- property's name can include interpolation partly or entire property name
+
+    ```scss
+    .circle {
+        $size: 100px;
+        width: $size;
+        height: $size;
+        border-radius: $size / 2;
+    }
+
+    @mixin prefix($property, $value, $prefixes) {
+        @each $prefix in $prefixes {
+            -#{$prefix}-#{$property}: $value;
+        }
+        #{$property}: $value;
+    }
+
+    .gray {
+        @include prefix(filter, graysacle(50%), moz webkit);
+    }
+    ```
+
+#### nesting
+
+- allowing property declarations to be nested
+- write both the shorthand value and the more explicit nested versions
+
+    ```scss
+    .enlarge {
+        font-size: 14px;
+        transition: {
+            property: font-size;
+            duration: 4s;
+            delay: 2s;
+        }
+
+        &:hover { font-size: 36px; }
+    }
+
+    .info-page {
+        margin: auto {
+            bottom: 10px;
+            top: 2px;
+        }
+    }
+    ```
+
+#### hidden declarations
+
+- declarations's value is null or an empty unquoted string, won't compile that declaration to css
+
+    ```scss
+    $rounded-corners: false;
+
+    .button {
+        border: 1px solid blank;
+        // won't compile to css
+        border-radius: if($rounded-corners, 5px, null);
+    }
+    ```
+
+#### custom properties(自定义属性)
+
+- using older versions of lib/ruby-sass recommended use interpolation to inject sassscript values for forwards-compatibility
+- that look like sassscript are parsed to css as-is, interpolation is exception, it's inject dynamic values into custom properties
+- interpolation removes quotes from string make it difficult to use quoted string, so can use the `meta.inspect()` function to preserve quotes 
+
+    ```scss
+    $primary: #81899b;
+    $accent: #302e24;
+    $warn: #dfa612;
+
+    :root {
+        --primary: #{$pramiry};
+        --accent: #{$accent};
+        --warn: #{$warn};
+
+        // even though this looks like a sass variable, it's valid css so it's not evaluated(原样输出)
+        --consumed-by-js: $primary;
+    }
+
+    @use "sass:meta";
+
+    $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+    $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas;
+
+    :root {
+        --font-family-sans-serif: #{meta.inspect($font-family-sans-serif)};
+        --font-family-monospace: #{meta.inspect($font-family-monospace)};
+    }
+    ```
+
+### parent selector(&)
+
+#### overview
+
+- adding a pseudo-class or adding a selector before the parent
+- parent selector could be replaced by a type selector like h1, so it's only allowed at the beginning of compound selectors when type selector be allowed, like span& is not allowed
+
+    ```scss
+    .alert {
+        // the parent selector can be used to add pseudo-classes to the outer selecotr
+        &:hover {
+            font-weight: bold;
+        }
+
+        // it can also be used to style the outer selector in a certain context
+        // such as a body set to use a right to left language
+        [dir=rtl] & {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+
+        // you can even use it as an argument to pseudo-class selectors
+        :not(&) {
+            opacity: 0.8;
+        }
+    }
+    ```
+
+#### adding suffixes
+
+- useing the parent selector to add extra suffixes to outer selector(useful in **BEM**
+- as long as outer selector ends with an alphtnumeric name like class, id, ele-selector useing parent selector additional text
+
+    ```scss
+    .accordion {
+        max-width: 600px;
+        margin: 4rem auto;
+        width: 90%;
+        font-family: "Raleway", sans-serif;
+        background: #f4f4f4;
+
+        &__copy {
+            display: none;
+            padding: 1rem 1.5rem 2rem 1.5rem;
+            color: gray;
+            line-height: 1.6;
+            font-size: 14px;
+            font-weight: 500;
+
+            &--open {
+                display: block;
+            }
+        }
+    }
+
+    ```
+
+#### in sassscript
+
+- parent selector can also be used within sassscript and return the current parent selector(lists)
+- & is used outside any style rules and return null
+
+    ```scss
+    .main aside:hover,
+    .sidebar p {
+        // parent-selector: .main aside:hover, .sidebar p;
+        parent-selector: &;
+        // => ((unquote(".main") unquote("aside:hover")), (unquote(".sidebar") unquote("p")))
+    }
+
+    @mixin app-background($color) {
+        #{if(&, "&.app-background", ".app-background")} {
+            background-color: $color;
+            color: rgba(#fff, 0.75);
+        }
+    }
+
+    // .app-background {}
+    @include app-background(#036);
+
+    // .sidebar.app-background {}
+    .sidebar {
+        @include app-background(#c6538c);
+    }
+    ```
+
+#### advanced nesting
+
+- use & as a normal sassscript expression, means can pass it to function or include in interpolation, using it in combination with selector functions and the @at-root rule allows you to nest selector
+- write a selector match outer selector and element selector, could write a mixin using `selector.unify` function to combine & with user's selector
+
+    ```scss
+    @use "sass:selector";
+
+    @mixin unify-parent($child) {
+        @at-root #{selector.unify(&, $child)} {
+            @content;
+        }
+    }
+
+    .wrapper .field {
+        // .wrapper input.field {}
+        @include unify-parent("input") {
+            /*...*/
+        }
+
+        // .wrapper select.field {}
+        @include unify-parent("select") {
+            /*...*/
+        }
+    }
+    ```
+
+### placeholder selectors(%)
+
+- it starts with a `%` and if it isn't extended and mandate, it's not included in the css output
+
+    ```scss
+    // first
+    // .alert:hover {}
+    .alert:hover, %strong-alert {
+        font-weight: bold;
+    }
+
+    %strong-alert:hover {
+        color: red;
+    }
+
+    // second
+    /* .action-buttons, .reset-buttons {}
+       .action-buttons:hover, .reset-buttons:hover {}
+    */
+    %toolbelt {
+        box-sizing: border-box;
+        border-top: 1px rgba(#000, .12) solid;
+        padding: 16px 0;
+        width: 100%;
+
+        &:hover { border: 2px rgba(#000, .5) solid; }
+    }
+
+    .action-buttons {
+        @extend %toolbelt;
+        color: #4285f4;
+    }
+
+    .reset-buttons {
+        @extend %toolbelt;
+        color: #cddc39;
+    }
+    ```
+
+## variables($)
+
+### overview
+
+- begin with `$`, it can be declared anywhere
+- css varibales can have different values for different elements, but sass variables only have one value at a time
+- sass variables are imperative means use a variable and then change its value, the earlier use will stay the same, but css varibales are declarative means change the value, will affect both earlier and later
+- sass variables treat hyphens and underscores as identical like `$font-size === $font_size`
+
+    ```scss
+    $variable: value 1;
+    .rule-1 {
+        // value: value 1;
+        value: $variable;
+    }
+
+    $variable: value 2;
+    .rule-2 {
+        // value: value 2;
+        value: $variable;
+    }
+    ```
+
+### default values
+
+- sass provides the `!default` flag(allow users to configure css), this assigns a value to a variables only if that variable isn't defined or its value is null, otherwise existing value will be used
+- only dart sass support @use, other must use @import rule
+- to load a module with configuration write @use <url> with(<variable>: <value>), the configured values will override the default value(only !default configured in top level)
+
+    ```scss
+    // _library.scss
+    $black: #000 !default;
+    $border-radius: 0.25rem !default;
+    $box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default;
+
+    code {
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+    }
+
+    // style.scss
+
+    @use 'library' with (
+        $black: #222;
+        $border-radius: 0.1rem;
+    )
+    ```
+

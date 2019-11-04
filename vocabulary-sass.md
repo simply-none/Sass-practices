@@ -87,6 +87,7 @@ version    : 0.0.1-alpha
 |tedious|冗长的，乏味的|
 |vendor|厂商|**[ˈvɛndə(r)]**|
 |prefix|（词语）前缀|
+|suffix|（词语）后缀，词尾|**['sʌfɪks]**|
 |declare|声明，宣告|**[dɪ'kler]**|
 |declaration|声明，宣告|
 |flexible|灵活的，有弹性的|
@@ -158,6 +159,7 @@ version    : 0.0.1-alpha
 |encounter|遭遇，遇到，接触|
 |present|目前，现在，显示，出席|
 |presented|提供，展示，导致，目前|
+|specific|具体的，特定的|
 |specify|具体说明，指定，详列|**['spesɪ.faɪ]**|
 |rather than|而不是|
 |immediately|立刻，立即地，直接地|
@@ -202,6 +204,7 @@ version    : 0.0.1-alpha
 |unit|单位，单元|
 |consider|认为，考虑，留意|
 |concatenate|连接（的）|**[kɑn'kæt(ə).neɪt]**|
+|explicit|显式，明确的，直言的|
 |explicitly|显式，直接地，明确地|**[ɪk'splɪsɪtlɪ]**|
 |precedence|优先级|
 |call|调用，访问|
@@ -240,6 +243,7 @@ version    : 0.0.1-alpha
 |commonly|通常的，一般的|
 |legacy|遗留问题|**['leɡəsi]**|
 |backward|向后（的）|
+|forwards-compatibility|向前兼容|
 |interpret|解释（型）|
 |dynamic|动态的，活跃的|**[daɪˈnæmɪk]**|
 |clever|巧妙的，聪明的|
@@ -252,6 +256,7 @@ version    : 0.0.1-alpha
 |inside|在..里面，内部|
 |combine|结合，组合|**[dɪ'kler]**|
 |combinator|组合器，连接符|**['kɒmbɪneɪtə]**|
+|combination|组合，联合，混合|
 |decoration|装饰（物）|**[.dekə'reɪʃ(ə)n]**|
 |heads up|小心，注意|
 |actually|实际上，其实，实际的|
@@ -262,3 +267,59 @@ version    : 0.0.1-alpha
 |shallow|浅的，浅层|**['ʃæloʊ]**|
 |handle|处理，操纵|
 |descendant|后代，子孙|**[dɪ'sendənt]**|
+|particularly|特别，尤其|**[pər'tɪkjələrli]**|
+|parameter|参数|**[pə'ræmɪtər]**|
+|pass in|传递，进入|
+|fun fact|有趣的事实，趣事|
+|wield|行使，支配，使用，运用，掌握|**[wiːld]**|
+|serious|严重的，严肃的，重要的，大量的|**['sɪriəs]**|
+|power|权力，能力，权限|
+|automate|自动处理，使自动化|
+|foremost|首先，重要的是，最好的|
+|entire|全部的，整个的|
+|redundant|冗余，多余的，不需要的|**[rɪ'dʌndənt]**|
+|hyphen|连字号，连接符|**[ˈhaɪfən]**|
+|shorthand|简写，速记|
+|custom|自定义，定制，个人习惯|
+|recommend|建议，推荐|
+|accessible|易接近的，易懂的|
+|potentially|潜在的，可能的，大概的|**[pə'tenʃəli]**|
+|relevant|有关的，相关的，适当的|
+|unfortunately|不幸的是，遗憾的|**[ʌnˈfɔrtʃənətli]**|
+|workaround|变通方案，变通方法|**['wɜ:kəraʊnd]**|
+|preserve|保持，维持，保留|
+|invent|发明，创造，虚拟|
+|way|形式，方面，情况，路线，方向|
+|pseudo|伪（的），假的|**['sudoʊ]**|
+|pseudo class|伪类|
+|happen|出现，产生，碰巧|
+|compound|复合的，复合词，合成|**[kəm'paʊnd]**|
+|loosen|松动，放松，松散|
+|restriction|限定，约束|**[rɪ'strɪkʃ(ə)n]**|
+|look into|调查，过问|
+|alphanumeric|含有字母和数字的|**[.ælfənu'merɪk]**|
+|methodology|方法论，方法学|**[.meθə'dɑlədʒi]**|
+|as long as|只要，如果，既然|
+|additional|额外的，附加的，追加的|
+|selector|选择器，选择符|
+|suppose|假定，设想，认为|
+|as a rule of thumb(**[θʌm]**)|一般来说，根据经验|
+|clutter|乱堆在，凌乱的塞满|
+|mandate|授权，委托|**['mæn.deɪt]**|
+|placeholder|占位符|
+|simple|简单的，容易的，易于理解的|**['sɪmp(ə)l]**|
+|simplicity|简单，容易|
+|despite|尽管，虽然，即使|**[dɪ'spaɪt]**|
+|repetition|重复|**[ˌrɛpɪˈtɪʃən]**|
+|totally|完全的，彻底的，绝对的，总共|
+|imperative|命令式，祈使句|**[ˌrɛpɪˈtɪʃən]**|
+|declarative|声明式，陈述句|**[dɪ'klerətɪv]**|
+|identifier|标识符|**[aɪ'dentɪ'faɪəz]**|
+|identical|完全相同的，同样的|
+|treat|视为，对待|
+|historical|历史上的，基于历史的|
+|holdover|剩余物|
+|equivalent|等同物，相等物，等值|**[ɪ'kwɪvələnt]**|
+|migration|移动，迁移|**[maɪ'ɡreɪʃ(ə)n]**|
+|override|覆盖，重写|
+
