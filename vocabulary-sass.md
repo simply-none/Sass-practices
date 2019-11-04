@@ -48,6 +48,7 @@ version    : 0.0.1-alpha
 |powerful|强大的，高效能的，有影响力的|
 |consistent|一致的，一致性，连贯的|
 |separate|分隔，隔开|**['sep(ə).reɪt]**|
+|separately|单独地，分别地|
 |colon|冒号|**[ˈkoʊlən]**|
 |semicolon|分号|
 |comma|逗号|
@@ -86,6 +87,7 @@ version    : 0.0.1-alpha
 |tedious|冗长的，乏味的|
 |vendor|厂商|**[ˈvɛndə(r)]**|
 |prefix|（词语）前缀|
+|declare|声明，宣告|**[dɪ'kler]**|
 |declaration|声明，宣告|
 |flexible|灵活的，有弹性的|
 |pass|通过，传递，经过|
@@ -236,3 +238,27 @@ version    : 0.0.1-alpha
 |as-is|原样，不予改变|
 |inject|添加，投入，注入|
 |commonly|通常的，一般的|
+|legacy|遗留问题|**['leɡəsi]**|
+|backward|向后（的）|
+|interpret|解释（型）|
+|dynamic|动态的，活跃的|**[daɪˈnæmɪk]**|
+|clever|巧妙的，聪明的|
+|cleverness|聪明的|**[ ˈklɛvɚnəs]**|
+|as soon as|一..就，一经|
+|foundation|基础，地基，根据|
+|look|外观，查找|
+|affect|影响，使改变，作用|**['æfekt]**|
+|over and over again|反复（地），一次又一次|
+|inside|在..里面，内部|
+|combine|结合，组合|**[dɪ'kler]**|
+|combinator|组合器，连接符|**['kɒmbɪneɪtə]**|
+|decoration|装饰（物）|**[.dekə'reɪʃ(ə)n]**|
+|heads up|小心，注意|
+|actually|实际上，其实，实际的|
+|visualize|想象，设想，显现|
+|render|提供，给予，渲染|
+|serve|服务，提供|
+|bandwidth|带宽|
+|shallow|浅的，浅层|**['ʃæloʊ]**|
+|handle|处理，操纵|
+|descendant|后代，子孙|**[dɪ'sendənt]**|
