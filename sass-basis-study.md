@@ -260,3 +260,131 @@ two different syntaxes, each one can load the other，and sass have not braces a
     }
     ```
     
+### special functions
+
+#### url()
+
+- `url()` can take either a quoted or unquoted url, when is a **unquoted url is invalid sass-exp**, so need special logic to parse it
+- url's arguments is valid unquoted url, parse it as-is, although may used interpolation
+- it's invalid unquoted url, it's parsed as a normal plain css function call
+    ```scss
+    $roboto-font-path: "../fonts/roboto";
+
+    @font-face {
+        // this is parsed as a normal function call that takes a quoted string
+        src: url("#{$roboto-font-path}/Roboto-thin.woff2") format("woff2");
+
+        font-family: "Roboto";
+        font-weight: 100;
+    }
+
+    @font-face {
+        // this is parsed as a normal function call that takes an arithmetic expression
+        src: url($roboto-font-path + "/Roboto-light.woff2") format("woff2");
+
+        font-family: "Roboto";
+        font-weight: 300;
+    }
+
+    @font-face {
+        // this is parsed as an interpolated special function
+        src: url(#{$roboto-font-path}/Roboto-regular.woff2) format("woff2");
+
+        font-family: "Roboto";
+        font-weight: 400;
+    }
+    ```
+    
+#### calc(), element(), progid:...(), and expression()
+
+- css spec(special parsing): calc() mathematical expressions conflict with sass's arithmetic and element()'s id could be parsed as colors
+- expression() beginning with progid: is ie-legacy, recent browsers no longer supports, and sass continue to parse them for backwards compatibility
+- **function calls allows any text, including nested parentheses, but interpolation inject dynamic values with exception, nothing is interpreted**
+    ```scss
+    .logo {
+        $width: 800px;
+        width: $width;  // width: 800px;
+        position: absolute;
+        left: calc(50% - #{$width / 2}); // left: calc(50% - 400px);
+        top: 0;
+    }
+    ```
+
+#### min() and max()
+
+- libsass and rubsass parsed them as sass function, so create a plain css need using unquoted function call like`min(#{$padding}, env(safe-area-inset-left))`
+- call contains sassscript feature like variables or funtion calls, it's parsed as a call to sass's core min() or max()
+- call is valid plain css, like nested calls to calc(), env(), var(), min(), max() and interpolation, it's compiled to a css call
+    ```scss
+    $padding: 12px;
+
+    .post {
+        // since these max() calls don't use any sass features other than interpolation, they're compiled to csss max() calls
+        padding-left: max(#{$padding}, env(safe-area-inset-left));
+        padding-right: max(#{$padding}, env(saft-area-inset-right));
+    }
+
+    .sidebar {
+        // since these refer to a sass variable without interpolation, they call sass's bulit-in max() function
+        padding-left: max($padding, 20px);
+        padding-right: max($padding, 20px);
+    }
+    ```
+
+## style rules
+
+### overview
+
+#### nesting
+
+- automatically combine the outer rule's selector with the inner rules
+    ```scss
+    nav {
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li { display: inline-block;}
+
+        a {
+            display: block;
+            padding: 6px 12px;
+            text-decoration: none;
+        }
+    }
+- heads-up should keep nested don't deep
+- selector lists: complex selector is nested separately and then combined back into a selector list
+    ```scss
+    .alert, .warning {
+        ul, p {
+            margin-right: 0;
+            margin-left: 0;
+            padding-bottom: 0
+        }
+    }
+    ```
+- selector combinators: put the combinator at the end of the outer selector, and the beginning of the inner selector, or even all on its own in between the two(两级之间)
+    ```scss
+    ul > {
+        li {
+            list-style-type: none;
+        }
+    }
+
+    h2 {
+        + p { 
+            border-top: 1px solid gray;
+       }
+    }
+
+    // p ~ span { opacity: 0.8;}
+    p {
+        ~ {
+            span {
+                opacity: 0.8;
+            }
+        }
+    }
+    ```
