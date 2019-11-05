@@ -282,7 +282,7 @@ version    : 0.0.1-alpha
 |shorthand|简写，速记|
 |custom|自定义，定制，个人习惯|
 |recommend|建议，推荐|
-|accessible|易接近的，易懂的|
+|accessible|易接近的，易懂的，可使用的，可进入的|
 |potentially|潜在的，可能的，大概的|**[pə'tenʃəli]**|
 |relevant|有关的，相关的，适当的|
 |unfortunately|不幸的是，遗憾的|**[ʌnˈfɔrtʃənətli]**|
@@ -320,6 +320,7 @@ version    : 0.0.1-alpha
 |historical|历史上的，基于历史的|
 |holdover|剩余物|
 |equivalent|等同物，相等物，等值|**[ɪ'kwɪvələnt]**|
+|migrate|移动，迁移|**['maɪ.ɡreɪt]**|
 |migration|移动，迁移|**[maɪ'ɡreɪʃ(ə)n]**|
 |override|覆盖，重写|
 |access|存取，访问，进入|**[ˈækˌses]**|
@@ -355,3 +356,21 @@ version    : 0.0.1-alpha
 |encourage|鼓励，激励|
 |entrypoint|入口函数，程序入口|
 |hide|隐藏，躲避|
+|locate|定位，找出|
+|relative|相关的，相对的|
+|mess up|搞砸，弄乱|
+|convention|约定，管理，常规|
+|leave off|剔除，排除，停止|
+|expose|暴露，揭露，公开|
+|downstream|在后阶段的，在下游的|
+|discourage|阻止，阻碍|
+|gradually|逐渐的，逐步的|
+|phase out|使逐步淘汰，逐步取消|
+|issue|问题，争论点|
+|collision|冲突，碰撞|
+|bloated|臃肿的，膨胀的|**['bloʊtəd]**|
+|inaccessible|难以达到的，不可得到的|
+|appear|出现，显得|
+|exact|确切的，准确的|
+|third-party|第三方的|
+|intended|打算中的，预期的|

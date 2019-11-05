@@ -710,7 +710,7 @@ two different syntaxes, each one can load the other，and sass have not braces a
 
     @use 'library' with (
         $black: #222;
-        $border-radius: 0.1rem;
+        $border-radius: 0.1rem
     )
     ```
 
@@ -1016,3 +1016,202 @@ two different syntaxes, each one can load the other，and sass have not braces a
     }
     ```
     
+#### configuring modules
+
+- define variablees with the `!default` flag to make them configurable, and to load it write `@use <url> with (<variable>: <value>, <variable>: <value>...)` to override the variables.
+
+    ```scss
+    // _library.scss
+    $black: #000 !default;
+    $border-radius: 0.25rem !default;
+    $box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default;
+
+    code {
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+    }
+
+    // style.scss
+    @use 'library' with (
+        $black: #222,
+        $border-radius: 0.1rem
+    )
+    ```
+
+#### finding the modules
+
+- ensure stylesheets work on every operating system, sass loads files by url, not by file path, so need to use forward slashes
+- load paths will only be used if no relative file exists that matches the modules url, sass doesn't require use `./`
+- partial sass files begin name with `_`, import it can leave off the _
+- load url for folder itself, the index file(like _index.sass, _index.scss) will be loaded automatically
+
+    ```scss
+    // foundation/_code.scss
+    code {
+        padding: .25em;
+        line-height: 0;
+    }
+
+    // foundation/_lists.scss
+    ul, ol {
+        text-align: left;
+
+        & & {
+            padding: {
+                bottom: 0;
+                left: 0;
+            }
+        }
+    }
+
+    // foundation/_index.scss
+    @use 'code';
+    @use 'lists';
+
+    // style.scss
+    @use 'foundation';
+    ```
+
+#### loading css
+
+- in addition to loading .sass and .scss, sass can load plain old .css file
+- loading css module don't allow any special sass features, sass features isn't valid css will produce errors
+
+    ```scss
+    // code.css
+    code {
+        padding: .25em;
+        line-height: 0;
+    }
+
+    // style.scss
+    @use 'code';
+    ```
+
+### @forward
+
+#### overview
+
+- `@forward '<url>'` loads the module at the given url like @use
+- both using @forward and @use in the same module, it's always to write @forward first, and if forwarded module is configure, it's will before in no-configure
+
+    ```scss
+    // src/_list.scss
+    @mixin list-reset {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    // bootstrap.scss
+    @forward "src/list";
+
+    // styles.scss
+    @use "bootstrap";
+    
+    li {
+        @include bootstrap.list-reset;
+    }
+    ```
+
+#### adding prefix
+
+- @forward has the option of adding an extra prefix to all members it forward, written `@forward "<url>" as <prefix>-*`
+
+    ```scss
+    // src/_list.scss
+    @mixin reset {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    //bootstrap.scss
+    @forward "src/list" as list-*;
+
+    // styles.scss
+    @use "bootstrap";
+
+    li {
+        @include bootstrap.list-reset;
+    }
+    ```
+
+#### controlling visibility
+
+- you can control exactly which members get forwarded by writing `@forward "<url>" hide/show <members...>`, hide means members shouldn't be forwarded, show means only the named members should be forwarded
+
+    ```scss
+    // src/_list.scss
+    $horizontal-list-gap: 2em;
+
+    @mixin list-reset {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    @mixin list-horizontal {
+        @include reset;
+
+        li {
+            display: inline-block;
+            margin: {
+                left: -2px;
+                right: $horizontal-list-gap;
+            }
+        }
+    }
+
+    // bootstrap.scss
+    @forward "src/list" hide list-reset, $horizontal-list-gap;
+    ```
+
+### @import
+
+#### overview
+
+- unlike plain css imports require make multiple http requests, sass imports are handled entirely during compilation
+- allow multiple imports use commas separated, and don't required to have quotes
+- discourages continued use of @import rule, prefer @use rule instead
+- @import wrong, and use @use to resolve
+    - @import makes all members to globally accessible
+    - @extend rules are also global, so make it difficult to predict styles rule will be extended
+    - each stylesheet is executed and its css emitted every time its @imported, increases compilation time and produces bloated output
+    - no way to define private members or placeholder selector inaccessible to downstream stylesheets
+
+    ```scss
+    // foundation/_code.scss
+    code {
+        padding: .25em;
+        line-height: 0;
+    }
+
+    // foundation/_lists.scss
+    ul, ol {
+        text-align: left;
+
+        & & {
+            padding: {
+                bottom: 0;
+                left: 0;
+            }
+        }
+    }
+    ```
+
+#### finding the file like @use rule
+
+##### custom importers
+
+- node sass and dart sass on npm provide an importer option
+- dart sass on pub provides an abstract importer class
+- ruby sass provides an abstract importer::Base class
+  
+#### nesting
+
+- @import can nested within style rules or plain css at-rules
+- others like @use
+  
+#### import css
+
