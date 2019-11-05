@@ -389,3 +389,8 @@ version    : 0.0.1-alpha
 |trailing|结尾|**['treɪlɪŋ]**|
 |refactor|重构（代码）|
 |arbitrary|任意的，武断的|**['ɑrbɪ.treri]**|
+|in addition to|此外，除了..之外|
+|lexical|词法的，词汇的|**['leksɪk(ə)l]**|
+|lexical scope|词法作用域|
+|invoke|调用，请求，激活|
+|terse|简洁的，精炼的|**[tɜrs]**|
