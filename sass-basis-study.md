@@ -1242,4 +1242,160 @@ two different syntaxes, each one can load the other，and sass have not braces a
 
 ### import and modules
 
-- 
+- importing a module-system file: import a contains @use rules file, importing file has access to all members, but the file has loaded can't access. if the file contains @forward rules, importing file will have access to forwarded members
+- a file with @use rules is imported, all the css loaded even if its already included by another import, this can result in bloated css output
+- a file named <name>.import.scss, it will only be loaded for imports, not for @uses
+- use @use load a contain @import module, the module will comtain all the public members defined
+
+    ```scss
+    // _reset.scss
+    // module system users write `@include reset.list()`
+    @mixin list() {
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    }
+
+    // _reset.import.scss
+    // legacy import users can keep writting `@include reset-list()`
+    @forward "reset" as reset-*;
+    ```
+
+### @mixin and @include
+
+#### overview
+
+- defined using the @mixin at-rule, written @mixin <name> {} or @mixin <name>(<arguments...>) {}
+- mixins are included into the current context using @include at-rule, written @include <name> or @include <name>(<arguments>)
+- mixins names like all sass identiffiers treat hyphens and underscore as identical, like reset-list equal with reset_list
+
+    ```scss
+    @mixin reset-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    @mixin horizontal-list {
+        @include reset-list;
+
+        li {
+            display: inline-block;
+            margin: {
+                left: -2px;
+                right: 2em;
+            }
+        }
+    }
+
+    nav ul {
+        @include horizontal-list;
+    }
+    ```
+
+#### arguments
+
+- argument lists can also have trailing commas to avoid syntax error when refactoring stylesheets
+
+    ```scss
+    @mixin rtl($property, $ltr-value, $rtl-value) {
+        #{$property}: $ltr-value;
+
+        [dir=rtl] & {
+            #{$property}: $rtl-value;
+        }
+    }
+
+    .sidebar {
+        @include rtl(float, left, right);
+    }
+    ```
+- can make an argument optional by defining a default value which will be used if that arguments isn't passed, default values(any sassscript expression) use same syntax as variable declarations
+  
+    ```scss
+    @mixin replace-text($image, $x: 50%, $y: 50%) {
+        text-indent:-99999em;
+        overflow: hidden;
+        text-align: left;
+
+        background: {
+            image: $image;
+            repeat: no-repeat;
+            position: $x $y;
+        }
+    }
+
+    .mail-icon {
+        @include replace-text(url("/images/mail.svg"), 0);
+    }
+    ```
+ - keyword arguments use the same syntax as variable declarations and optional arguments
+  
+    ```scss
+    @mixin square($size, $radius: 0) {
+        width: $size;
+        height: $size;
+
+        @if $radius != 0 {
+            border-radius: $radius;
+        }
+    }
+
+    .avatar {
+        @include square(100px, $radius: 4px);
+    }
+    ```
+
+- taking arbitrary arguments with the last arguments in a @mixin declaration ends in `...`
+
+    ```scss
+    @mixin order($height, $selectors...) {
+        @for $i from 0 to length($selectors) {
+            #{nth($selectors, $i +1)} {
+                position: absolute;
+                height: $height;
+                margin-top: $i * $height;
+            }
+        }
+    }
+
+    @include order(150px, "input.name", "input.address", "input.zip");
+    ```
+
+- taking arbitrary keyword arguments: `meta.keywords()` function takes an argument list and return a map not including $
+
+    ```scss
+    @use "sass:meta";
+
+    @mixin syntax-colors($args...) {
+        @debug meta.keywords($args);
+        // (string: #000, comment: #800, variable: #60b)
+
+        @each $name, $color in meta.keywords($args) {
+            pre span.stx-#{$name} {
+                color: $color;
+            }
+        }
+    }
+
+    @include syntax-colors(
+        $string: #080,
+        $comment: #800,
+        $varibalu: #60b
+    )
+    ```
+
+- passing arbitrary arguments:(任意参数传递)
+
+    ```scss
+    $form-selectors: "input.name", "input.address", "input.zip" !default;
+
+    @include order(150px, $form-selectors...);
+
+    @mixin btn($args...) {
+        @warn "the btn() mixin is deprecated. include button() instead";
+        @include button($args...);
+    }
+    ```

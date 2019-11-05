@@ -352,7 +352,7 @@ version    : 0.0.1-alpha
 |functionality|功能性，设计功能|
 |compilation|编译，编辑|**[.kɑmpɪ'leɪʃ(ə)n]**|
 |other than|除..之外，而不是|
-|forward|转交，转发，向前|
+|forward|转交，转发，向前，前面的|
 |encourage|鼓励，激励|
 |entrypoint|入口函数，程序入口|
 |hide|隐藏，躲避|
@@ -382,3 +382,10 @@ version    : 0.0.1-alpha
 |transitive|传递性，传递的|
 |careful|小心的，当心的，仔细的|
 |retain|保存，保持，保留|
+|semantic|语义的|
+|collection|集合，收集|
+|distribute|分发，分配，分送|
+|encapsulate|封装，压缩，概括|**[ɪn'kæpsjə.leɪt]**|
+|trailing|结尾|**['treɪlɪŋ]**|
+|refactor|重构（代码）|
+|arbitrary|任意的，武断的|**['ɑrbɪ.treri]**|
