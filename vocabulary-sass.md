@@ -350,3 +350,8 @@ version    : 0.0.1-alpha
 |tempting|吸引人的，诱人的|
 |functionality|功能性，设计功能|
 |compilation|编译，编辑|**[.kɑmpɪ'leɪʃ(ə)n]**|
+|other than|除..之外，而不是|
+|forward|转交，转发，向前|
+|encourage|鼓励，激励|
+|entrypoint|入口函数，程序入口|
+|hide|隐藏，躲避|

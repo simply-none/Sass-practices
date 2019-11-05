@@ -906,3 +906,113 @@ two different syntaxes, each one can load the other，and sass have not braces a
   
 ### @use
 
+#### overview
+
+-  only dart-sass supports `@use`, others use `@import` rule
+-  stylesheets loaded by `@use` are called modules
+-  the simplest `@use` rule is `@use <url>`, once in the compiled css output no matter how many times loaded
+-  `@use` must before any rules other than `@forward`, but can declare variables before `@use` when configuring modules
+
+    ```scss
+    // foundation/_code.scss
+    code {
+        padding: .25rem;
+        line-height: 0;
+    }
+
+    // foundation/_lists.scss
+    ul,ol {
+        text-align: left;
+
+        // output: ul ul, ol ol {}
+        & & {
+            padding: {
+                bottom: 0;
+                left: 0;
+            }
+        }
+    }
+
+    // style.scss 
+    @use 'foundation/code'
+    @use 'foundation/lists'
+    ```
+
+#### loading members
+
+- can access variables, func, mixins from another module by writing <namespace>.<variable>, <namespace>.<funtion>(), or @include <namespace>.<mixin>()
+- by default the namespace is the last component of url without extension, choosing re-name by write `@use "<url>" as <namespace>`
+- even load module without namespace by `@use "<url>" as *` its may cause name conflicts
+- load many files at once, use the `@forward` rule
+- `@use` is safe to choose simple name like $radius, is different from @import rule which let user write long name like $mat-corner-radius
+- private members starting with `-` or `_`, means stylesheets loads can't see it
+- let entire package is private, just don't forward its module, and even hide member while forwarding the rest of its module
+
+    ```scss
+    // first
+    // src/_corners.scss
+    $radius: 3px;
+
+    @mixin rounded {
+        border-radius: $radius;
+    }
+
+    // style.scss
+    @use "src/corners";
+
+    .button {
+        @include corners.rounded;
+        padding: 5px + corners.$radius;
+    }
+
+    // second
+    // src/_corners.scss
+    $radius: 3px;
+
+    @mixin rounded {
+        border-radius: $radius;
+    }
+
+    // style.scss
+    @use "src/corners" as c;
+
+    .button {
+        @include c.rounded;
+        padding: 5px + c.$radius;
+    }
+
+    // three
+    // src/_corners.scss
+    $radius: 3px;
+
+    @mixin rounded {
+        border-radius: $radius;
+    }
+
+    // style.scss
+    @use "src/corners" as *;
+
+    .button {
+        @include rounded;
+        padding: 5px + $radius;
+    }
+
+    // four
+    // src/corners.scss
+    $-radius: 3px;
+
+    @mixin rounded {
+        border-radius: $-radius;
+    }
+
+    // style.scss
+    @use "src/corners";
+
+    .button {
+        @include corners.rounded;
+
+        // this is an error $-radius isn't visible outside of `_corners.scss`
+        padding: 5px + corners.$-radius;
+    }
+    ```
+    
