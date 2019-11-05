@@ -714,3 +714,195 @@ two different syntaxes, each one can load the other，and sass have not braces a
     )
     ```
 
+### scope
+
+- those declare in blocks are usually local, and only be accessed within the block they were declare
+- local variables can even be declared with the same name as a global variable, there are two different variables
+- set a global variables value from within a local scope using the `!global` flag, it only be used to already been declared at the top level of a file. but older sass version can used doesn't exist variables yet
+- variables declare in flow control rules have special scoping, they don't shadow the same level variable, it can assign to existing variables in the outer scope, but the variables should declared before you assign to it, even if you need to declare it as null
+
+    ```scss
+    // first
+    $global-variable: global value;
+
+    .content {
+        $local-variable: local value;
+        global: $global-variable;
+        local: $local-variable;
+    }
+
+    .sidebar {
+        global: $global-variable;
+
+        // this would fail, because $local-variable isn't in scope:
+        // local: $local-variable;
+    }
+
+    // second
+    $variable: global value;
+
+    .content {
+        $variable: local value;
+        value: $variable;
+    }
+
+    .sidebar {
+        value: $variable;
+    }
+
+    //three
+    $variable: first global value;
+
+    .content {
+        $variable: second global value !global;
+        value: $variable;
+    }
+
+    .sidebar {
+        value: $variable;
+    }
+
+    // four
+    $dark-theme: true !default;
+    $primary-color: #f8bbd0 !default;
+    $accent-color: #6a1b9a !default;
+
+    @if $dark-theme {
+        $primary-color: darken($primary-color, 60%);
+        $accent-color: lighten($accent-color, 60%);
+    }
+
+    .button {
+        // background-color: #750c30;
+        background-color: $primary-color;
+        border: 1px solid $accent-color;
+        border-radius: 3px;
+    }
+    ```
+
+### advanced variable function
+
+- sass core library provides functions for working with variables, `meta.variable-exists()` function return whether a variable with the given name exists in the current scope, and the `meta.global-variable-exists()` function does the same for global scope
+- using interpolation to define a variable name based on another variable, you should define a map from names to values that you can then access using variables
+
+    ```scss
+    @use "sass:map";
+
+    $theme-colors: {
+        "success": #28a745;
+        "info": #17a2b8;
+        "warning": #ffc107;
+    };
+
+    .alert {
+        // instead of $theme-color-#{warning}
+        //background-color: #ffc107;
+        background-color: map.get($theme-colors, "warning");
+    }
+    ```
+
+## interpolation
+
+### overview
+
+- it can be used almost anywhere in `#{}` in any of the following places:
+    - selectors in style rules
+    - property names in declarations
+    - custom property values
+    - css at-rules
+    - @extends
+    - plain css @import
+    - quoted for unquoted strings
+    - special functions
+    - plain css function names
+    - loud comments
+    
+    ```scss
+    @mixin corner-icon($name, $top-or-bottom, $left-or-right) {
+        .icon-#{$name} {
+            background-image: url("/icons/#{$name}.svg");
+            position: absolute;
+            #{$top-or-bottom}: 0;
+            #{$left-or-right}: 0;
+        }
+    }
+
+    @include corner-icon("mail", top, left);
+    ```
+
+#### in sassscript
+
+- lib-ruby sass use an older syntax for parsing interpolation in sassscript, but it can behave strangely around operators
+- interpolation can be used in scssscript to inject scssscript into unquoted strings(useful with dynamically generating names or using slash-sparated values), and always returns an unquoted string
+- in fact, it's rarely necessary using in sass-exp, you can instead of writing color: #{$accent} using color: $accent
+- using interpolation with numbers is bad, sass have powerful unit arithmetic, so insted of #{$width}px using $width * 1px or better, but if $width already has units, 1px should remove unit otherwise its will error
+
+    ```scss
+    @mixin inline-animation($duration) {
+        $name: inline-#{unique-id()};
+
+        @keyframes #{$name} {
+            @content;
+        }
+
+        animation-name: $name;
+        animation-duration: $duration;
+        animation-iteration-count: infinite;
+    }
+
+    .pulse {
+        @include inline-animation(2s) {
+            from {background-color: yellow; }
+            to { background-color: red; }
+        }
+    }
+    ```
+    ```css
+    .pulse {
+        animation-name: inline-un9b7mrf8;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes inline-un9b7mrf8 {
+        from {
+            background-color: yellow;
+        }
+        to {
+            background-color: red;
+        }
+    }
+    ```
+
+#### quoted strings
+
+- the exception that the quotation marks around quoted strings are remove, it's possible to write quoted strings that contains sassscript not allowed syntax
+- clearly using `string.unquote()` function instead of `#{$string}`, example `string.unquote($string)`
+
+    ```scss
+    .example {
+        // unquoted: string;
+        unquoted: #{"string"};
+    }
+    ```
+
+## at-rules
+
+### overview
+
+- much of sass's extra functionality comes in the form of new at-rules it add on top of css
+    - `@use`: loads mixins, functions, and variables from  sass-stylesheets
+    - `@forward`: loads a sass-stylesheet and makes its mixins, func, var
+    - `@import`: extends css at-rule to load styles, mixins, func, var from other-stylesheets
+    - `@mixin` and `@include`: re-use chunks of styles
+    - `@function`: defines custom function
+    - `@extend`: inherit styles
+    - `@at-root`: puts styles within it at the root of the css document
+    - `@error`: causes compilation to fail with an err-msg
+    - `@warn`: prints a msg without stopping compilation
+    - `@debug`: prints a msg for debugging purposes
+    - flow control rules like `@if`, `@each`, `@for`, `@while`
+    - special behavior is can contain interpolation and can be nested in style rules, and `@media` or `@supports` also allow used without interpolation
+  
+### @use
+

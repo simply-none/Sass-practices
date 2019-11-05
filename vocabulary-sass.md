@@ -103,14 +103,14 @@ version    : 0.0.1-alpha
 |above|在..上方|
 |behave|运转，做出反应，行为，表现|
 |show up|出现，出席，揭露|
-|avoid|避免，避开|
+|avoid|避免，避开，防止|
 |make sure|确保，确信，尽力做到|
 |elsewhere|在别处，其他地方|
 |unintended|无意的，非故意的|**[.ʌnɪn'tendəd]**|
 |handful|少量，一把|
 |fluid grid|流动布局|
 |pixel|像素|**['pɪks(ə)l]**|
-|convert|转换，换算|
+|convert|转换，转变，换算|
 |percentage|百分比，百分数|**[pər'sentɪdʒ]**|
 |hassle|麻烦，困难|**['hæs(ə)l]**|
 |fully|完全地，最大程度地，充分地，整整|
@@ -322,4 +322,31 @@ version    : 0.0.1-alpha
 |equivalent|等同物，相等物，等值|**[ɪ'kwɪvələnt]**|
 |migration|移动，迁移|**[maɪ'ɡreɪʃ(ə)n]**|
 |override|覆盖，重写|
-
+|access|存取，访问，进入|**[ˈækˌses]**|
+|ensure|保证，确保，担保|
+|accidentally|意外的，偶然的|
+|scope|作用域，范围|
+|deprecate|不赞成，已过时，被废弃|**['deprə.keɪt]**|
+|make sure|确保，确信，查明，证实|
+|no matter how|不管怎样，无论怎样|
+|execute|执行，实施，完成|**['eksə.kjut]**|
+|shadow|遮蔽，影子|
+|conditionally|有条件的，有前提的|
+|couple|一双，一对，几个|
+|occasionally|偶尔的，偶然，间或|**[ə'keɪʒən(ə)li]**|
+|at a glance|一看就，瞥一眼，扫视|
+|embed|使嵌入，内嵌|**[ɪm'bed]**|
+|chunk|大块，大部分，区块|**[tʃʌŋk]**|
+|wrap|包裹，用..包裹|
+|practical|实用的，可行的，实际的|
+|purpose|意义，用途，目的，决心|
+|strangely|奇怪的，异常的|
+|rarely|难见的，少见的，难得|
+|definitely|当然，肯定，明确的，确定的|**['defənɪtli]**|
+|further|更多的，进一步（的）|
+|safeguard|保护（措施），防护物，安全保障|**['seɪf.ɡɑrd]**|
+|terms|用..术语（字眼），在..方面|
+|bogus|假的，伪造的，非法的|**['boʊɡəs]**|
+|tempting|吸引人的，诱人的|
+|functionality|功能性，设计功能|
+|compilation|编译，编辑|**[.kɑmpɪ'leɪʃ(ə)n]**|
