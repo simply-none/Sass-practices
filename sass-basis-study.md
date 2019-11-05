@@ -1215,3 +1215,31 @@ two different syntaxes, each one can load the other，and sass have not braces a
   
 #### import css
 
+- lib sass importing .css file but it treated as scss filed rather than being parsed as css
+- others like @use
+
+### plain css @imports
+
+- the following characteristics to plain css imports
+  - url ends with .css
+  - url begins http:// or https://
+  - written as a url()
+  - media queries
+- sass import can't use interpolation, but plain css can
+
+    ```scss
+    @import "theme.css";
+    @import "http://fonts.googleapis.com/css?family=Droid+Sans";
+    @import url(theme);
+    @import "landscape" screen and (orientation: landscape);
+
+    @mixin google-font($family) {
+        @import url("http://fonts.gooleapis.com/css?family=#{$family}");
+    }
+
+    @include google-font("Droid Sans");
+    ```
+
+### import and modules
+
+- 

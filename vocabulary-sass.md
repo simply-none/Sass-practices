@@ -316,7 +316,7 @@ version    : 0.0.1-alpha
 |declarative|声明式，陈述句|**[dɪ'klerətɪv]**|
 |identifier|标识符|**[aɪ'dentɪ'faɪəz]**|
 |identical|完全相同的，同样的|
-|treat|视为，对待|
+|treat|视为，对待，处理|
 |historical|历史上的，基于历史的|
 |holdover|剩余物|
 |equivalent|等同物，相等物，等值|**[ɪ'kwɪvələnt]**|
@@ -374,3 +374,11 @@ version    : 0.0.1-alpha
 |exact|确切的，准确的|
 |third-party|第三方的|
 |intended|打算中的，预期的|
+|contrary|相反的，相对的|**[ˈkɒntrərɪ]**|
+|specification|规范，规格，说明书|**[.spesɪfɪ'keɪʃ(ə)n]**|
+|indicate|象征，指示，表明|
+|integrate|使融入，使加入，合并，成为一体|
+|seamlessly|无缝的|
+|transitive|传递性，传递的|
+|careful|小心的，当心的，仔细的|
+|retain|保存，保持，保留|
