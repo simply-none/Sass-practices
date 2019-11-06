@@ -1496,3 +1496,202 @@ two different syntaxes, each one can load the other，and sass have not braces a
   nav ul
       +horizontal-list
   ```
+
+### @function
+
+#### overview
+
+- all sass identifiers treat hyphens and underscores as identical, means scale-color and scale_color refer to same
+- function using @function at-rule, written @function <name>(<arguments..>) {...}
+- functions have side-effects, use mixins for side-effects, and use functions just to compute values
+
+  ```scss
+  @function pow($base, $exponent) {
+    $result: 1;
+    @for $_ from 1 through $exponent {
+      $result: $result * $base;
+      }
+      @return $result;
+     }
+     
+     .sidebar {
+      float: left;
+      margin-left: pow(4, 3) * 1px;
+      }
+      ```
+#### arguments
+
+- the function must be called with the same number of arguments in the form of sassscript expressions
+- argument lists can have trailing commas, avoid syntax error when refactoring stylesheets
+- optional arguments by defining a default value(any sassscript expression)
+
+  ```scss
+  @function invert($color, $amount: 100%) {
+    $inverse: change-color($color, $hue: hue($color) + 180);
+    @return mix($inverse, $color, $amount);
+   }
+   
+   $primary-color: #036;
+   .header {
+    background-color: invert($primary-color, 80%);
+    }
+    ```
+    
+- arguments can be passed by name, keyword arguments use the same syntax as variable declarations  and optional arguments
+- careful when renaming a function's arguments, you should keep the old name around as a optional arguments for a while and printing a warning if passes it
+  ```scss
+  $primary-color: #036;
+  .banner {
+    background-color: $primary-color;
+    color: scale-color($primary-color, $lightness: +40%);
+    }
+   ```
+- the last arguments in a @function declaration ends with `...`, this arguments is known as an arguments list
+- arguments lists can be used to take arbitrary keyword arguments use `meta.keywords()` function, and you should pass an argument lists to the `meta.keywords()` function
+  ```scss
+  @function sum($numbers...) {
+    $sum: 0;
+    @each $number in $numbers {
+      $sum: $sum + $number;
+      }
+      @return $sum;
+      }
+      
+   .micro {
+    width: sum(50px, 30px, 100px);
+    }
+    ```
+ - passing arbitrary arguments: can be used to pass positional and keyword arguments to a function or both pass use `...`
+  ```scss
+  $widths: 50px, 30px, 100px;
+  .micro {
+    width: min($widths...);
+    }
+   ```
+    
+ - define an alias for function: using positional and keyword arguments to pass both at  once to another function
+  ```scss
+  @function fg($args...) {
+    @warn "the fg() function is deprecated. call foreground() instead.";
+    @return foreground($args...);
+   }
+  ```
+#### @return
+
+- each @function must end with a @return
+- returning early can be useful for handling edge-cases or cases other than warpping the entire function in an @else block
+  ```scss
+  @use "sass:string";
+  
+  @function str-insert($string, $insert, $index) {
+    // avoid making new strings if we don't need to
+    @if string.length($string) == 0 {
+      @return $insert;
+    }
+    
+    $before: string.slice($string, 0, $index);
+    $after: string.slice($string, $index);
+    @return $before + $insert + $after;
+  }
+  ```
+#### other functions
+
+- not either user-defined or built-in function is compiled to a plain css function(unless it uses sass-syntax)
+- typo a function name will be compiled to css, so can using a css linter on stylesheet
+- some css functions like calc() and element() have unusual syntax, sass parses them as unquoted strings
+  ```scss
+  @debug var(--main-bg-color); // var(--main-bg-color)
+  
+  $primary: #f2ece4;
+  $accent: #e1d7d2;
+  @debug radial-gradient($primary, $accent); // radial-gradient(#f2ece4, #e1d7d2)
+  ```
+
+### @extend
+
+#### overview
+
+- **BEM methodology** encourages modifier classes that go on the same elements as block or element classes that can let html clutter
+
+  ```html
+  <div class="error error--serious">
+    oh no!you're been hacked!
+</div>
+  ```
+  ```css
+  .error {
+    border: 1px #f00;
+    background-color: #fdd;
+    }
+    
+    .error--serious {
+      border-width: 3px;
+      }
+    ```
+- @extend rule tell scss that one selector should inherit the styles of another
+
+  ```scss
+  .error {
+    border: 1px #f00;
+    background-color: #fdd;
+    
+    &--serious {
+      @extend .error;
+      border-width: 3px;
+    }
+  }
+  ```
+- if you @extend .error, it won't affect the inner selector in `.error { &__icon {...} }`, and means that parent selector in sassscript can't see the results of extend
+  ```scss
+  .error:hover {
+    background-color: #fee;
+  }
+  
+  .error--serious {
+    @extend .error;   // .error--serious:hover {}
+    border-width: 3px;
+  }
+  ```
+#### how it works
+- `selector.unify()` function returns a selector matches the intersection of two selectors, while `selector.extend()` function works just like @extend but on a signal selector
+- the styles have precedence in the cascade based on where the extended selector's style rules appear, but if you added the extended classes to you html that is the same precedence
+```scss
+.content nav.sidebar {
+  @extend .info;
+}
+
+// this won't be extended, because `p` is incommpatible with `nav`
+p.info {
+  background-color: #dee9fc;
+}
+
+// there's no way to know whether `<div class="guide">` will be inside or
+// outside `<div class="content">`, so sass generates both to be safe
+.guide .info {
+  border: 1px solid rgba(#000, 0.8);
+  border-radius: 2px;
+}
+
+// sass knows that every element matching "main.content" also matched ".content"
+// and avoid generating unnecessary interleaved selectors
+main.content .info {
+  font-size: 0.8em;
+}
+```
+
+#### placeholder selector(%)
+
+- placeholders aren't included in the css output, but selector extend them, private placeholders starting named with `-` or `_`, it only be extended within the stylesheet that defines it
+
+  ```scss
+  .alert:hover, %strong-alert {
+    font-weight: bold;
+  }
+  
+  %strong-alert:hover {
+    color: red;
+  }
+  ```
+
+#### extension scope
+
