@@ -1505,7 +1505,7 @@ two different syntaxes, each one can load the other，and sass have not braces a
 - function using @function at-rule, written @function <name>(<arguments..>) {...}
 - functions have side-effects, use mixins for side-effects, and use functions just to compute values
 
-  ```scss
+  ````scss
   @function pow($base, $exponent) {
     $result: 1;
     @for $_ from 1 through $exponent {
@@ -1513,12 +1513,14 @@ two different syntaxes, each one can load the other，and sass have not braces a
       }
       @return $result;
      }
-     
+
      .sidebar {
       float: left;
       margin-left: pow(4, 3) * 1px;
       }
       ```
+  ````
+
 #### arguments
 
 - the function must be called with the same number of arguments in the form of sassscript expressions
@@ -1529,82 +1531,93 @@ two different syntaxes, each one can load the other，and sass have not braces a
   @function invert($color, $amount: 100%) {
     $inverse: change-color($color, $hue: hue($color) + 180);
     @return mix($inverse, $color, $amount);
-   }
-   
-   $primary-color: #036;
-   .header {
+  }
+
+  $primary-color: #036;
+  .header {
     background-color: invert($primary-color, 80%);
-    }
-    ```
-    
-- arguments can be passed by name, keyword arguments use the same syntax as variable declarations  and optional arguments
+  }
+  ```
+
+- arguments can be passed by name, keyword arguments use the same syntax as variable declarations and optional arguments
 - careful when renaming a function's arguments, you should keep the old name around as a optional arguments for a while and printing a warning if passes it
   ```scss
   $primary-color: #036;
   .banner {
     background-color: $primary-color;
     color: scale-color($primary-color, $lightness: +40%);
-    }
-   ```
+  }
+  ```
 - the last arguments in a @function declaration ends with `...`, this arguments is known as an arguments list
 - arguments lists can be used to take arbitrary keyword arguments use `meta.keywords()` function, and you should pass an argument lists to the `meta.keywords()` function
+
   ```scss
   @function sum($numbers...) {
     $sum: 0;
     @each $number in $numbers {
       $sum: $sum + $number;
-      }
-      @return $sum;
-      }
-      
-   .micro {
-    width: sum(50px, 30px, 100px);
     }
-    ```
- - passing arbitrary arguments: can be used to pass positional and keyword arguments to a function or both pass use `...`
-  ```scss
-  $widths: 50px, 30px, 100px;
+    @return $sum;
+  }
+
   .micro {
-    width: min($widths...);
-    }
-   ```
-    
- - define an alias for function: using positional and keyword arguments to pass both at  once to another function
-  ```scss
-  @function fg($args...) {
-    @warn "the fg() function is deprecated. call foreground() instead.";
-    @return foreground($args...);
-   }
+    width: sum(50px, 30px, 100px);
+  }
   ```
+
+- passing arbitrary arguments: can be used to pass positional and keyword arguments to a function or both pass use `...`
+
+```scss
+$widths: 50px, 30px, 100px;
+.micro {
+  width: min($widths...);
+}
+```
+
+- define an alias for function: using positional and keyword arguments to pass both at once to another function
+
+```scss
+@function fg($args...) {
+  @warn "the fg() function is deprecated. call foreground() instead.";
+  @return foreground($args...);
+}
+```
+
 #### @return
 
 - each @function must end with a @return
 - returning early can be useful for handling edge-cases or cases other than warpping the entire function in an @else block
+
   ```scss
   @use "sass:string";
-  
+
   @function str-insert($string, $insert, $index) {
     // avoid making new strings if we don't need to
     @if string.length($string) == 0 {
       @return $insert;
     }
-    
+
     $before: string.slice($string, 0, $index);
     $after: string.slice($string, $index);
     @return $before + $insert + $after;
   }
   ```
+
 #### other functions
 
 - not either user-defined or built-in function is compiled to a plain css function(unless it uses sass-syntax)
 - typo a function name will be compiled to css, so can using a css linter on stylesheet
 - some css functions like calc() and element() have unusual syntax, sass parses them as unquoted strings
+
   ```scss
   @debug var(--main-bg-color); // var(--main-bg-color)
-  
+
   $primary: #f2ece4;
   $accent: #e1d7d2;
-  @debug radial-gradient($primary, $accent); // radial-gradient(#f2ece4, #e1d7d2)
+  @debug radial-gradient(
+    $primary,
+    $accent
+  ); // radial-gradient(#f2ece4, #e1d7d2)
   ```
 
 ### @extend
@@ -1616,45 +1629,53 @@ two different syntaxes, each one can load the other，and sass have not braces a
   ```html
   <div class="error error--serious">
     oh no!you're been hacked!
-</div>
+  </div>
   ```
-  ```css
+
+  ````css
   .error {
     border: 1px #f00;
     background-color: #fdd;
     }
-    
+
     .error--serious {
       border-width: 3px;
       }
     ```
+  ````
+
 - @extend rule tell scss that one selector should inherit the styles of another
 
   ```scss
   .error {
     border: 1px #f00;
     background-color: #fdd;
-    
+
     &--serious {
       @extend .error;
       border-width: 3px;
     }
   }
   ```
+
 - if you @extend .error, it won't affect the inner selector in `.error { &__icon {...} }`, and means that parent selector in sassscript can't see the results of extend
+
   ```scss
   .error:hover {
     background-color: #fee;
   }
-  
+
   .error--serious {
-    @extend .error;   // .error--serious:hover {}
+    @extend .error; // .error--serious:hover {}
     border-width: 3px;
   }
   ```
+
 #### how it works
+
 - `selector.unify()` function returns a selector matches the intersection of two selectors, while `selector.extend()` function works just like @extend but on a signal selector
 - the styles have precedence in the cascade based on where the extended selector's style rules appear, but if you added the extended classes to you html that is the same precedence
+
 ```scss
 .content nav.sidebar {
   @extend .info;
@@ -1684,10 +1705,11 @@ main.content .info {
 - placeholders aren't included in the css output, but selector extend them, private placeholders starting named with `-` or `_`, it only be extended within the stylesheet that defines it
 
   ```scss
-  .alert:hover, %strong-alert {
+  .alert:hover,
+  %strong-alert {
     font-weight: bold;
   }
-  
+
   %strong-alert:hover {
     color: red;
   }
@@ -1704,20 +1726,23 @@ main.content .info {
 #### limitations
 
 - disallowed selectors
+
   ```scss
   .alert {
     @extend .message.info;
     // error: write @extend .message, .info instead.
-    
+
     @extend .main .info;
     // error: write @extend .info instead.
   ```
+
 - HTML heuristic assumes that each selector's ancestors will be self-contained, without being interleaved with any other selector's ancestors
+
   ```scss
   header .warning li {
     font-weight: bold;
   }
-  
+
   aside .notice dd {
     // sass doesn't generate css to match the <dd> in
     // <header>
@@ -1735,7 +1760,9 @@ main.content .info {
     @extend li;
   }
   ```
--  extend in @media
+
+- extend in @media
+
 ```scss
 @media screen and (max-width: 600px) {
   .error--serious {
@@ -1753,30 +1780,30 @@ main.content .info {
 ### @error
 
 - @error rule is written @error <expression>, it print the value of the string expression along with a stack trace
-  
+
   ```scss
   @mixin reflexive-position($property, $value) {
     @if $property != left and $property != right {
       @error "property #{$property} must be either left or right.";
     }
-    
+
     $left-value: if($property == right, initial, $value);
     $right-value: if($property == right, $value, initial);
-    
+
     left: $left-value;
     right: $right-value;
-    [dir=rtl] & {
+    [dir="rtl"] & {
       left: $right-value;
       right: $left-value;
     }
   }
-  
+
   .sidebar {
     @include reflexive-position(top, 12px);
     // error: property top must be either left or right.
   }
   ```
-  
+
 ### @warn
 
 - if passing legacy deprecated arguments or calling not quite optimal api that appear @warn, unlike @error rule, it doesn't stop sass entirely
@@ -1789,7 +1816,7 @@ $know-prefixes: webkit, moz, ms, o;
     @if not index($know-prefixes, $prefix) {
       @warn "unknow prefix #{$prefix}.";
     }
-    
+
     -#{$prefix}-#{$property}: $value;
   }
   #{$property}: $value;
@@ -1813,9 +1840,10 @@ $know-prefixes: webkit, moz, ms, o;
 
 ### @at-root
 
-- @at-root rule is usually written @at-root <selector> {...}, causes everything within it to be emitted at the root of the document, it's most often used match outer selector and element selector, use the `selector.unify()` function to combine & 
+- @at-root rule is usually written @at-root <selector> {...}, causes everything within it to be emitted at the root of the document, it's most often used match outer selector and element selector, use the `selector.unify()` function to combine &
 - it will automatically add the outer selector to the inner selector if you used & as a sassscript expression
 - @at-root rule can also be written `@at-root {...}` to put multiple style rules, is just a shorthand for `@at-root {<selector> {...} }`
+
   ```scss
   @use "sass:selector";
 
@@ -1841,6 +1869,7 @@ $know-prefixes: webkit, moz, ms, o;
 
 - media query feature written `@at-root (without: <rules...>) {...}` tells sass which rules should be excluded, `@at-root (with: ...)` query excludes all rules except those that are listed
 - two special values in queries
+
   - `rule` refers to style rules, for example `@at-root (with: rule)` excluded all at-rules but preserves style rules
   - `all` refers to all-rules and style rules should be excluded
 
@@ -1865,7 +1894,7 @@ $know-prefixes: webkit, moz, ms, o;
 
 ### flow control
 
-#### overview 
+#### overview
 
 - they can also be used in mixins and functions
 - @each evaluates a block for each element in a list or each pair in a map
@@ -1884,8 +1913,12 @@ $know-prefixes: webkit, moz, ms, o;
   }
 }
 
-.square-av { @include avatar(100px, $circle: false); }
-.circle-av { @include avatar(100px, $circle: true); }
+.square-av {
+  @include avatar(100px, $circle: false);
+}
+.circle-av {
+  @include avatar(100px, $circle: true);
+}
 ```
 
 - @else rule written `@else {...}`
@@ -1913,7 +1946,8 @@ $dark-text: #d2e1dd;
   }
 }
 ```
-- @else if rule written `@else if <expression> {...}`, and can to chain  as many @else if as you want after an @if
+
+- @else if rule written `@else if <expression> {...}`, and can to chain as many @else if as you want after an @if
 
 ```scss
 @mixin triangle($size, $color, $direction) {
@@ -1933,7 +1967,7 @@ $dark-text: #d2e1dd;
   } @else if $direction == left {
     border-right-color: $color;
   } @else {
-    @error "unknown direction #{$direction}."
+    @error "unknown direction #{$direction}.";
   }
 }
 
@@ -1943,8 +1977,8 @@ $dark-text: #d2e1dd;
 ```
 
 - the values only `false` and `null` are falsey, and every other value is considered truthy
-- check string contains a value example space,  write `string.index($string, " ")`, if string isn't found return null and number otherwise
-  
+- check string contains a value example space, write `string.index($string, " ")`, if string isn't found return null and number otherwise
+
 #### @each
 
 - `@each <variable> in <expression> {...}` return a list, when assign to the get variable name, each element of the list in turn
@@ -1964,23 +1998,25 @@ $sizes: 40px, 50px, 80px;
 - use @each to iterate over every key/value pair in a map written `@each <variable>, <variable> in <expression> {...}`, the key is assigned to the variable name, and the value is assign to the second
 
 ```scss
-$icons: ("eye": "\f112", "start": "\f12e", "stop": "\f12f");
+$icons: (
+  "eye": "\f112",
+  "start": "\f12e",
+  "stop": "\f12f"
+);
 
 @each $name, $glyph in $icons {
   .icon-#{$name}: before {
     display: inline-block;
     font-family: "Icon Font";
-    content: $glyph
+    content: $glyph;
   }
 }
 ```
+
 - use @each to automatically assign variables to each of the values from the inner lists by writting it `@each <variable...> in <expression> {...}`, if the list doesn't have enough values the variable's value is `null`
 
 ```scss
-$icons: 
-  "eye" "\f112" 12px,
-  "start" "\f12e" 16px,
-  "stop" "\f12f" 10px;
+$icons: "eye" "\f112"12px, "start" "\f12e"16px, "stop" "\f12f"10px;
 
 @each $name, $glyph, $size in $icons {
   .icon-#{$name}:before {
@@ -2049,16 +2085,19 @@ sup {
 
 - css at-rules is nested within a style rule, the at-rule is at the top level of the css output and the style rule is within it
 
-```scss 
+```scss
 .print-only {
   display: none;
 
   // @media print { .print-only {} }
-  @media print { display: block; }
+  @media print {
+    display: block;
+  }
 }
 ```
 
 - only currently dart-ruby sass support @media
+
 ```scss
 @media (width <= 700px) {
   body {
@@ -2066,6 +2105,7 @@ sup {
   }
 }
 ```
+
 - @media allowing interpolation and sassscript expressions
 
 ```scss
@@ -2167,11 +2207,11 @@ $layout-breakpoint-small: 960px;
 
 - sass support manipulating units example multiplied or divided
 - if you aren't ending up with the right unit means something is wrong
-  
+
 ```scss
 @debug 4px * 6px; // 24px*px
-@debug 5px / 2s;  // 2.5px/s
-@debug 5px * 30deg / 2s /24em;  // 3.125px*deg/s*em
+@debug 5px / 2s; // 2.5px/s
+@debug 5px * 30deg / 2s /24em; // 3.125px*deg/s*em
 
 $degrees-per-second: 20deg/1s;
 @debug $degrees-per-second; // 20deg/s
@@ -2207,7 +2247,8 @@ $transition-speed: 1s/50px;
   @include move(10px, 120px);
 }
 ```
-- should especially avoid using interpolation like #{$number}px, this doesn't actually create a number, it create an unquoted string looks like a number, nut won't work with any number operations or functions, try to make your math unit-clean so that $number already has the unit px or write $number * 1px
+
+- should especially avoid using interpolation like #{$number}px, this doesn't actually create a number, it create an unquoted string looks like a number, nut won't work with any number operations or functions, try to make your math unit-clean so that $number already has the unit px or write \$number \* 1px
 - percentages in sass work just like every other unit, but they are not interchangeable with decimals, so can convert between decimals and percentages using `$percentage / 100%` return decimal and `decimal * 100%` return percentage or using `math.percentage()` function to percentage
 - libsass and old rubysass default to 5 digits of numeric precision but can custom configuared and recommended configure 10 digits
 - sass support 10 digits of precision after dicimal point, this means a few different things
@@ -2224,3 +2265,35 @@ $transition-speed: 1s/50px;
 
 - that math function will work with the full number value internally to avoid accumulating extra rounding errors
 
+### string
+
+#### overview
+
+- strings are sequences of characters(specially unicode code point)
+- sass supports two kinds of strings whose internal structure is the same
+- render different is quoted strings like `"Helvetica Neue"`, and unquoted string like `bold`
+- string convert quoted string to unquoted string using `string.unquote()`, otherwise using `string.quote()`
+
+  ```scss
+  @use "sass:string";
+
+  @debug string.unquote(".widght:hover");  // .widght:hover
+  @debug string.quote(bold);  // "bold"
+  ```
+  
+#### escapes
+
+- any charactor other than a letter form A-F or 0-9 can be included as part of a string by writing \ in front of it
+- any charactor included in a string by writing \ followed by its unicode code point number written in hexadecimal
+  ```scss
+  @debug "\""; // '"'
+  @debug \.widght; // \.widght
+  @debug "\a"; // "\a" (a string containing only a newline)
+  @debug "line1\a line2"; "line1\a line2"
+  @debug "Nat + Liz \1F46D";  // "Nat + Liz 👭"
+  ```
+
+#### quoted
+
+- quoted strings can contain interpolation
+- 

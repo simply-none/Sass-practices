@@ -57,7 +57,7 @@ version    : 0.0.1-alpha
 |bracket|中括号，方括号|
 |parenthesis|小括号，圆括号|**[pə'renθəsɪs]**|
 |quote|引号，引用|
-|unquote|反引号，***没有引号的***|
+|unquote|不带引号的|
 |slash|斜杠|
 |nest|嵌套，套入|
 |visual|可视化，看得见的|
@@ -167,7 +167,7 @@ version    : 0.0.1-alpha
 |immediately|立刻，立即地，直接地|
 |pass through|通过，经过|
 |strictly|完全，仅限于，严格的|**['strɪk(t)li]**|
-|implementation|实现，实施|**[.ɪmpləmən'teɪʃ(ə)n]**|
+|implementation|实现，实施，工具|**[.ɪmpləmən'teɪʃ(ə)n]**|
 |access|访问，进入|
 |structure|结构，构造|**['strʌktʃər]**|
 |make up|组成，构成，编造|
@@ -216,6 +216,7 @@ version    : 0.0.1-alpha
 |function call|函数调用|
 |library|程序库，函数库|
 |hex|十六进制|
+|hexadecimal|十六进制的|
 |decimal|十进制，小数|
 |substantially|非常地，巨大地，大体上，总的来说|**[səbˈstænʃəlɪ]**|
 |similarly|相似地，同样，也|
@@ -473,3 +474,5 @@ version    : 0.0.1-alpha
 |internally|在内部，内部的，从内部|
 |accumulate|积累，累加|**[ə'kjumjə.leɪt]**|
 |round|舍入|
+|escape|转义（符），逃脱|
+|guarantee|保证，保障，担保，确保|**[.ɡerən'ti]**|
