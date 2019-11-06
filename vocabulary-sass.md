@@ -81,6 +81,7 @@ version    : 0.0.1-alpha
 |note|注意，留意，记录，便签|
 |noted|注意，记录|
 |notice|注意，留意，通知|
+|notify|通知，报告，告知|
 |compatible|兼容的|**[kəm'pætəb(ə)l]**|
 |compatibility|兼容性|**[kəm.pætə'bɪləti]**|
 |mixin|混合类型|
@@ -363,7 +364,7 @@ version    : 0.0.1-alpha
 |leave off|剔除，排除，停止|
 |expose|暴露，揭露，公开|
 |downstream|在后阶段的，在下游的|
-|discourage|阻止，阻碍|
+|discourage|阻止，阻碍，使泄气，使沮丧|
 |gradually|逐渐的，逐步的|
 |phase out|使逐步淘汰，逐步取消|
 |issue|问题，争论点|
@@ -376,7 +377,7 @@ version    : 0.0.1-alpha
 |intended|打算中的，预期的|
 |contrary|相反的，相对的|**[ˈkɒntrərɪ]**|
 |specification|规范，规格，说明书|**[.spesɪfɪ'keɪʃ(ə)n]**|
-|indicate|象征，指示，表明|
+|indicate|象征，指示，表示，表明|
 |integrate|使融入，使加入，合并，成为一体|
 |seamlessly|无缝的|
 |transitive|传递性，传递的|
@@ -394,3 +395,33 @@ version    : 0.0.1-alpha
 |lexical scope|词法作用域|
 |invoke|调用，请求，激活|
 |terse|简洁的，精炼的|**[tɜrs]**|
+
+
+
+
+|formula|结构式，方程式，方案，方法|**['fɔrmjələ]**|
+|readable|可读的，易读的|
+|universal|普遍的，通用的，全体的|
+|side-effect|副作用，意外结果|
+|corresponding|符合的，对应的，相关的|
+|for a while|暂时，片刻，一会儿|
+|misspell|拼错（的）|
+|caller|调用方，调用程序|
+|track|跟踪，追踪|
+|encounter|遇到，遭遇|
+|efficient|效率高的，有效的|
+|edge|边界，临界点
+|edge-case|边界情况，边缘用例|
+|substantial|大量的，价值巨大的，可观的|**[səb'stænʃ(ə)l]**|
+|weird|怪异的，奇怪的|
+|unless|除非，若非，除外|
+|typo|打字错误，错字|
+|prone|易于遭受，倾向于|
+|clutter|混乱（的），杂乱的，乱糟糟的|
+|markup|标记|
+|as though|好像，仿佛，似乎|
+|unification|统一，一致，联合|
+|interleave|交错，交叉|
+|intersection|交叉（点），相交，交点|
+|incompatible|不兼容（的）|**[.ɪnkəm'pætəb(ə)l]**|
+
