@@ -1695,3 +1695,103 @@ main.content .info {
 
 #### extension scope
 
+#### mandatory and optional extends
+
+- an @extend doesn't match any selectors in the stylesheet, sass will produce an error, so if want the @extend to do nothing if the extended selector doesn't exist, just add `!optional` to the end
+
+#### select extends or mixins
+
+#### limitations
+
+- disallowed selectors
+  ```scss
+  .alert {
+    @extend .message.info;
+    // error: write @extend .message, .info instead.
+    
+    @extend .main .info;
+    // error: write @extend .info instead.
+  ```
+- HTML heuristic assumes that each selector's ancestors will be self-contained, without being interleaved with any other selector's ancestors
+  ```scss
+  header .warning li {
+    font-weight: bold;
+  }
+  
+  aside .notice dd {
+    // sass doesn't generate css to match the <dd> in
+    // <header>
+    //  <aside>
+    //    <div class="warning">
+    //      <div class="notice">
+    //        <dd>...</dd>
+    //      </div>
+    //    </div>
+    //  </aside>
+    // </header>
+    //
+    // because matching all elements like that would require us to generate nine
+    // new selectors instead of just two.
+    @extend li;
+  }
+  ```
+-  extend in @media
+```scss
+@media screen and (max-width: 600px) {
+  .error--serious {
+    @extend .error;
+    // error: ".error" was extended in @media, but used outside it.
+  }
+}
+
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+```
+
+### @error
+
+- @error rule is written @error <expression>, it print the value of the string expression along with a stack trace
+  
+  ```scss
+  @mixin reflexive-position($property, $value) {
+    @if $property != left and $property != right {
+      @error "property #{$property} must be either left or right.";
+    }
+    
+    $left-value: if($property == right, initial, $value);
+    $right-value: if($property == right, $value, initial);
+    
+    left: $left-value;
+    right: $right-value;
+    [dir=rtl] & {
+      left: $right-value;
+      right: $left-value;
+    }
+  }
+  
+  .sidebar {
+    @include reflexive-position(top, 12px);
+    // error: property top must be either left or right.
+  }
+  ```
+  
+### @warn
+
+- if passing legacy deprecated arguments or calling not quite optimal api that appear @warn, unlike @error rule, it doesn't stop sass entirely
+
+```scss
+$know-prefixes: webkit, moz, ms, o;
+
+@mixin prefix($property, $value, $prefixes) {
+  @each $prefix in $prefixes {
+    @if not index($know-prefixes, $prefix) {
+      @warn "unknow prefix #{$prefix}.";
+    }
+    
+    -#{$prefix}-#{$property}: $value;
+  }
+  #{$property}: $value;
+}
+```
