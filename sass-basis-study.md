@@ -2130,3 +2130,97 @@ $layout-breakpoint-small: 960px;
   }
 }
 ```
+
+## values
+
+### overview
+
+- most of values types come straight from css
+  - `numbers`: may or may not have units, like 12 or 100px
+  - `string`: may or may not quoets like "Helvetica Neue" or bold
+  - `colors`: by hex representation or by name or function like #c6538c or blue or rgb(107, 113, 127) or hsl(210, 100%, 20%)
+  - lists of values may be separated by spaces or commas and which may be enclosed square brackets or not, like `1.5em, 1em, 0, 2em`, `Helvetica, Arial, sans-serif` or `[col1-start]`
+- more specific to sass:
+  - boolean values
+  - null
+  - maps about key-value like `("background": red, "foreground": pink)`
+  - function references returned by get-function() and called with call()
+
+### numbers
+
+- number in sass have two component is itselt and its units, and it can have no units, or can have complex units(but css doedn't support complex units)
+
+```scss
+@debug 100; // 100
+@debug 0.8; // 0.8
+@debug 16px; // 16px
+@debug 5px * 2px; // 10px*px (read "square pixels")
+```
+
+- sass support same format as css numbers including scientific natation, written `e` between the numbers
+- sasss like js doesn't distinguish between whole number and decimal, so 5 / 2 return 2.5
+
+```scss
+@debug 5.2e3; // 5200
+@debug 6e-2; // 0.06
+```
+
+- sass support manipulating units example multiplied or divided
+- if you aren't ending up with the right unit means something is wrong
+  
+```scss
+@debug 4px * 6px; // 24px*px
+@debug 5px / 2s;  // 2.5px/s
+@debug 5px * 30deg / 2s /24em;  // 3.125px*deg/s*em
+
+$degrees-per-second: 20deg/1s;
+@debug $degrees-per-second; // 20deg/s
+@debug 1 / $degress-per-second; // 0.05s/deg
+```
+
+- sass will automatically convert between compatible unit, but try to combine incompatible units will throw an error like 1in + 1em
+
+```scss
+//css defines one inch as 96 pixels
+@debug 1in + 6px; // 102px or 1.0625in
+
+@debug 1in + 1s;
+// error: incompatible units s and in
+```
+
+- the numerator contains units that are compatible with units in the denominatoe, they'll cancel out
+
+```scss
+$transition-speed: 1s/50px;
+
+@mixin move($left-start, $left-stop) {
+  position: absolute;
+  left: $left-start;
+  transition: left ($left-stop - $left-start) * $transition-speed;
+
+  &:hover {
+    left: $left-stop;
+  }
+}
+
+.slider {
+  @include move(10px, 120px);
+}
+```
+- should especially avoid using interpolation like #{$number}px, this doesn't actually create a number, it create an unquoted string looks like a number, nut won't work with any number operations or functions, try to make your math unit-clean so that $number already has the unit px or write $number * 1px
+- percentages in sass work just like every other unit, but they are not interchangeable with decimals, so can convert between decimals and percentages using `$percentage / 100%` return decimal and `decimal * 100%` return percentage or using `math.percentage()` function to percentage
+- libsass and old rubysass default to 5 digits of numeric precision but can custom configuared and recommended configure 10 digits
+- sass support 10 digits of precision after dicimal point, this means a few different things
+  - only the first ten digits of a number after decimal point will be included in the generated css
+  - operations like == and >= will consider two numbers equivalent if they're the same up to the tenth digit after the dicimal point
+  - if a number is less than 0.0000000001 away from an integer, it's considered to be an integer fot the purposes of functions like `like.nth()` that require integer arguments
+
+```scss
+@debug 0.012345678912345; // 0.0123456789
+@debug 0.01234567891 == 0.01234567899; // true
+@debug 1.00000000009; // 1
+@debug 0.99999999991; // 1
+```
+
+- that math function will work with the full number value internally to avoid accumulating extra rounding errors
+

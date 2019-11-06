@@ -83,6 +83,7 @@ version    : 0.0.1-alpha
 |notice|注意，留意，通知|
 |notify|通知，报告，告知|
 |compatible|兼容的|**[kəm'pætəb(ə)l]**|
+|incompatible|不兼容的|
 |compatibility|兼容性|**[kəm.pætə'bɪləti]**|
 |mixin|混合类型|
 |tedious|冗长的，乏味的|
@@ -215,6 +216,7 @@ version    : 0.0.1-alpha
 |function call|函数调用|
 |library|程序库，函数库|
 |hex|十六进制|
+|decimal|十进制，小数|
 |substantially|非常地，巨大地，大体上，总的来说|**[səbˈstænʃəlɪ]**|
 |similarly|相似地，同样，也|
 |emit|发出，发射，散发|**[ɪ'mɪt]**|
@@ -433,6 +435,7 @@ version    : 0.0.1-alpha
 |occur|发生，出现，想起，存在|
 |optimal|最适宜的，最好的|**['ɑptɪm(ə)l]**|
 |along with|与..一起，伴随|
+|divided|除（以），分开|
 |divider|分隔物，分配器，分开物|
 |format|格式（化），形式，设计，计划|
 |get rid of|摆脱，除去，去掉|
@@ -452,3 +455,21 @@ version    : 0.0.1-alpha
 |almost|几乎，差不多|
 |natively|原生（的）|
 |keyframe|关键帧|
+|component|成分，组件，构件|
+|complex|复合的，合成的|
+|scientific notation|科学计数法|
+|spotty|有污点的|
+|distinguish|区分，辨别，分清|
+|denomination|分母|**[dɪ'nɑmɪ.neɪtər]**|
+|numerator|分子|**['numə.reɪtər]**|
+|disguise|伪装，掩饰，假扮|**[dɪs'ɡaɪz]**|
+|cancel out|取消，抵消|
+|ratio|系数，比率|**['reɪʃoʊ]**|
+|desire|要求，期望|
+|quantity|数量，大量，未知数|
+|interchangeable|可交换的，互换的|**[.ɪntər'tʃeɪndʒəb(ə)l]**|
+|numeric|数字（的），分数|**[njuː'merɪk]**|
+|accuracy|准确性，精度|**['ækjərəsi]**|
+|internally|在内部，内部的，从内部|
+|accumulate|积累，累加|**[ə'kjumjə.leɪt]**|
+|round|舍入|
