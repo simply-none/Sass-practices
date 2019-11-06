@@ -395,10 +395,6 @@ version    : 0.0.1-alpha
 |lexical scope|词法作用域|
 |invoke|调用，请求，激活|
 |terse|简洁的，精炼的|**[tɜrs]**|
-
-
-
-
 |formula|结构式，方程式，方案，方法|**['fɔrmjələ]**|
 |readable|可读的，易读的|
 |universal|普遍的，通用的，全体的|
