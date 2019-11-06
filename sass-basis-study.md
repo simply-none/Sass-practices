@@ -1795,3 +1795,338 @@ $know-prefixes: webkit, moz, ms, o;
   #{$property}: $value;
 }
 ```
+
+### @debug
+
+- using @debug rule written @debug <expression>, print value of that expression along with the filename and line number
+- you can pass any value to @debug not just a string, it print same representation of that value as the `meta.inspect()` function
+
+  ```scss
+  @mixin inset-divider-offset($offset, $padding) {
+    $divider-offset: (2 * $padding) + $offset;
+    @debug "divider offset: #{$divider-offset}";
+
+    margin-left: $divider-offset;
+    width: calc(100% - #{$divider-offset});
+  }
+  ```
+
+### @at-root
+
+- @at-root rule is usually written @at-root <selector> {...}, causes everything within it to be emitted at the root of the document, it's most often used match outer selector and element selector, use the `selector.unify()` function to combine & 
+- it will automatically add the outer selector to the inner selector if you used & as a sassscript expression
+- @at-root rule can also be written `@at-root {...}` to put multiple style rules, is just a shorthand for `@at-root {<selector> {...} }`
+  ```scss
+  @use "sass:selector";
+
+  @mixin unify-parent($child) {
+    @at-root #{selector.unify(&, $child)} {
+      @content;
+    }
+  }
+
+  .wrapper .field {
+    // .wrapper input.field {}
+    @include unify-parent("input") {
+      /* ... */
+    }
+    // .wrapper select.field {}
+    @include unify-parent("select") {
+      /* ... */
+    }
+  }
+  ```
+
+#### beyond style rules
+
+- media query feature written `@at-root (without: <rules...>) {...}` tells sass which rules should be excluded, `@at-root (with: ...)` query excludes all rules except those that are listed
+- two special values in queries
+  - `rule` refers to style rules, for example `@at-root (with: rule)` excluded all at-rules but preserves style rules
+  - `all` refers to all-rules and style rules should be excluded
+
+  ```scss
+  // @media print { .page {} }
+  @media print {
+    .page {
+      width: 8in;
+
+      // .page {}
+      @at-root (without: media) {
+        color: #111;
+      }
+
+      // .page {}
+      @at-root (with: rule) {
+        font-size: 1.2em;
+      }
+    }
+  }
+  ```
+
+### flow control
+
+#### overview 
+
+- they can also be used in mixins and functions
+- @each evaluates a block for each element in a list or each pair in a map
+
+#### @if and @else
+
+- @if rule is written `@if <expression> {...}`
+
+```scss
+@mixin avatar($size, $circle: false) {
+  width: $size;
+  height: $size;
+
+  @if $circle {
+    border-radius: $size / 2;
+  }
+}
+
+.square-av { @include avatar(100px, $circle: false); }
+.circle-av { @include avatar(100px, $circle: true); }
+```
+
+- @else rule written `@else {...}`
+
+```scss
+$light-background: #f2ece4;
+$light-text: #036;
+$dark-background: #6b717f;
+$dark-text: #d2e1dd;
+
+@mixin theme-colors($light-theme: true) {
+  @if $light-theme {
+    background-color: $light-background;
+    color: $light-text;
+  } @else {
+    background-color: $dark-background;
+    color: $dark-text;
+  }
+}
+
+.banner {
+  @include theme-colors($light-theme: true);
+  body.dark & {
+    @include theme-colors($dark-theme: false);
+  }
+}
+```
+- @else if rule written `@else if <expression> {...}`, and can to chain  as many @else if as you want after an @if
+
+```scss
+@mixin triangle($size, $color, $direction) {
+  height: 0;
+  width: 0;
+
+  border-color: transparent;
+  border-style: solid;
+  border-width: $size / 2;
+
+  @if $direction == up {
+    border-bottom-color: $color;
+  } @else if $direction == right {
+    border-left-color: $color;
+  } @else if $direction == down {
+    border-top-color: $color;
+  } @else if $direction == left {
+    border-right-color: $color;
+  } @else {
+    @error "unknown direction #{$direction}."
+  }
+}
+
+.next {
+  @include triangle(5px, black, right);
+}
+```
+
+- the values only `false` and `null` are falsey, and every other value is considered truthy
+- check string contains a value example space,  write `string.index($string, " ")`, if string isn't found return null and number otherwise
+  
+#### @each
+
+- `@each <variable> in <expression> {...}` return a list, when assign to the get variable name, each element of the list in turn
+
+```scss
+$sizes: 40px, 50px, 80px;
+
+@each $size in $sizes {
+  .icon-#{$size} {
+    font-size: $size;
+    height: $size;
+    width: $size;
+  }
+}
+```
+
+- use @each to iterate over every key/value pair in a map written `@each <variable>, <variable> in <expression> {...}`, the key is assigned to the variable name, and the value is assign to the second
+
+```scss
+$icons: ("eye": "\f112", "start": "\f12e", "stop": "\f12f");
+
+@each $name, $glyph in $icons {
+  .icon-#{$name}: before {
+    display: inline-block;
+    font-family: "Icon Font";
+    content: $glyph
+  }
+}
+```
+- use @each to automatically assign variables to each of the values from the inner lists by writting it `@each <variable...> in <expression> {...}`, if the list doesn't have enough values the variable's value is `null`
+
+```scss
+$icons: 
+  "eye" "\f112" 12px,
+  "start" "\f12e" 16px,
+  "stop" "\f12f" 10px;
+
+@each $name, $glyph, $size in $icons {
+  .icon-#{$name}:before {
+    display: inline-block;
+    font-family: "Icon Font";
+    content: $glyph;
+    font-size: $size;
+  }
+}
+```
+
+#### @for
+
+- @for rule written `@for <variable> from <expression> to/through <expression> {...}`, if `to` is used, the final number is exclude, if `through` is used, it's included
+
+```scss
+$base-color: #036;
+
+@for $i from 1 through 3 {
+  ul:nth-child(3n + #{$i}) {
+    background-color: lighten($base-color, $i * 5);
+  }
+}
+```
+
+#### @while
+
+- the @while rule written `@while <expression> {...}`
+- they're often faster to compile as well
+- using @each or @for instead
+
+```scss
+/// divides `$value` by `$ratio` until it's below `$base`
+@function scale-below($value, $base, $ratio: 1.618) {
+  @while $value > $base {
+    $value: $value / $ratio;
+  }
+  @return $value;
+}
+
+$normal-font-size: 16px;
+sup {
+  font-size: scale-below(20px, 16px);
+}
+```
+
+### from css(css at-rules)
+
+- only currently dart sass support it, others support interpolation in values
+- forwards-compatible with future versions of css
+- css at-rules is written `@<name> <value>`, `@<name> {...}` or `@<name> <value> {...}`, name and value can contain interpolation
+
+```scss
+@namespace svg url(http://www.w3.org/2000/svg);
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2");
+}
+
+@counter-style thumbs {
+  system: cyclic;
+  symbols: "\1f44d";
+}
+```
+
+- css at-rules is nested within a style rule, the at-rule is at the top level of the css output and the style rule is within it
+
+```scss 
+.print-only {
+  display: none;
+
+  // @media print { .print-only {} }
+  @media print { display: block; }
+}
+```
+
+- only currently dart-ruby sass support @media
+```scss
+@media (width <= 700px) {
+  body {
+    background: green;
+  }
+}
+```
+- @media allowing interpolation and sassscript expressions
+
+```scss
+$layout-breakpoint-small: 960px;
+
+@media (min-width: $layout-breakpoint-small) {
+  .hide-extra-small {
+    display: none;
+  }
+}
+```
+
+- sass will also merge nested media queries but don't yet natively support nested @media rules
+
+```scss
+@media (hover: hover) {
+  .button:hover {
+    border: 2px solid black;
+
+    // @media (hover: hover) and (color) {}
+    @media (color) {
+      border-color: #036;
+    }
+  }
+}
+```
+
+- @supports rule also allow sassscript expression to be used in the declaration queries
+
+```scss
+@mixin sticky-position {
+  position: fixed;
+  @supports (position: sticky) {
+    position: sticky;
+  }
+}
+
+// .banner {}
+.banner {
+  // @supports () { .banner {} }
+  @include sticky-position;
+}
+```
+
+- @keyframes rule(渐变规则？) except its child must be valid keyframe rules(<number>%, from, or to) rather than normal selectors
+
+```scss
+@keyframes slide-in {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  70% {
+    margin-left: 90%;
+    width: 150%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%:
+  }
+}
+```

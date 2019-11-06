@@ -183,13 +183,14 @@ version    : 0.0.1-alpha
 |produce|生产，造成，产出，产品，提供|
 |statement|声明，陈述|
 |except|除..之外，不包括|
+|proper|非常，完全地，恰当的，适当的|
 |property|属性，特性|
 |argument|参数，争论|
 |right-hand|得力的|
 |manipulate|操纵，控制，处理|**[mə'nɪpjə.leɪt]**|
 |arithmetic|算法，计算，数据统计|**[.erɪθ'metɪk]**|
 |represent|相当于，代表着|
-|representation|表示，代表|
+|representation|表示，代表，描述|
 |refer to|查阅，参考，指的是|
 |literal|常量，字面量|**['lɪt(ə)rəl]**|
 |singleton|单件（模式），单例模式，单身人士|**['sɪŋɡ(ə)ltən]**|
@@ -207,6 +208,7 @@ version    : 0.0.1-alpha
 |concatenate|连接（的）|**[kɑn'kæt(ə).neɪt]**|
 |explicit|显式，明确的，直言的|
 |explicitly|显式，直接地，明确地|**[ɪk'splɪsɪtlɪ]**|
+|preceding|在前的，上述的，前面的|
 |precedence|优先级|
 |call|调用，访问|
 |called|称呼，被叫做|
@@ -311,6 +313,7 @@ version    : 0.0.1-alpha
 |simple|简单的，容易的，易于理解的|**['sɪmp(ə)l]**|
 |simplicity|简单，容易|
 |despite|尽管，虽然，即使|**[dɪ'spaɪt]**|
+|repetitive|重复的，反复的|
 |repetition|重复|**[ˌrɛpɪˈtɪʃən]**|
 |totally|完全的，彻底的，绝对的，总共|
 |imperative|命令式，祈使句|**[ˌrɛpɪˈtɪʃən]**|
@@ -372,7 +375,7 @@ version    : 0.0.1-alpha
 |bloated|臃肿的，膨胀的|**['bloʊtəd]**|
 |inaccessible|难以达到的，不可得到的|
 |appear|出现，显得|
-|exact|确切的，准确的|
+|exact|确切的，准确的，精确的|
 |third-party|第三方的|
 |intended|打算中的，预期的|
 |contrary|相反的，相对的|**[ˈkɒntrərɪ]**|
@@ -429,3 +432,23 @@ version    : 0.0.1-alpha
 |expect|盼望，预期，期待|
 |occur|发生，出现，想起，存在|
 |optimal|最适宜的，最好的|**['ɑptɪm(ə)l]**|
+|along with|与..一起，伴随|
+|divider|分隔物，分配器，分开物|
+|format|格式（化），形式，设计，计划|
+|get rid of|摆脱，除去，去掉|
+|exclude|排除，拒绝，把...除外|
+|beyond|除了，除...之外，超出，影响，包括|**[bɪˈjɑnd]**|
+|variation|变化，变动|**[.veri'eɪʃ(ə)n]**|
+|pair|一对，一副，一套|
+|meet|满足，达到，遇到|
+|falsehood|错误，谬误|
+|in turn|依次，轮流，反过来|
+|iterate|迭代，重复|
+|destructuring|解构（赋值）|
+|count up|数到，数完，把..加起来，共计|
+|count down|倒数，倒计时，倒计数|
+|clearer|明白的，清楚地，易懂的，清除，退去|**['klɪərə]**|
+|cover|覆盖，包括|
+|almost|几乎，差不多|
+|natively|原生（的）|
+|keyframe|关键帧|
