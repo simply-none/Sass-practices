@@ -420,4 +420,12 @@ version    : 0.0.1-alpha
 |interleave|交错，交叉|
 |intersection|交叉（点），相交，交点|
 |incompatible|不兼容（的）|**[.ɪnkəm'pætəb(ə)l]**|
-
+|mandatory|强制性的，命令的|**['mændə.tɔri]**|
+|subtle|细微的，不易察觉的，不明显的|**['sʌt(ə)l]**|
+|heuristics|探索法，启发法|**[hju'rɪstɪks]**|
+|ancestor|原型，祖先|
+|assume|假定，设想，采用|
+|duplicate|复制，重复，复写|
+|expect|盼望，预期，期待|
+|occur|发生，出现，想起，存在|
+|optimal|最适宜的，最好的|**['ɑptɪm(ə)l]**|
