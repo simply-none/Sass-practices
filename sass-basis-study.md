@@ -2681,3 +2681,150 @@ content {
   font-family: remove-where($fonts, meta.get-function("contains-helvetica"));
 }
 ```
+
+## operators
+
+### overview
+
+- types:
+  - ==, !=
+  - +, -, *, /, %(math)
+  - <, <=, >, >=
+  - and, or, not
+  - +, -, /(string)
+
+- early on in sass's history, supports for mathematical operations on colors using channel-by-channel rgb arithmetic, and now lib/ruby-sass support it, should using color functions instead
+- order of operations(precedence from higher to lower)
+  - parentheses
+  - unary operators at `not`, `+`, `-`, and `/`
+  - `*`, `/`, `%`
+  - `+`, `-`
+  - `>`, `>=`, `<`, `<=`
+  - `==`, `!=`
+  - `and`
+  - `or`
+  - `=`
+
+```scss
+@debug 1 + 2 * 3 == 1 + (2 * 3);  // true
+@debug true or false and false == true or (false and false);  // true
+
+@debug (1 + 2) * 3; // 6
+@debug ((1 + 2) * 3 + 4) * 5; //  65
+```
+- single equals(`=`) only allow in function arguments, it's create an unquoted string, this exists for forwards-compatibility with old ie
+
+```scss
+.transparent-blue {
+  filter: chroma(color=#0000ff);
+}
+```
+
+### equality operators
+
+- return true or false
+- libsass and old rubysass consider numbers without units to be equal to the same numbers with any units
+- different things for different types
+  - numbers are equal if they have the same value and units, or value is equal but units are converted
+  - string in unquoted and quoted with the same contents are equal
+  - color have the same red/green/blue/alpha value is equal
+  - lists contents is equal so its equal, but comma-separated not equal with space-separated, bracketed lists aren't equal to unbracketed lists
+  - if maps have both equaled keys-values so its equal
+  - true, false, null only equal to itself
+  - functions are compared by reference
+
+```scss
+// all example is true
+@debug 1px == 1px;
+@debug 1px != 1em;
+@debug 1 != 1px;
+@debug 96px == 1in;
+
+@debug "Helvetica" == Helvetica;
+@debug "Helvetica" != "Arial";
+
+@debug hsl(34, 35%, 92.1%) == #f2ece4; // true
+@debug rgba(179, 115, 153, 0.5) != rgba(179, 115, 153, 0.8);
+
+@debug (5px 7px 10px) == (5px 7px 10px);
+@debug (5px 7px 10px) != (10px 14px 20px);
+@debug (5px 7px 10px) != (5px, 7px, 10px);  //true
+@debug (5px 7px 10px) != [5px, 7px, 10px];  //true
+
+$theme: ("venus": #998099, "nebula": #d2e1dd);
+@debug $theme == ("venus": #998099, "nebula": #d2e1dd);
+@debug $theme != ("venus": #998099, "iron": #dadbdf);
+
+@debug true == true;
+@debug true != false;
+@debug null != false;
+
+@debug get-function("rgba") == get-function("rgba");
+@debug get-function("rgba") != get-function("hsla");
+```
+
+### relational operators
+
+- they automatically convert between compatible units
+- unitless numbers can be compared with any number, they're automatically converted to that number's unit
+- numbers with incompatible units can't be compared
+
+```scss
+@debug 100 > 50;
+@debug 10px < 17px;
+@debug 96px >= 1in;
+@debug 1000ms <= 1s
+
+@debug 100 > 50px;
+@debug 10px < 17;
+// front is all true
+
+@debug 100px > 10s;
+// error: incompatible units px and s
+```
+
+### numeric operators
+
+- automatically convert between compatible units
+- unitless number can be used with numbers of any unit
+- numbers with incompatible units can't with `+`, `-`, `%`
+
+```scss
+@debug 10s + 15s;
+@debug 1in - 10px; // 0.8958333333in
+@debug 5px * 3px; // 15px*px
+@debug (12px / 4px); // 3
+@debug 1in % 9px; // 0.0625in
+
+@debug 100px + 50;  // 150px
+@debug 4s * 10; // 40s
+
+@debug 100px + 10s;
+// error: incompatible units px and s
+```
+
+- written `+` and `-` as unary operators which take only one value
+- `-` can refer to both subtraction and unary negation, it can confusing which is which in a space-separated list, to be safe:
+  - always write spaces on both sides of `-` when subtracting
+  - write a space before `-` but not after for a negative number or a unary negation
+  - wrap unary negation in parentheses if it's in a space-separated list
+- precedence in `-`
+  - `-` as part of an identifier, unit may not contain a hyphen followed by a digit
+  - `-` between an expression and a literal number with no whitespace is parsed as subtraction
+  - `-` at the begining of a liternal number is parsed as a negative number
+  - `-` between two numbers regardless of whitespace is parsed as subtraction
+  - `-` before a value other than a literal number is parsed as unary negation
+
+```scss
+@debug +(5s + 7s);
+@debug -(50px + 30px);
+@debug -(10px - 15px);
+
+@debug a-1; // a-1
+@debug 5px-3px; // 2px
+@debug 5-3; // 2
+@debug 1 -2 3;  // 1 -2 3
+
+$number: 2;
+@debug 1 -$numer 3;                                      // -1 3
+@debug 1 (-$number) 3;  // 1 -2 3

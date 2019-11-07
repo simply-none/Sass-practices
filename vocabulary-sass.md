@@ -154,6 +154,7 @@ version    : 0.0.1-alpha
 |perform|表演，表现，执行|
 |order|命令，指令，规则，订单，顺序，次序|
 |mark|标志，标记，符号|
+|correspond|相一致，与..一致，对应|
 |corresponding|相应的，对应的，一致的|
 |plain|明显的，清楚的，显然，普通的|
 |determine|决定，决心，确定|
@@ -339,6 +340,7 @@ version    : 0.0.1-alpha
 |no matter how|不管怎样，无论怎样|
 |execute|执行，实施，完成|**['eksə.kjut]**|
 |shadow|遮蔽，影子|
+|condition|条件，情况，状况|
 |conditionally|有条件的，有前提的|
 |couple|一双，一对，几个|
 |occasionally|偶尔的，偶然，间或|**[ə'keɪʒən(ə)li]**|
@@ -416,7 +418,7 @@ version    : 0.0.1-alpha
 |edge-case|边界情况，边缘用例|
 |substantial|大量的，价值巨大的，可观的|**[səb'stænʃ(ə)l]**|
 |weird|怪异的，奇怪的|
-|unless|除非，若非，除外|
+|unless|除非，若非，除（...)外|
 |typo|打字错误，错字|
 |prone|易于遭受，倾向于|
 |clutter|混乱（的），杂乱的，乱糟糟的|
@@ -506,3 +508,20 @@ version    : 0.0.1-alpha
 |absence|缺乏，不存在|
 |omit|忽略，省略，删节|
 |higher-order|高阶（的）|
+|handful|几个，少数，一把|
+|work with|与..共事，和..一起工作|
+|perceive|感知，理解，察觉，认为|**[pər'siv]**|
+|strongly|坚决的，强烈的，强有力的|
+|unary|一元（的）|**[ˈjuːnəri]**|
+|innermost|最里面的，最深处的|
+|equality|相等，均等|
+|violate|违反，侵犯，违背|**['vaɪə.leɪt]**|
+|transitivity|传递性，可递性|**[ˌtrænsə'tɪvəti]**|
+|compare|比较，相比，对比|
+|remainder|余数，剩余物，剩余的|
+|modulo|取模，模数|**['mɒdjəˌloʊ]**|
+|subtract|减去，减法，扣除，差集|
+|negation|否定（式），否认，拒绝|
+|negative|负的，否定（的）|
+|disambiguate|消除歧义，解疑|**[.dɪsæm'bɪɡju.eɪt]**|
+|force|强迫，迫使|
