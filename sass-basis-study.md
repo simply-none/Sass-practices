@@ -2296,4 +2296,388 @@ $transition-speed: 1s/50px;
 #### quoted
 
 - quoted strings can contain interpolation
-- 
+- the exact format may very based on the implementation or configuaration---a string containing a double quote may be compiled to `"\""` or `'"'`, and a non-ascii character may or may not be escaped.
+- newlines can be escaped as `\a`(including a trailing space)
+- quoted string injected into another value via interpolation, its quotes are removed
+
+```scss
+@debug "Helvetica Neue";  // "Helvetica Neue"
+@debug "c:\\program files"; // "c:\\program files"
+@debug "\"Don't fear the reader\""; // "\"don't fear the reader\""
+@debug "line1\a line2"; // "line1\a line2"
+
+$roboto-variant: "Mono";
+@debug "Roboto #{$roboto-variant}"; // "Roboto Mono"
+```
+
+#### unquoted
+
+- unquoted strings are written as css identifiers, they can include interpolation anywhere
+- not all identifiers are parsed as unquoted string
+  - css colors name are parsed as colors
+  - null as sass null value
+  - true, false as booleans
+  - not, and, or as boolean operators
+
+```scss
+@debug bold;  // bold
+@debug -webkit-flex;  // -webkit-flex
+@debug --123; // --123
+
+$prefix: ms;
+@debug -#{$prefix}-flex;  // -ms-flex
+```
+
+- unquoted string is parsed, the literal text of escapes are parsed as part of the string
+- each point escaped or unescaped
+  - it's a valid identifier character, it's included unescaped in the unquoted string, like \1f46d
+  - it's a printable character ohter than a newline or tab, it's included after a \, like \21
+  - otherwise the lowercase unicode escape is included with a trailing space, like \7fx
+
+```scss
+@use "sass:string";
+
+@debug \1f46d;  // 👭
+@debug \21; // \!
+@debug \7fx;  // \7f x
+@debug string.length(\7fx); // 5
+```
+
+#### string indexes
+
+- index string function return numbers, refer to the characters in a string, index 1 is first character of string, and index -1 is last character in a string
+
+```scss
+@use "sass:string";
+
+@debug string.index("Helvetica Neue", "Helvetica"); // 1
+@debug string.index("Helvetica Neue", "Neue");  // 11
+@debug string.slice("Roboto Mono", -4); // "Mono"
+```
+
+### colors
+
+- old sass version don't support hex colors
+- sass colors can be written as hex codes(#f2ece4 or #b37399aa), css color name, or functions like rgb(), hsl(), hsla()
+
+```scss
+@debug #f2ece4; // #f2ece4
+@debug #b37399aa; // rgba(179, 115, 153, 67%)
+@debug midnightblue;  // #191970
+@debug rgb(204, 102, 153);  // #c69
+@debug rgba(107, 113, 127, 0.8);  // rgba(107, 113, 127, 0.8)
+@debug hsla(20, 20%, 85%, 0.7); // rgba(225, 215, 210, 0.7)
+```
+
+- sass supports many useful color functions to create new color by mixing colors or scaling hue, saturation, lightness
+
+```scss
+$venus: #998099;
+
+@debug scale-color($venus, $lightness: +15%); // #a893a8
+@debug mix($venux, midnightblue); // #594d85
+```
+
+### lists
+
+#### overview
+
+- elements in lists can be separated by commas or spaces, and allowed using brackets like `([line1 line2])`, is usefule when using grid-template-columns
+- sass lists can contain one or even zero elements, like `(<expression>)`, `[<expression>]`, `()`, `[]`, all list functions will treat individual values  that aren't in lists as through they're lists containing that value
+- empty lists without brackets aren't valid css
+
+#### using lists
+
+- access an element using the `list.nth($list, $n)` function to get the element at a given index in a list
+
+```scss
+@debug list.nth(10px 12px 16px, 2); // 12px
+@debug list.nth([line1, line2, line3], -1); // line3
+```
+
+- do something for every element using `@each` rule
+
+```scss
+$sizes: 40px, 50px, 80px;
+
+@each $size in $sizes {
+  .icon-#{$size} {
+    font-size: $size;
+    height: $size;
+    width: $size;
+  }
+}
+```
+
+- adding a element to a list using `list.append($list, $eval)` function, return a copy of the list, because sass lists are immutable, it doesn't modify original list
+
+```scss
+@debug append(10px 12px 16px, 25px);  // 10px 12px 16px 25px
+@debug append([col1-line1], [col1-line2]);   // [col1-line1, col1-line2]
+```
+
+- find an element in a list using `list.index($list, $value)` function, if the value isn't in the list, return null, so you can using `list.index()` with `@if` to check whether a list doesn't contains a given value
+
+```scss
+@debug list.index(1px solid red, 1px);  // 1
+@debug list.index(1px solid red, solid);  // 2
+@debug list.index(1px solid red, dashed); // null
+
+@use "sass:list";
+
+$valid-sides: top, bottom, left, right;
+
+@mixin attach($side) {
+  @if not list.index($valid-sides, $side) {
+    @error "#{$side} is not a valid side , expected one of #{$sides}.";
+  }
+
+  // ...
+}
+```
+
+#### immutability
+
+- lists in sass are immutable, so can update your state over time by assining new lists to the same variables
+
+```scss
+@use "sass:list";
+@use "sass:map";
+
+$prefixes-by-browser: ("firefox": moz, "safari": webkkit, "ie": ms);
+
+@function prefixes-for-browsers($browsers) {
+  $prefixes: ();
+  @each $browser in $browsers {
+    $prefixes: list.append($prefixes, map.get($prefixes-by-browser));
+  }
+  @return $prefixes;
+}
+
+@debug prefixes-for-browsers("firefox" "ie"); // moz ms
+```
+
+#### argument lists
+
+- passing keyword arguments, they can be accessed as a map by passing the argument list to the `meta.keywords()` function
+
+```scss
+@use "sass:meta";
+
+@mixin syntax-colors($args...) {
+  @debug meta.keywords($args);
+  // (string: #080, comment: #800, variable: $60b)
+
+  @each $name, $color in meta.keywords($args) {
+    pre span.stx-#{$name} {
+      color: $color;
+    }
+  }
+}
+
+@include syntax-colors(
+  $string: #080,
+  $comment: #800,
+  $variable: #60b
+)
+```
+
+### maps
+
+#### overview
+
+- maps written `(<expression>: <expression>, <expression>: <expression>)`, the key allow any sass values and is uniqued, and maps must be written with parentheses around them
+- a map with no pairs is written `()`, is also list, all maps count as lists, for example `(1: 2, 3: 4)` counts as `(1 2, 3 4)`
+- `==` operator is used to determine whether two keys are the same
+- a map keys should using quoted string other than unquoted, because some value like color name is not string type
+
+#### using maps
+
+- maps aren't valid css values, and its immutable
+- look up a value by `map.get($map, $key)` function, if doesn't contain the key return null
+
+```scss
+$font-weights: ("regular": 400, "medium": 500, "bold": 700);
+
+@debug map.get($font-weights, "medium");  // 500
+@debug map.get($font-weights, "extra-bold");  // null
+```
+
+- do something for every pair by `@each` ruls
+
+```scss
+$icons: ("eye": "\f112", "start": "\f12e", "stop": "\f12f");
+
+@each $name, $glyph in $icons {
+  .icon-#{$name}:before {
+    display: inline-block;
+    font-family: "Icon Font";
+    content: $glyph;
+  }
+}
+```
+
+- add new pairs or replace the value-key to a map using `map.merge($map1, $map2)` function
+
+```scss
+@use "sass:map";
+
+$light-weights: ("lightest": 100, "light": 300);
+$heavy-weights: ("medium": 500, "bold": 700);
+
+@debug map.merge($light-weights, $heavy-weights);
+/* (
+  "lightest": 100,
+  "light": 300,
+  "medium": 500,
+  "bold": 700
+)
+*/
+
+@use "sass:map";
+
+$font-weight: ("regular" 400, "medium":500, "bold": 700);
+
+@debug map.merge($font-weights, ("extra-bold": 900));
+
+
+@use "sass:map";
+
+$font-weight: ("regular": 400, "medium": 500, "bold": 700);
+
+@debug map.merge($font-weights, ("medium": 600));
+// ("regular":400, "medium": 600, "bold": 700)
+```
+
+#### immutability
+
+```scss
+@use "sass:map";
+
+$prefixes-by-browser: ("firefox": moz, "safari":webkit, "ie": ms);
+
+@mixin add-browser-prefix($browser, $prefix) {
+  $prefixes-by-browser: map.merge($prefixes-by-browser, ($browser: $prefix));
+}
+
+@include add-browser-prefix("opera", o);
+@debug $prefixes-by-browser;
+```
+
+### true and false
+
+- booleans are returned by equality and relational operators, and have many built-in functions like `math.comparable()` and `map.has-key()`
+
+```scss
+@use "sass:math";
+
+@debug 1px == 2px;
+@debug 1px == 1px;
+@debug 10px < 3px;
+@debug math.comparable(100px, 3in); // true
+```
+- using boolean operators like and, or, not
+
+```scss
+@debug true and true;
+@debug true and false;
+
+@debug true or false;
+@debug false or false;
+
+@debug not true;
+@debug not false;
+```
+
+- using booleans with @if or `if()`, `if()` return one value if its argument is true and another if its argument is false
+
+```scss
+@debug if(true, 10px, 30px);  // 10px
+@debug if(false, 10px, 30px); // 30px
+```
+
+#### null 
+
+- null is the only value of its type
+- it represents the absence of a value, and is often returned by functions to indicate the lack of a result
+
+```scss
+@use "sass:map";
+@use "sass:string";
+
+@debug string.index("Helvetica Neue", "Roboto");  // null
+@debug map.get(("large": 20px), "small"); // null
+@debug &; //null
+```
+- if a list contains a null, the null is omitted from the generated css
+
+```scss
+$fonts: ("serif": "Helvetica Neue", "Monospace": "Consolas");
+
+h3 {
+  font: 18px bold map-get($fonts, "sans");
+  // font: 18px bold;
+}
+```
+- if a property value is null, that property is omitted entirely
+
+```scss
+$fonts: ("serif": "Helvetica Neue", "monospace": "Consolas");
+
+h3 {
+  font: {
+    size: 18px;
+    weight: bold;
+    family: map-get($fonts, "sans"); // omitted entirely
+  }
+}
+```
+
+- null is also falsey
+
+```scss
+@mixin app-background($color) {
+  #{if(&, '&.app-background', '.app-background')} {
+    background-color: $color;
+    color: rgba(#fff, 0.75);
+  }
+}
+
+@include app-background(#036);
+
+.sidebar {
+  @include app-background(#c6538c);
+}
+```
+
+#### functions
+
+- older version sass that the call() function took a string representing a function's name, but in a new , the functions are no longer global and so a given name may not always refer to the same function
+- you can pass a function's name to the `meta.get-function()` to get it value, pass it to the `meta.call()` to call it
+
+```scss
+@use "sass:list";
+@use "sass:meta";
+@use "sass:string"
+
+/// return a copy of $list with all elements for which $condition returns `true` removed
+@function remove-where($list, $condition) {
+  $new-list: ();
+  $separacotr: list.separactor($list);
+  @each $element in $list {
+    @if not meta.call($condition, $element) {
+      $new-list: list.append($new-list, $element, $separactor: $separactor);
+    }
+  }
+  @return $new-list;
+}
+
+$fonts: Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+content {
+  @function contains-helvetica($string) {
+    @return string.index($string, "Helvetica");
+  }
+  font-family: remove-where($fonts, meta.get-function("contains-helvetica"));
+}
+```
