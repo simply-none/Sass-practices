@@ -1,5 +1,11 @@
 # Sass
 
+```
+insert-date : 2019/11/07 16:13:44
+author      : yuyuanqiu(漆无)
+version     : 0.0.1-alpha
+```
+
 ## basic tutorial
 
 ### install
@@ -2828,3 +2834,111 @@ $theme: ("venus": #998099, "nebula": #d2e1dd);
 $number: 2;
 @debug 1 -$numer 3;                                      // -1 3
 @debug 1 (-$number) 3;  // 1 -2 3
+```
+
+- two numbers are separated by `/`, sass will print the result as divided
+  - either expression is anything other than a literal number
+  - the result is stored in a variable or returned by a function
+  - the operation is surrounded by parentheses unless those parentheses are outside a list that contains the operation
+  - the result is used as part of another operation(other than /)
+
+- force / to be used as a separator, written it as #{<expression>} / #{<expression>}
+
+```scss
+@debug 15px / 30px;   // 15px/30px
+@debug (10px + 5px) / 30px; // 0.5
+@debug #{10px + 5px} / 30px;  // 15px/30px
+
+$result: 15px / 30px;
+@debug $result; // 0.5
+
+@function fifteen-divided-by-thirty() {
+  @return 15px / 30px;
+}
+@debug fifteen-divided-by-thirty(); // 0.5
+
+@debug (15px/30px); // 0.5
+@debug (bold 15px/30px sans-serif);// bold 15px/30px sans-serif
+@debug 15px/30px + 1; // 1.5
+```
+
+### string operators
+
+- `<expression> + <expression>`, if the either value is a quoted string, the result will be quoted, otherwise will be unquoted
+- `<expression> / <expression>` return an unquoted string separated by /
+- `<expression> - <expression>` return an unquoted string separated by -, this is a lefacy operatoe, should using interpolation
+
+```scss
+@debug "Helvetica" + " Neue"; // "Helvetica Neue"
+@debug sans- + serif; // sans-serif
+@debug #{10px + 5px}  / 30px; // 15px/30px
+@debug sans - serif;  // sans-serif
+```
+
+- string operators can be used with any values than can be written to css, but numbers and colors can't be used as the left-hand value;
+- should using interpolation to creat strings rather than relying on this operators
+
+```scss
+@debug "Elapsed time: " + 10s;  // "Elapsed time: 10s"
+@debug true + " is a boolean value";  // "true is a boolean value"
+```
+
+- sass also supports / and - as a unary operators take only one value, return an unquoted string
+  
+```scss
+@debug / 15px;  // /15px
+@debug - moz; // -moz`
+```
+
+### boolean operators
+
+- all boolean operators return true or false
+- only `false` and `null` is falsey, others is truthy
+
+## built-in modules
+
+### overview
+
+- only dartsass support built-in modules with @use, others must call functions using their global names instead
+- all built-in module urls begin with `sass:` to indicate
+- a few functions are only avaliable globally even in the new module system, like `if()`, `rgb()`, `hsl()`
+
+```scss
+@use "sass:color";
+
+.button {
+  $primary-color: #6b717f;
+  color: $primary-color;
+  border: 1px solid color.scale($primary-color, $lightness: 20%);
+}
+```
+
+- built-in modules:
+  - `sass:math`
+  - `sass:string` to combine, serach, split apart string
+  - `sass:color` generate new color, build color themes
+  - `sass:list` to access, modify value in lists
+  - `sass:map`
+  - `sass:selector` to access selector engine
+  - `sass:meta` exposes detail of sass inner workings
+
+- global functions with `hsl(a)`, return a color, hue value is[0deg, 360deg], saturation value is [0%, 100%], alpha value is [0%, 100%] or [0, 1], all numbers may be unitless
+  - for dartsass
+  ```scss
+  hsl(a)($hue $saturation $lightness)
+  hsl(a)($hue $saturation $lightness / $alpha)
+  hsl(a)($hue, $saturation, $lightness, $alpha: 1) 
+  ```
+  - for others, only current rubysass support percentage for alpha
+  ```scss
+  hsl($hue, $saturation, $lightness)
+  hsla($hue, $saturation, $lightness, $alpha)
+  ```
+
+  - pass special functions like calc() or var() in place of any argument to hsl(), even use var() to instead multiple arguments, return an unquoted string using the same signature it was called with.
+  ```scss
+  @debug hsl(210deg  100% 20% / var(--opacity));  // hsl(210deg 100% 20% / var(--opacity))
+  @debug hsla(var(--peach), 20%); // hsla(var(--peach), 20%)
+  ```
+  - consider using `hsl($hue, $saturation, $lightness, $alpha)` to instead `hsl($hue $saturation $lightness / $alpha)`
+

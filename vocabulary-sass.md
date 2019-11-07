@@ -118,6 +118,7 @@ version    : 0.0.1-alpha
 |fully|完全地，最大程度地，充分地，整整|
 |syntax|语法，句法，规则|**['sɪn.tæks]**|
 |within|（在）内部，在..内部|**[wɪˈðɪn]**|
+|introduce|介绍，引进，推行|
 |introduction|序言，导论，入门书|**[.ɪntrə'dʌkʃ(ə)n]**|
 |tutorial|教程，指南|**[tu'tɔriəl]**|
 |check out|查看，检查，了解清楚|
@@ -525,3 +526,8 @@ version    : 0.0.1-alpha
 |negative|负的，否定（的）|
 |disambiguate|消除歧义，解疑|**[.dɪsæm'bɪɡju.eɪt]**|
 |force|强迫，迫使|
+|opposite|反面，对立面，与..相对|
+|eventually|最后，终于|
+|remain|保持，继续存在，遗留，残余|
+|signature|签名，特征，标记|
+|inclusive|包含的，首末项包括在内的|
