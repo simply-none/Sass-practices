@@ -138,6 +138,7 @@ version    : 0.0.1-alpha
 |superset|超集|
 |indented|缩进（式）|**[ɪn'dentɪd]**|
 |original|原始的，最初的，首创的|
+|originally|原来，最初|
 |counts|数量，认为，包括|
 |curly|卷曲的，绻缩的|
 |additional|另外的，附加的|
@@ -469,7 +470,8 @@ version    : 0.0.1-alpha
 |disguise|伪装，掩饰，假扮|**[dɪs'ɡaɪz]**|
 |cancel out|取消，抵消|
 |ratio|系数，比率|**['reɪʃoʊ]**|
-|desire|要求，期望|
+|desire|要求，期望，想要|
+|effect|影响，作用，效果，实现，结果|**[ɪˈfekt]**|
 |quantity|数量，大量，未知数|
 |interchangeable|可交换的，互换的|**[.ɪntər'tʃeɪndʒəb(ə)l]**|
 |numeric|数字（的），分数|**[njuː'merɪk]**|
@@ -497,7 +499,12 @@ version    : 0.0.1-alpha
 |scale|缩放，规模，范围|
 |hue|颜色，色调|
 |saturation|（色彩）饱和度|**[.sætʃə'reɪʃ(ə)n]**|
+|desaturate|减小饱和度，冲淡，稀释|
 |lightness|亮度|
+|alpha|透明度|
+|opacity|模糊，不透明，费解，难懂|**[oʊˈpæsəti]**|
+|transparent|透明的，透明色|**[træns'perənt]**|
+|opaque|不透明的，模糊，难懂的，晦涩的|**[oʊ'peɪk]**|
 |immutable|不可（改）变的|**[ɪˈmjutəb(ə)l]**|
 |sneaky|鬼祟的，悄悄地，秘密的|**[ˈsniki]**|
 |creep|蔓延，蠕动|
@@ -531,3 +538,13 @@ version    : 0.0.1-alpha
 |remain|保持，继续存在，遗留，残余|
 |signature|签名，特征，标记|
 |inclusive|包含的，首末项包括在内的|
+|adjust|调整，调节，校准|
+|fluidly|灵活的，流畅的|
+|complement|补充（物），补足（物），补集，补码|**['kɑmplə.ment]**|
+|fixed|固定的，确定的，不变的|
+|certain|确定的，肯定的，无疑的，特定的|
+|existing|现行的，现存的，目前的|**[ɪɡˈzɪstɪŋ]**|
+|fade in|淡入，渐显|
+|fade out|淡出，渐隐，消失|
+|grayscale|灰度|
+|invert|倒置，反转，反色|
