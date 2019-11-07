@@ -2935,10 +2935,49 @@ $result: 15px / 30px;
   hsla($hue, $saturation, $lightness, $alpha)
   ```
 
-  - pass special functions like calc() or var() in place of any argument to hsl(), even use var() to instead multiple arguments, return an unquoted string using the same signature it was called with.
+  - pass special functions like calc() or var() in place of any argument to hsl() or rgb(), even use var() to instead multiple arguments, return an unquoted string using the same signature it was called with.
   ```scss
   @debug hsl(210deg  100% 20% / var(--opacity));  // hsl(210deg 100% 20% / var(--opacity))
   @debug hsla(var(--peach), 20%); // hsla(var(--peach), 20%)
-  ```
-  - consider using `hsl($hue, $saturation, $lightness, $alpha)` to instead `hsl($hue $saturation $lightness / $alpha)`
 
+  @debug rgb(0 51 102 /var(--opacity)); // rgb(0 51 102 / var(--opacity))
+  @debug rgba(var(--peach), 0.2); // rgba(var(--peach), 0.2)
+  ```
+  - consider using `hsl($hue, $saturation, $lightness, $alpha)` to instead `hsl($hue $saturation $lightness / $alpha)`, using `rgb($red, $green, $blue, $alpha)` to instead `rgb($red $green $blue / $alpha)`
+
+  ```scss
+  @debug hsl(210deg 100% 20%);//  #036
+  @debug hsl(34, 35%, 92%); // #f2ece4
+  @debug hsl(210deg 100% 20% / 50%);  // rgba(0, 51, 102, 0.5)
+  @debug hsla(34, 35%, 92%, 0.2); // rgba(242, 236, 228, 0.2)
+
+  @debug rgb(0 51 102); // #036
+  @debug rgb(95%, 92.5%, 89.5%);  //#f2ece4
+  @debug rgb(0 52 102 / 50%); // rgba(0, 51, 102, 0.5)
+  @debug rgba(95%, 92.5%, 89.5%, 0.2);// rgba(242, 236, 228, 0.2)
+  ```
+
+- global function with rgb(a), color is [0, 255] or [0%, 100%], alpha is [0, 1] or [0%, 100%]
+  ```scss
+  rgb(a)($red $green $blue)
+  rgb(a)($red $green $blue /$alpha)
+  rgb(a)($red, $green, $blue, $alpha:1)
+  rgb(a)($color, $alpha)
+
+  rgb($red, $green, $blue)
+  rgba($red, $green, $blue, $alpha)
+  rgba($color, $alpha)
+  ```
+  - If $color and $alpha are passed, this returns $color with the given $alpha channel instead of its original alpha channel.
+  ```scss
+  @debug rgb(#f2ece4, 50%); // rgba(242, 236, 228, 0.5);
+  @debug rgba(rgba(0, 51, 102, 0.5), 1); // #003366
+  ```
+
+- if($condition, $if-true, $if-false)
+
+```scss
+@debug if(true, 10px, 15px);// 10px
+@debug if(false, 10px, 15px); // 15px
+@debug if(variable-defined($var), $var, null);  // null
+```
