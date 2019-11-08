@@ -3322,3 +3322,183 @@ zip($lists...)  // => list
 
 @debug list.zip(10px 50px 100px, short mid long); // 10px short, 50px mid, 100px long
 @debug list.zip(10px 50px 100px, short mid);  // 10px short, 50px mid
+```
+
+### sass:map
+
+- get return value or null
+- has-key return boolean whether map contains key
+- keys return a comma-separated list of all keys
+- values return a comma-separated list of all values
+- merge return new map with all key-value from map1 and map2, and is origin order
+- remove return a copy of map, if a key doesn't in map, it's ignored
+
+
+```scss
+map.get($map, $key)
+map-get($map, $key)
+
+map.has-key($map, $key)
+map-has-key($map, $key)
+
+map.keys($map)
+map-keys($map)
+
+map.values($map)
+map-values($map)
+
+map.merge($map1, $map2)
+map-merge($map1, $map2)
+
+map.remove($map, $keys...)
+map-remove($map, $keys...)
+
+$font-weights: ("regular": 400, "medium": 500, "bold": 700);
+
+@debug map.get($font-weights, "medium");  // 500
+@debug map.get($font-weights, "extra-bold"); // null
+
+@debug map.has-key($font-weights, "regular"); // true
+@debug map.has-key($font-weights, "bolder");  // false
+
+@debug map.keys($font-weights); // "regular", "medium", "bold"
+
+@debug map.values($font-weights); // 400, 500, 700
+
+$light-weights: ("lightest": 100, "light": 300);
+$heavy-weights: ("medium": 500, "bold": 700);
+
+@debug map.merge($light-weights, $heavy-weights);
+/* (
+  "lightest": 100,
+  "light": 300,
+  "medium": 500,
+  "bold": 700
+)
+*/
+
+// map.merge() can be used to add a single key/value pair to a map
+@debug map.merge($light-weights, ("lighter": 200));
+// ("lightest": 100, "light": 300, "lighter": 200)
+
+// it can also be used to overwrite a value in a map
+@debug map.merge($light-weights, ("light": 200));
+// ("lightest": 100, "light": 300, "lighter": 200)
+
+// it can also be used to overwrite a value in a map
+@debug map.merge($light-weights, ("light": 200));
+// ("lightest": 100, "light": 200)
+
+@debug map.remove($font-weights, "regular");  // ("medium": 500, "bold": 700)
+@debug map.remove($font-weights, "regular", "bold");  // ("medium": 500)
+@debug map.remove($font-weights, "bolder"); // ("regular": 400, "medium": 500, "bold": 700)
+```
+
+### sass:math
+
+#### return numbers
+
+- abs return absolute value of number
+- ceil is rounds number up to next whole number
+- round is rounds number to nearest whole number
+- floor rounds number down to next whole number
+- max return the hightest of number, a list of numbers can be using ...
+- min return the lowest of number, a list of number using ...
+- percentage convert a unitless number to a percentage, is identical to `$number * 100%`
+- random return [0, 1] or [1, $limit]
+
+```scss
+math.abs($number)
+abs($number) 
+
+@debug math.abs(10px); // 10px
+@debug math.abs(-10px); // 10px
+
+math.ceil($number)
+ceil($number) 
+
+@debug math.ceil(4); // 4
+@debug math.ceil(4.2); // 5
+@debug math.ceil(4.9);  // 5
+
+math.round($number)
+round($number)
+
+@debug math.round(4); // 4
+@debug math.round(4.2); // 4
+@debug math.round(4.9); // 5
+
+math.floor($number)
+floor($number)
+
+@debug math.floor(4);   // 4
+@debug math.floor(4.2); // 4
+@debug math.floor(4.9); // 4
+
+math.max($number...)
+max($number...)
+
+@debug math.max(1px, 4px);  // 4px
+
+$widths: 50px, 30px, 100px;
+@debug math.max($widths...);  // 100px
+
+math.min($number...)
+min($number...)
+
+@debug math.min(1px, 4px);  // 1px
+
+$widths: 50px, 30px, 100px;
+@debug math.min($widths...);  // 30px
+
+math.percentage($number)
+percentage($number)
+
+@debug math.percentage(0.2);  // 20%
+@debug math.percentage(100px / 50px); // 200%
+
+math.random($limit: null)
+random($limit: null)
+
+// $limit is null, return (0, 1)
+@debug math.random(); // 0.2321254534
+@debug math.random(); // 0.8764192013
+
+// $limit than or equal to 1, return [1, $limit]
+@debug math.random(10); // 4
+@debug math.random(10000);  // 5935
+```
+
+#### return booleans and quoted-string
+
+- compatible return whether compatible units, if compatible, so can `+`, `-`, compared, otherwise produce errors, the global `comparable` add to the sass:math module, the name changed to `compatible`
+- is-unitless return boolean whether has no unit
+- unit return a string units, its output format is not consistent in sass version 
+
+```scss
+math.compatible($number1, $number2)
+comparable($number1, $number2)
+
+@debug math.compatible(2px, 1px); // true
+@debug math.compatible(100px, 3em); // false
+@debug math.compatible(10cm, 3mm);  // true
+
+math.is-unitless($number)
+unitless($number)
+
+@debug math.is-unitless(100); // true
+@debug math.is-unitless(100px); // false
+
+math.unit($number)
+unit($number) // => quoted string
+
+@debug math.unit(100);  // ""
+@debug math.unit(100px); // "px"
+@debug math.unit(5px * 5px); // "px*px"
+@debug math.unit(5px / 1s); // "px/s"
+```
+
+### sass:meta
+
+#### mixins
+

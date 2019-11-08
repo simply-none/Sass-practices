@@ -550,3 +550,6 @@ version    : 0.0.1-alpha
 |invert|倒置，反转，反色|
 |weight|权重，重量|
 |count|认为，算作，包括，总数|
+|ceil|向上取整|**[si:l]**|
+|round|舍入|
+|convey|表达，传达，传送|**[kən'veɪ]**|
