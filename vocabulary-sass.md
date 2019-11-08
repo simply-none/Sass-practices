@@ -548,3 +548,4 @@ version    : 0.0.1-alpha
 |fade out|淡出，渐隐，消失|
 |grayscale|灰度|
 |invert|倒置，反转，反色|
+|weight|权重，重量|

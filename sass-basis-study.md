@@ -2981,3 +2981,262 @@ $result: 15px / 30px;
 @debug if(false, 10px, 15px); // 15px
 @debug if(variable-defined($var), $var, null);  // null
 ```
+
+### sass:color
+
+####  all optial arguments must be numbers
+
+- it's an error to specify an rgb property at the same times as an hsl property
+- color.adjust `+` or `-` property value, r/g/b is [-255, 255], hue unit is deg and value is [-360deg, 360deg] or not unit, saturation and lightness is [-100%, 100%] or not unit, alpha is [-1, 1]
+- color.change() to ends property value, r/g/b is [0, 255], hue is [0deg, 360deg] or unitless, saturation and lightness is [0%, 100%] or unitless, alpha is [-1, 1](**有错？**)
+- color.scale `origin * (100% + now)` property value, each keyword is [-100%, 100%]
+- color.mix() mixture of colors, and weight is [0%, 100%], weight value is color1 rate
+  
+```scss
+color.adjust($color,
+  $red: null, $green: null, $blue: null,
+  $hue: null, $saturation: null, $lightness: null,
+  $alpha: null)
+adjust-color(...) // => color
+
+color.change($color,
+  $red: null, $green: null, $blue: null,
+  $hue: null, $saturation: null, $lightness: null,
+  $alpha: null)
+change-color(...) // => color
+
+color.scale($color,
+  $red: null, $green: null, $blue: null,
+  $saturation: null, $lightness: null,
+  $alpha: null)
+scale-color(...)  // => color
+
+color.mix($color1, $color2, $weight: 50%)
+mix($color1, $color2, $weight: 50%) // => color
+
+@debug color.adjust(#6b717f, $red: 15); // #7a717f
+@debug color.adjust(#d2e1dd, $red: -10, $blue: 10); // #c8e1e7
+@debug color.adjust(#998099, $lightness: -30%, $alpha: -0.4); // rgba(71, 57, 71, 0.6)
+
+@debug color.change(#6b717f, $red: 100);  // 64717f
+@debug color.change(#d2e1dd, $red: 100, $blue: 50); // #64e132
+@debug color.change(#998099, $lightness: 30%, $alpha: 0.5); // rgba(85, 68, 85,0.5)
+
+@debug color.scale(#6b717f, $red: 15%); // #81717f
+@debug color.scale(#d2e1dd, $lightness: -10%, $saturation: 10%);  // #b3d4cd
+@debug color.scale(#998099, $alpha: -40%);  // rgba(153, 128, 153, 0.6)
+
+@debug color.mix(#036, #d2e1dd);  // #698aa2
+@debug color.mix(#036, #d2e1dd, 75%); // #355f84
+@debug color.mix(#036, #d2e1dd, 25%); // #9eb6bf
+@debug color.mix(rgba(242, 236, 228, 0.5), #6b717f);  // rgba(141, 144, 152, 0.75)
+```
+
+#### it's not included directly in the new module system
+
+- adjust-hue increases or decreases $color's $hue, hue is [-360deg, 360deg] and unitless
+- complement return rgb complement of $color
+- saturate make color more saturated, $amount is [0, 100%], increases saturation of color
+- desaturate make color less saturated, $amount is [0%, 100%], decreases saturation of $color
+- lighten makes $color lighter, $amount is [0%, 100%], increases lightness of $color
+- darken makes $color darker, decreases hsl lightness of $color, $amount is [0%, 100%], its a bad way to make coloe darker
+- opacity/fade-in makes color more opaque, $amount is [0, 1], increases alpha of $color
+- transparentize/fade-out makes color more transparent, $amount is [0, 1], decreases alpha of color
+
+```scss
+adjust-hue($color, $degress)  // => color
+color.adjust($color,  $hue: $amount)
+
+// hue 222deg becomes 282deg
+@debug adjust-hue(#6b717f, 60deg);  // #796b7f
+// hue 164deg become 104deg
+@debug adjust-hue(#d2e1dd, -60deg); // #d6e1d2
+// hue 210deg becomes 255deg
+@debug adjust-hue(#036, 45);  // #1a0066
+
+color.complement($color)  // => color
+complement($color)
+color.adjust($color, $hue: 180deg)
+
+// hue 222deg becomes 42deg
+@debug color.complement(#6b717f); // #7f796b
+// hue 164deg becomes 344deg
+@debug color.complement(#d2e1dd); // #e1d2d6
+// hue 210deg becomes 30deg
+@debug color.complement(#036);  // #663300
+
+saturate($color, $amount) // => color
+color.adjust($color, $saturation: $amount)
+
+// #0e4982 has saturation 80%, so when saturate() adds 30% it just becomes fully saturated
+@debug saturate(#0e4982, 30%);  // #004990
+// scale() instead makes it 30% more saturated than it was originally
+@debug scale(#0e4982, $saturation: 30%);  // #0a4986
+// saturation 50% becomes 70%
+@debug saturate(#c69, 20%); // #e05299
+// saturation 35% becomes 85%
+@debug saturate(#f2ece4, 50%);  // #ebebeb
+// saturation 80% becomes 100%
+@debug saturate(#0e4982, 30%);  // #004990
+
+desaturate($color, $amount) // => color
+color.adjust($color, $saturation: -$amount)
+
+// #d2e1dd has saturation 20%, so when desaturate() subtracts 30% it just returns grey
+@debug desaturate(#d2e1dd, 30%);//   #dadada
+// scale() instead makes it 30% less saturation than it was originally
+@debug color.scale(#6b717f, $saturation: -30%); // #6e727c
+// saturation 100% becomes 80%
+@debug desaturate(#036, 20%); // #0a335c
+// saturation 35% becomes 15%
+@debug desaturate(#f2ece4, 20%);  // #eeebe8
+// saturation 20% becomes 0%
+@debug desaturate(#d2e1dd, 30%);  // #dadada
+
+lighten($color, $amount)  // => color
+color.adjust($color, $lightness: $amount)
+
+// #e1d7d2 has lightness 85%, so when lighten() adds 30% it just returns white
+@debug lighten(#e1d7d2, 30%); // white
+// scale() instead makes it 30% lighter than it was originally
+@debug color.scale(#e1d7d2, $lightness: 30%); // #eae3e0
+// lightness 46% becomes 66%
+@debug lighten(#6b717f, 20%); // #a1a5af
+// lightness 20% becomes 80%
+@debug lighten(#036, 60%);  // #99ccff
+// lightness 85% becomes 100%
+@debug lighten(#e1d7d2, 30%); // white
+
+darken($color, $amount) // => color
+color.adjust($color, $lightness: -$amount)
+
+// #036 has lightness 20%, so when darken() subtracts 30% it just return black
+@debug darken(#036, 30%); // black
+// scale() instead makes it 30% darker than it was originally
+@debug color.scale(#036, $lightness: -30%);
+// lightness 92% becomes 72%
+@debug darken(#b37399, 20%);  // #7c4465
+// lightness 85% becomes 45%
+@debug darken(#f2ece4, 40%);  // #b08b5a
+// lightness 20% becomes 0%
+@debug darken(#036, 30%); // black
+
+opacity($color, $amount)  // => color
+fade-in($color, $amount)
+color.adjust($color, $alpha: $amount)
+
+// rgba(#036, 0.7) has alpha 0.7, so when opacify() adds 0.3 it return a fully opaque color
+@debug opacify(rgba(#036, 0.7), 0.3); // #036
+// scale() instead makes it 30% more opaque than it was originally
+@debug color.scale(rgba(#036, 0.7), $alpha: 30%); // rgba(0, 51, 102, 0.79)
+@debug opacify(rgba(#6b717f, 0.5), 0.2);  // rgba(107, 113, 127, 0.7)
+@debug fade-in(rgba(#e1d7d2, 0.5), 0.4);  // rgba(225, 215, 210, 0.9)
+@debug opacify(rgba(#036, 0.7), 0.3); // #036
+
+transparentize($color, $amount) // => color
+fade-out($color, $amount)
+color.adjust($color, $alpha: -$amount)
+
+// rgba(#036, 0.3) has alpha 0.3, so when transparentize() subtracts 0.3 it return a fully transparent color
+@debug transparentize(rgba(#036, 0.3), 0.3);  // rgba(0, 51, 102, 0)
+// scale() instean makes it 30% more transparent than it was  originally
+@debug color.scale(rgba(#036, 0.3), $alpha: -30%);  // rgba(0, 51, 102, 0.21)
+@debug transparentize(rgba(#6b717f, 0.5), 0.2); // rgba(107, 113, 127,  0.3)
+@debug fade-out(rgba(#e1d7d2, 0.5), 0.4); // rgba(225, 215, 210, 0.1)
+@debug transparentize(rgba(#036, 0.3), 0.3);  // rgba(0, 51, 102, 0)
+```
+
+#### number
+
+- red return [0, 255]
+- blue return the blue of color as   [0, 255]
+- green return the green of color as [0, 255]
+- hue return the hue of color as [0deg, 255deg]
+- saturation as [0%, 100%]
+- lighteness return lightness of color as [0%, 100%]
+- alpha return tha alpha of color as[0, 1], but ie use `alpha(opacity=20)` return an unquoted string
+
+
+```scss
+color.red($color)
+red($color) // => number
+
+@debug color.red(#e1d7d2);  // 225
+@debug color.red(white);  // 255
+@debug color.red(black);  // 0
+
+color.green($color)
+green($color) // => number
+
+@debug color.green(#e1d7d2);  // 215
+@debug color.green(white);  // 255
+@debug color.green(black);  // 0
+
+color.blue($color)
+blue($color)  // => number
+
+@debug color.blue(#e1d7d2); // 210
+@debug color.blue(white); // 255
+@debug color.blue(black); // 0
+
+color.hue($color)
+hue($color) // => number
+
+@debug color.hue(#e1d7d2); // 20deg
+@debug color.hue(#f2ece4);  // 34.2857142857deg
+@debug color.hue(#dadbdf);  // 228deg
+
+color.saturation($color)
+saturation($color)  // => number
+
+@debug color.saturation(#e1d7d2); // 20%
+@debug color.saturation(#f2ece4); // 30%
+@debug color.saturation(#dadbdf); // 7.2463768116%
+
+color.lightness($color)
+lightness($color) // => number
+
+@debug color.lightness(#e1d7d2);  // 85.2941176471deg
+@debug color.lightness(#f2ece4);  // 92.1568627451deg
+@debug color.lightness(#dadbdf);  // 86.4705882353deg
+
+color.alpha($color)
+alpha($color)
+opacity($color) // => number
+
+@debug color.alpha(#e1d7d2);  // 1
+@debug color.opacity(rgba(210, 225, 221, 0.4)); // 0.4
+@debug alpha(opacity=20); // alpha(opacity=20)
+```
+
+#### others
+
+- grayscale return a gray color with the same lightness as color
+- ie-hex-str return unquoted string like #aabbccdd format expected by ie's -ms-filter property
+- invert return inverse or negative of color, weight is [0%, 100%], heighter weight means result closer to negative, otherwise closer to $color
+
+
+```scss
+color.grayscale($color)
+grayscale($color) // => color
+color.change($color, $saturation: 0%)
+
+@debug color.grayscale(#6b717f);  // #757575
+@debug color.grayscale(#d2e1dd);  // #dadada
+@debug color.grayscale(#036); // #333333
+
+color.ie-hex-str($color)
+ie-hex-str($color) // => unquoted string
+
+@debug color.ie-hex-str(#b37399); // #ffb37399
+@debug color.ie-hex-str(#808c99); // #ff808c99
+@debug color.ie-hex-str(rgba(242, 236, 228, 0.6));  // #99f2ece4
+
+color.invert($color, $weight: 100%)
+invert($color, $weight: 100%) // => color
+
+@debug color.invert(#b37399); // #4c8c66
+@debug color.invert(black); // white
+@debug color.invert(#550e0c, 20%);  // #663b3a
+```
+
