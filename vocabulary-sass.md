@@ -549,3 +549,4 @@ version    : 0.0.1-alpha
 |grayscale|灰度|
 |invert|倒置，反转，反色|
 |weight|权重，重量|
+|count|认为，算作，包括，总数|

@@ -3240,3 +3240,85 @@ invert($color, $weight: 100%) // => color
 @debug color.invert(#550e0c, 20%);  // #663b3a
 ```
 
+### sass:list
+
+- in sass every map counts as a list, so all list function work for map 
+- individual values also count as lists
+- function
+  - append return a copy of list, if value is list, will nested, and separactor is comma or space
+  - join return a new list contain list1 and list2's elemets, if add individual value using append, beacuse join have not expecting result, join to combine two list, if brackented is true, return list has square brackets, if is false return no brackets
+  - index return the index of value its first appearance
+  - is-bracketed return whether list has square brackets
+  - length return the length of list or map
+  - separator return the name of the separator used by list, either space or comma
+  - nth return element of list at index, if not index throws an error
+  - set-nth return a copy of list with element at index replaced with value, throw an error if no exist index
+  - zip combine every list into a sigle list of sub-list, return list is comma-separactor and sub-list space-separactor
+
+```scss
+list.append($list, $val, $separator: auto)
+append($list, $val, $separactor: auto)  // => list
+
+@debug list.append(10px 20px , 30px); // 10px 20px 30px
+@debug list.append((blue, red), green); // blue, red, greed
+@debug list.append(10px 20px, 30px 40px); // 10px 20px (30px 40px)
+@debug list.append(10px, 20px, $separactor: comma); // 10px, 20px
+@debug list.append((blue, red), green, $separactor: space); // blue red green
+
+list.index($list, $val)
+index($list, $val)  // => number | null
+
+@debug list.index(1px solid red, 1px);  // 1
+@debug list.index(1px solid red, solid);  // 2
+@debug list.index(1px solid red, dashed); // null
+
+list.join($list1, $list2, $separator: auto, $bracketed: auto)
+join($list1, $list2, $separator: auto, $bracketed: auto)  // => list
+
+@debug list.join(10px 20px, 30px 40px); // 10px 20px 30px 40px
+@debug list.join((blue,red), (#abc, #def)); // blue, red, #abc, #def
+@debug list.join(10px, 20px); // 10px 20px
+@debug list.join(10px, 20px, $separator: comma);  // 10px, 20px
+@debug list.join((blue, red), (#abc, #def), $separator: space); // blue red #abc #def
+@debug list.join([10px], 20px); // [10px, 20px]
+@debug list.join(10px, 20px, $bracketed: true); // [10px 20px]
+
+list.is-bracketed($list)
+is-bracketed($list) // => boolean
+
+@debug list.is-bracketed(1px 2px 3px); // false
+@debug list.is-bracketed([1px, 2px, 3px]);  // true
+
+list.length($list)
+length($list) // => number
+
+@debug list.length(10px); // 1
+@debug list.length(10px 20px 30px); // 3
+@debug list.length((width: 10px, height: 20px));  // 2
+
+list.separator($list)
+list-separator($list) // => unquoted string
+
+@debug list.separator(1px 2px 3px); // space
+@debug list.separator(1px, 2px, 3px); // comma
+@debug list.separator("helvetica"); // space
+@debug list.separator(());  // space
+
+list.nth($list, $index)
+nth($list, $index)
+
+@debug list.nth(10px 12px 16px, 2); // 12px
+@debug list.nth([line1, line2, line3], -1); // line3
+
+list.set-nth($list, $index, $val)
+set-nth($list, $index, $val)  // => list
+
+@debug list.set-nth(10px 20px 30px, 1, 2em);  // 2em 20px 30px
+@debug list.set-nth(10px 20px 30px , -1, 8em);  // 10px,    20px , 8em
+@debug list.set-nth((Helvetica, Arial, sans-serif), 3, Roboto); // Helvetica, Arial, Roboto
+
+list.zip($lists...)
+zip($lists...)  // => list
+
+@debug list.zip(10px 50px 100px, short mid long); // 10px short, 50px mid, 100px long
+@debug list.zip(10px 50px 100px, short mid);  // 10px short, 50px mid
