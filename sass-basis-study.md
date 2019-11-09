@@ -3502,6 +3502,38 @@ unit($number) // => quoted string
 
 #### mixins
 
+- meta.load-css($url, $width: null): loads the module at $url and includes its css, if passed $with, it must be a map(key without $), and $url can be relative
+- $url should be a string but not be a css url()
+- like the @use rule:
+  - only evaluate the given module once
+  - cannot provide configuration to already loaded module
+- unlike the  rule:
+  - in loaded module, any members don't avaliable in the current module
+  - can used to anywhere in stylesheet even can nested
+  - url can come from variable and include interpolation
+
+```scss
+// dark-theme/_code.scss
+$border-contrast: false !default;
+
+code {
+  background-color: #6b717f;
+  color: #d2e1dd;
+  @if $border-contrast {
+    border-color: #dadbdf;
+  }
+}
+
+// style.scss
+@use "sass:meta";
+
+body.dark {
+  @include meta.load-css("dark-theme/code", $with: ("border-contrast": true));
+}
+```
+
+
+
 ### sass:selector
 
 #### selector values

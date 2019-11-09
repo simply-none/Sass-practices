@@ -579,3 +579,9 @@ version    : 0.0.1-alpha
 |oppose|反对，抵制，阻挠|
 |interactive|交互的，人机对话的，合作的，相互影响的|
 |summary|总结性的，概要（的），摘要|
+|verbose|冗长的，啰嗦的|
+|unrecognize|未被认识的，未被承认的， 被忽略的|
+|recognized|承认，认出，认可|
+|invoke|调用，激活，请求，提及|
+|contrast|对比，对照，反差|
+|relative|相对的，相关的，比较的|
