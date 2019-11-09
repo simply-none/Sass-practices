@@ -338,6 +338,7 @@ version    : 0.0.1-alpha
 |accidentally|意外的，偶然的|
 |scope|作用域，范围|
 |deprecate|不赞成，已过时，被废弃|**['deprə.keɪt]**|
+|deprecation|反对，不赞成，强烈批评|
 |make sure|确保，确信，查明，证实|
 |no matter how|不管怎样，无论怎样|
 |execute|执行，实施，完成|**['eksə.kjut]**|
@@ -426,6 +427,7 @@ version    : 0.0.1-alpha
 |clutter|混乱（的），杂乱的，乱糟糟的|
 |markup|标记|
 |as though|好像，仿佛，似乎|
+|unify|统一，使成一体|
 |unification|统一，一致，联合|
 |interleave|交错，交叉|
 |intersection|交叉（点），相交，交点|
@@ -541,6 +543,7 @@ version    : 0.0.1-alpha
 |adjust|调整，调节，校准|
 |fluidly|灵活的，流畅的|
 |complement|补充（物），补足（物），补集，补码|**['kɑmplə.ment]**|
+|fix|修理，修复，处理，解决，整理，理解，认识，操纵|
 |fixed|固定的，确定的，不变的|
 |certain|确定的，肯定的，无疑的，特定的|
 |existing|现行的，现存的，目前的|**[ɪɡˈzɪstɪŋ]**|
@@ -553,3 +556,15 @@ version    : 0.0.1-alpha
 |ceil|向上取整|**[si:l]**|
 |round|舍入|
 |convey|表达，传达，传送|**[kən'veɪ]**|
+|instance|情况，实例，要求|
+|overlap|重叠部分，部分交叉|
+|accordion|可折叠的（标签）|**[ə'kɔrdiən]**|
+|caution|警告，注意，小心|**['kɔʃ(ə)n]**|
+|beraking|打破，破坏，摆脱，突变|
+|breaking change|突破性的改变|
+|evolve|逐步发展，逐步演变，进化|
+|minor|小的，次要的，不重要的|
+|major|大的，主要的，重要的，主修|
+|disruptive|颠覆性，破坏性的，引起混乱的|**[dɪs'rʌptɪv]**|
+|apply to|应用于，应用到，适用于|
+|especially|尤其，特别，非常|

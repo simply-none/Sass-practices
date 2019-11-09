@@ -3502,3 +3502,173 @@ unit($number) // => quoted string
 
 #### mixins
 
+### sass:selector
+
+#### selector values
+
+- inspect and manipulate selector function, return a selector, they arguments just be normal string(quoted or not) or combination like ".main aside:hover, .sidebar p"
+
+```scss
+@debug ((unquote(".main") unquote("aside:hover")),
+        (unquote(".sidebar") unquote("p")));
+// .main aside:hover, .sidebar p
+```
+- parse return format selector
+- simple-selector return simple selector by comma-separated-unquoted list, $selector must a single contain compound selector string, without contain include space combinators or commas, 
+- is-superselector return boolean whether $super match(contain) all $sub elements, arguments contain placeholder selector but not parent selector(&)
+- append return selector that $selector without descendant combinator, whitespace and parent selector, may contain placeholder selectors
+- unify return both match $selector1 and selector2 selector or null or overlap, don't guaranteed match all elements when complex-selector
+- nest return selector that $selector may contain placeholder selector and parent selector
+- extend return a copy of $selector, extend $selector with @extend rule, using $extendee, $extender to replace all instance $extendee in $selector, if $selector doesn't contain $extendee, return it as-is, arguments may contain placeholder selectors, but no parent selector
+- replace return copy of $selector with $replacement to instead $original using @extend rule, if $selector doesn't contain $original return it as-is, all arguments may contain placeholder selector but not parent selector
+
+```scss
+selector.parse($selector)
+selector-parse($selector) // => selector
+
+@debug selector.parse(".main aside:hover, .sidebar p");
+// ((unquote(".main") unquote("aside:hover")),
+//  (unquote(".sidebar") unquote("p")))
+
+selector.simple-selectors($selector)
+simple-selectors($selector)  // => list
+
+//                                                        函数名存在问题
+@debug selector.compound-selectors("a.disabled");  // a, .disabled
+@debug selector.compound-selectors("main.blog:after");  // main, .blog, :after
+
+selector.is-superselector($super, $sub)
+is-superselector($super, $sub)  // => boolean
+
+@debug selector.is-superselector("a", "a.disabled");  // true
+@debug selector.is-superselector("a.disabled", "a");  // false
+@debug selector.is-superselector("a", "sidebar a"); // true
+@debug selector.is-superselector("sidebar a", "a"); // false
+@debug selector.is-superselector("a", "a"); // true
+
+selector.append($selectors...)
+selector-append($selectors...)  // => selector
+
+@debug selector.append("a", ".disabled"); // a.disabled
+@debug selector.append(".accordion", "__copy"); // .accordion__copy
+@debug selector.append(".accordion", "__copy, __image");  
+// .accordion__copy, .accordion__image
+
+selector.unify($selector1, $selector2)
+selector-unify($selector1, $selector2)  // => selector | null
+
+@debug selector.unify("a", ".disabled");  // a.disabled
+@debug selector.unify("a.disabled", "a.outgoing");  // a.disabled.outgoing
+@debug selector.unify("a", "h1"); // null
+@debug selector.unify(".warning a", "main a");  // .warning main a, main .warning a
+
+selector.nest($selectors...)
+selector-nest($selectors...)  // => selector
+
+@debug selector.nest("ul", "li"); // ul li
+@debug selector.nest(".alert, .warning", "p");  // .alert p, .warning p
+@debug selector.nest(".alert", "&:hover");  // .alert:hover
+@debug selector.nest(".accordion", "&__copy");  // .accordion__copy
+
+selector.extend($selector, $extendee, $extender)
+selector-extend($selector, $extendee, $extender)//  => selector
+
+#{$extender} {
+  @extend #{$extendee};
+}
+
+@debug selector.extend("a.disabled", "a", ".linK"); // a.disabled, .link.disabled
+@debug selector.extend("a.disabled", "h1", "h2"); // a.disabled@
+@debug selector.extend(".guide .info", ".info", ".content nav.sidebar");
+// .guide .info, .guide .content nav.sidebar, .content .guide nav.sidebar
+
+selector.replace($selector, $original, $replacement)
+selector-replace($selector, $original, $replacement)  // => selector
+
+@debug selector.replace("a.disabled", "a", ".link");  // .link.disabled
+@debug selector.replace("a.disabled", "h1", "h2");  // a.disabled
+@debug selector.replace(".guide .info", ".info", ".content nav.sidebar");
+// .guide .content nav.sidebar, .content .guide nav.sidebar
+```
+
+### sass:string
+
+- quote return a quoted string
+- unquote return an unquoted string and it produce **invalid css** string
+- index return the first appear index or null
+- length return characters number 
+- insert return a copy of $string with $insert inserted at $index, if $index higher than length so added to end, if $index is negative than length, added to start
+- slice return a substring [$start-at, $end-at]
+- to-upper-case return a copy of $string with ascii to upper case
+- to-lower-case return a copy of $string with ascii to lower case
+- unique-id return a randomly-generated unique unquoted string and its a valid css identifer
+
+
+```scss
+string.quote($string)
+quote($string)  // => string
+
+@debug string.quote(Helvetica); // "Helvetica"
+@debug string.quote("Helvetica"); // "Helvetica"
+
+string.unquote()
+unquote() // string
+
+@debug string.unquote("Helvetica"); // Helvetica
+@debug string.unquote(".widget:hover"); // .widge:hover
+
+string.index($string, $substring)
+str-index($string, $substring)  // => number
+
+@debug string.index("Helvetica Neue", "Helvetica"); // 1
+@debug string.index("Helvetica Neue", "Neue");  // 11
+
+string.length($string)
+str-length($string) // => number
+
+@debug string.length("Helvetica Neue"); // 14
+@debug string.length(bold); // 4
+@debug string.length(""); // 0
+
+string.insert($string, $insert, $index)
+str-insert($string, $insert, $index)  // => string
+
+@debug string.insert("roboto bold", " mono", 7); // "roboto mobo bold"
+@debug string.insert("roboto bold", " mono", -5); // "roboto mobo bold"
+
+@debug string.insert("roboto", "bold", 100);  // "roboto bold"
+@debug string.insert("bold", "roboto", -100); // "roboto bold"
+
+string.slice($string, $start-at, $end-at: -1)
+str-slice($string, $start-at, $end-at: -1)  // => string
+
+@debug string.slice("Helvetica Neue", 11);  // "Neue"
+@debug string.slice("Helvetica Neue", 1, 3);  // "Hel"
+@debug string.slice("Helvetica Neue", 1, -6); // "Helvetica"
+
+string.to-upper-case($string)
+to-upper-case($string)  // => string
+
+@debug string.to-upper-case("bold");  // "BOLD" 
+@debug string.to-upper-case(sans-serif);  // SANS-SERIF
+
+string.to-lower-case($string)
+to-lower-case($string)  // => string
+
+@debug string.to-lower-case("BOld");  // "bold"
+@debug string.to-lower-case(SANS-SERIF);  // sans-serif
+
+string.unique-id()
+unique-id() // => string
+
+@debug string.unique-id();  // uabtrnzug
+@debug string.unique-id(); // u6w1b1def
+```
+
+## breaking changes
+
+### overview
+
+- new sass version are as backwards-compatible(previous version) as possibile
+
+### extending compound selectors
