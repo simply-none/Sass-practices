@@ -239,6 +239,7 @@ version    : 0.0.1-alpha
 |mode|模式，风格|
 |though|然而，不过，但是|
 |the rest of|其余的，剩下的|
+|comment|注释，注解，评论|
 |comment out|标注出，注释|
 |annotation|注释，评注|
 |document|文档，记录，记载|
@@ -551,6 +552,7 @@ version    : 0.0.1-alpha
 |fade out|淡出，渐隐，消失|
 |grayscale|灰度|
 |invert|倒置，反转，反色|
+|inverse|相反的，反面，倒数|
 |weight|权重，重量|
 |count|认为，算作，包括，总数|
 |ceil|向上取整|**[si:l]**|
@@ -568,3 +570,12 @@ version    : 0.0.1-alpha
 |disruptive|颠覆性，破坏性的，引起混乱的|**[dɪs'rʌptɪv]**|
 |apply to|应用于，应用到，适用于|
 |especially|尤其，特别，非常|
+|executable|可执行的（程序）|**['eksə.kjutəb(ə)l]**|
+|necessary|必要的，必须的，必然的|**['nesə.seri]**|
+|alternative|另类的，非主流的，可供替代的|
+|abbreviate|缩写，缩短，简称|**[əˈbriːviːeɪt]**|
+|expand|扩展，扩大，展开|
+|compress|压缩，精简|
+|oppose|反对，抵制，阻挠|
+|interactive|交互的，人机对话的，合作的，相互影响的|
+|summary|总结性的，概要（的），摘要|

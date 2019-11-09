@@ -3671,4 +3671,346 @@ unique-id() // => string
 
 - new sass version are as backwards-compatible(previous version) as possibile
 
-### extending compound selectors
+### extending compound selectors(only dartsass)
+
+- libsass currently allow compound selectors(like .message.info) to be extended, but doesn't match @extend work
+- write `.heads-up {@extend .info}` just like `class="heads-up info"` in html, but `.heads-up {@extend .message.info}` not like `class="heads-up message info"`,  it only it to have .info.message selector together, but for compatibility should extend each simple selector separactor
+  
+```scss
+// these should both be extend, but they won't be
+.message {
+  border: 1px solid black
+}
+.info {
+  font-size: 1.5rem;
+}
+
+.heads-up {
+  @extend .message.info;
+}
+```
+```scss
+.message {
+  border: 1px solid black;
+}
+.info {
+  font-size: 1.5rem;
+}
+
+.heads-up {
+  // @extend .message;
+  // @extend .info;
+  @extend .message, .info;
+}
+```
+
+- because sass doesn't know the details of html css'style, so @extend might generator extra won't apply to html's selector, but its true to away from compound selectors, so recommend replaceing it using a placeholder selector
+
+```scss
+// instead of just `.message.info`
+%message-info, .message.info {
+  border: 1px solid black;
+  font-size: 1.5rem;
+}
+
+.heads-up {
+  // instead of `.message.info`
+  @extend %message-info;
+}
+```
+
+### css variable syntax
+
+- older lib-ruby-sass parsed custom property declaractions like other property declaration,allowing any sassscript expression as value, but wasn't compatible with css, so parse failed to css
+
+```scss
+// output css as-is
+:root {
+  --flex-theme: {
+    border: 1px solid var(--theme-dark-blue);
+    font-family: var(--theme-font-family);
+    padding: var(--theme-wide-padding);
+    background-color: var(--theme-light-blue);
+  };
+}
+```
+
+- so provide maximum compatibility with plain css, require sass-exp written interpolation in custom property
+
+```scss
+$accent-color: #fbbc04;
+
+:root {
+  // wrong, will not work in recent sass versions
+  // --accent-color-wrong: $accent-color;
+  --accent-color-wrong: $accent-color;
+
+  // right, will work in all sass versions
+  // --accent-color-right: #fbbc04;
+  --accent-color-right: #{$accent-color};
+}
+```
+
+- interpolation will remove quotation mark from quoted string , so shoult using `meta.inspect()` to preserve their quotes
+
+```scss
+@use "sass:meta";
+
+$font-family-monospace: Menlo, Consolas, "Courier New", monospace;
+
+:root {
+  --font-family-monospace: #{meta.inspect($font-family-monospace)};
+}
+```
+
+## command-line interface
+
+- dart sass has the same command-line interface no matter how you install it
+- ruby sass is deprecated, so should move to different implementation
+
+### dart-sass command-line interface
+
+#### usage
+
+- one-to-one mode:
+  - if no output location is passed, the compiled css is printed to the terminal
+  - input file extends is .scss, .sass, .css, if doesn't have one of these three extensions, parsed as scss by default, this can controlled with the `--indented` flag
+  - special string can be passed, sass will default to parsing it as scss unless `--indented` flag is passed
+- many-to-many mode:
+  - when compiling whole directories, sass will ignore partial files names begin with `_`， its will without creating a bunch of uncessary output files
+
+```bash
+$ sass <input.scss> [output.css]
+
+$ sass [<input.scss>:<output.css>] [<input/>:<output/>]...
+
+# compiles style.scss to style.css
+$ sass style.scss:style.css
+
+# compiles light.scss and dark.scss to light.css and dark.css
+$ sass light.scss:light.css dark.scss:dark.css
+
+# compiles all sass files in themes/ to css file in public/css/
+$ sass themes:public/css
+```
+
+#### options
+
+- `--stdin` flag: when it's passed no input file may be passed, without using in many-to-many mode
+
+```bash
+$ echo "h1 {font-size: 40px}" |  sass --stdin h1.css
+$ echo "h1 {font-size: 40px}" |  sass --stdin
+h1 {
+  font-size: 40px;
+}
+```
+
+- `--indented` flag: force using indented syntex to parsed the input file, is useful when input file is coming from standard input, so its syntax can't be determined. the inverse `--no-indented` flag can be force parsed as scss
+
+```bash
+$ echo -e "h1\n font-size: 40px" | sass --indented -
+h1 {
+  font-size: 40px;
+}
+```
+
+- `--load-path` flag(abbreviated -I): adds an additional load path and can be passed multiple load paths, earlier load path is precedence
+
+```bash
+$ sass --load-path=node_modules/boostrap/dist/css style.scss style.css
+```
+
+- `--style`(abbreviated -s) control output style of css, dart support two value is expanded(default) and compressed
+
+```bash
+$ sass --style=expanded style.scss
+h1 {
+  font-size: 40px;
+}
+
+$ sass --style=compressed style.scss
+h1{font-size:40px}
+```
+
+- `--no-charset` flag tell sass to emit a @charset in expanded output mode or a utf-8 byte-order-mark in compressed output mode, default `--charset` passed, will insert them if stylesheet contains any no-ascii charactors
+
+```bash
+$ echo 'h1::before {content: "👭"}' | sass --no-charset
+h1::before {
+  content: "👭";
+}
+
+$ echo 'h1::before {content: "👭"}' | sass --charset
+@charset "UTF-8";
+h1::before {
+  content: "👭";
+} 
+```
+
+- `--error-css` flag(default) is whether emit a css file when occur an errors during compilation, and the  error description in a comment in body::before, and `--no-error-css` to disable it, now `--update` and `watch` flag will delete css files when have an error occur
+
+```bash
+$ sass --error-css style.scss style.css
+/* Error: Incompatible units em and px.
+ *   ,
+ * 1 | $width: 15px + 2em;
+ *   |         ^^^^^^^^^^
+ *   |
+ *   test.scss 1:9  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Incompatible units em and px.\a   \2577 \a 1 \2502  $width: 15px + 2em;\a   \2502          ^^^^^^^^^^\a   \2575 \a   test.scss 1:9  root stylesheet";         
+}
+Error: Incompatible units em and px.
+  ╷
+1 │ $width: 15px + 2em;
+  │         ^^^^^^^^^^
+  ╵
+  test.scss 1:9  root stylesheet
+```
+
+- `--update` flag let sass only compile modified stylesheets to generate corresponding css, and also print status message
+
+```bash
+$ sass --update themes:public/css
+compiled themes/light.scss to public/css/light.css.
+```
+
+#### source maps
+
+- tell browsers or other tools that css correspond come from, they make it possible to see and edit sass in browser, dart sass generate source maps by default for  every css
+- `--no-source-map` won't generate  any source maps
+- `--source-map-urls` will the sass generator link to css, dart support two url for `relative` links(be default) and `absolute` using `file:urls`
+- `--embed-sources` to embed entire contents of sass file to generator css in source map
+- `--embed-source-map` to embed content of source map file to generator css
+
+```bash
+$ sass --no-source-map style.scss style.css
+
+# generates a url like "../sass/style.scss".
+$ sass --source-map-urls=relative sass/style.scss css/style.css
+
+# generates a url like "file:///home/style-wiz/sassy-app/sass/style.scss".
+$ sass --source-map-urls=absolute sass/style.scss css/style.css
+
+$ sass --embed-sources sass/style.scss css/style.css
+
+$ sass --embed-sources-map sass/style.scss css/style.css
+```
+
+#### other options
+
+- `--watch` like `--update` but continue compiling entire stylesheet when change
+  - `--poll` passed along with `--watch`, tell sass often to manually check change, it's useful when edit on remote drive
+- `--stop-on-error` to stop compiling immediately when an error is detected, it's useful in many-to-many mode
+- `--interactive` (abbreviated -i) to run in interactive mode, its support variables and @use rules
+- `--color`(default by support them terminal) to emit terminal colors, and `--no-color` is inverse
+- `--no-unicode` emit ascii charactor to terminal as error messages, by default `--unicode` emit non-ascii characters, don't affect css output
+- `--quiet` (abbreviated -q) not to emit any warning when compiling
+- `--trace` to print  full dart or js stack trace when an error is encountered
+- `--help` (abbreviated -h) prints a summary of documentation
+- `--version` print the current version of sass
+
+```bash
+$ sass --watch themes:public/css
+compiled themes/light.scss to public/css/light.css
+
+# then when you edit themes/dark.scss...
+compiled themes/dark.scss to public/css/dark.css
+
+$ sass --watch --poll themes:public/css
+compiled themes/light.scss to public/css/light.css
+
+# then when you edit themes/dark.scss...
+compiled themes/dark.scss to public/css/dark.css
+
+$ sass --stop-on-error themes:public/css
+Error: Expected expression.
+   ╷
+42 │ h1 {font-face: }
+   │                ^
+   ╵
+  themes/light.scss 42:16  root stylesheet
+
+$ sass --interactive
+>> 1px + 1in
+97px
+>> @use "sass:map"
+>> $map: ("width": 100px, "height":70px)
+("width": 100px, "height": 70px)
+>> map.get($map, "width")
+100px
+
+$ sass --color style.scss style.css
+Error: Incompatible units em and px.
+  ╷
+1 │ $width: 15px + 2em
+  │         ^^^^^^^^^^
+  ╵
+  style.scss 1:9  root stylesheet
+
+$ sass --no-color style.scss style.css
+Error: Incompatible units em and px.
+  ╷
+1 │ $width: 15px + 2em
+  │         ^^^^^^^^^^
+  ╵
+  style.scss 1:9  root stylesheet
+
+$ sass --no-unicode style.scss style.css
+Error: Incompatible units em and px.
+  ,
+1 | $width: 15px + 2em;
+  |         ^^^^^^^^^^
+  ' 
+  test.scss 1:9  root stylesheet'
+
+$ sass --unicode style.scss style.css
+Error: Incompatible units em and px.
+  ╷
+1 │ $width: 15px + 2em;
+  │         ^^^^^^^^^^
+  ╵
+  test.scss 1:9  root stylesheet
+
+$ sass --quiet style.scss style.css
+
+$ sass --trace style.scss style.css
+Error: Expected expression.
+   ╷
+42 │ h1 {font-face: }
+   │                ^
+   ╵
+  themes/light.scss 42:16  root stylesheet
+
+package:sass/src/visitor/evaluate.dart 1846:7                        _EvaluateVisitor._addExceptionSpan
+package:sass/src/visitor/evaluate.dart 1128:12                       _EvaluateVisitor.visitBinaryOperationExpression
+package:sass/src/ast/sass/expression/binary_operation.dart 39:15     BinaryOperationExpression.accept
+package:sass/src/visitor/evaluate.dart 1097:25                       _EvaluateVisitor.visitVariableDeclaration
+package:sass/src/ast/sass/statement/variable_declaration.dart 50:15  VariableDeclaration.accept
+package:sass/src/visitor/evaluate.dart 335:13                        _EvaluateVisitor.visitStylesheet
+package:sass/src/visitor/evaluate.dart 323:5                         _EvaluateVisitor.run
+package:sass/src/visitor/evaluate.dart 81:10                         evaluate
+package:sass/src/executable/compile_stylesheet.dart 59:9             compileStylesheet
+package:sass/src/executable.dart 62:15                               main
+
+$ sass --help
+Compile Sass to CSS.
+
+Usage: sass <input.scss> [output.css]
+       sass <input.scss>:<output.css> <input/>:<output/>
+
+...
+
+$ sass --version
+1.23.3
+```
+
