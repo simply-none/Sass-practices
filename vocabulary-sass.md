@@ -154,6 +154,7 @@ version    : 0.0.1-alpha
 |initially|首先，最初的|**[ɪ'nɪʃ(ə)li]**|
 |available|可得到的，可获得的，可用的|**[ə'veɪləb(ə)l]**|
 |perform|表演，表现，执行|
+|performance|性能，业绩，表现，表演，高性能的，执行|
 |order|命令，指令，规则，订单，顺序，次序|
 |mark|标志，标记，符号|
 |correspond|相一致，与..一致，对应|
@@ -585,3 +586,8 @@ version    : 0.0.1-alpha
 |invoke|调用，激活，请求，提及|
 |contrast|对比，对照，反差|
 |relative|相对的，相关的，比较的|
+|synchronously|同步的，同时的|**['siŋkrənəsli]**|
+|overhead|开销，经常性支出，运营费用，日常的，在头上方的，在空中|
+|hit|打击，使受严重影响，碰撞，命中|**[hɪt]**|
+|buffer|缓存（区），保护|
+|minus|减去，减号，负值，缺少，缺点|**[ˈmaɪnəs]**|
