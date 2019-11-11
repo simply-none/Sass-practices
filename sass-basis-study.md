@@ -4305,5 +4305,337 @@ console.log(result.css.toString());
 #### source Maps
 
 - css corresponds to sass files, let source maps available using result.map field
-- the flag control whether source map are generated
-- 
+
+- `sourceMap`:
+  - the flag control whether source map are generated
+  - if is string, it's the path that css => source map => sass source, but if `outFile` isn't passed, css will writen same directory as if `file` passed
+  - if is true, the path assumed `outFile` with .map endding, but `outFile` isn't passed, it's no effect
+
+```javascript
+var result = sass.renderSync({
+  file: "style.scss",
+  sourceMap: "out.map"
+});
+console.log(result.css.toString());
+// h1 {
+//    font-size: 40px;  
+// }
+// /*# sourceMappingURL=out.map */
+
+result = sass.renderSync({
+  file: "style.scss",
+  sourceMap: true,
+  outFile: "out.css"
+});
+console.log(result.css.toString());
+// h1 {
+//    font-size: 40px;
+// }
+// /*# sourceMappingURL=out.css.map */
+
+```
+
+- `outFile` option is string that genetated css to be saved, but sass doesn't write the css output to the file, caler must do that themselves
+
+```javascript
+result = sass.renderSync({
+  file: "style.scss",
+  sourceMap: true,
+  outFile: "out.css"
+});
+console.log(result.css.toString());
+// h1 {
+//    font-size: 40px;
+// }
+// /*# sourceMappingURL=out.css.map */
+```
+
+- `omitSourceMapUrl` flag will cause sass not to link from css to source-map
+
+```javascript
+var result = sass.renderSync({
+  file: "style.scss",
+  sourceMap: "out.map",
+  omitSourceMpaUrl: true
+});
+console.log(result.css.toString());
+// h1 {
+//    font-size: 40px;
+// }
+```
+
+- `sourceMapContents` flag to embed entire sass to css in sourcr map, it guarantees source is available on any computer
+
+```javascript
+sass.renderSync({
+  file: "style.scss",
+  sourceMap: "out.map",
+  sourceMapContents: true
+});
+```
+
+- `sourceMapEmbed` flag to embed source map to generated css
+
+```javascript
+sass.renderSync({
+  file: "style.scss".
+  sourceMap: "out.map",
+  embedSourceMap: true                //                        is conflict
+});
+```
+
+- `sourceMapRoot` flag is prepended to all link from source map to source file
+
+#### plugins
+
+these options use js callbacks to expand the functionality of sass compilation
+
+- `fiber` option 
+  - that `render()` using fibers package to call asynchronous importers from the synchronous code path to avoid this performance hit
+  - option is allowed but no effect in nodesass or using renderSync() function
+
+
+```javascript
+var sass = require("sass");
+var Fiber = require("fibers");
+
+sass.render({
+  file: "input.scss",
+  importer: function(url, prev, done) {
+    // ...
+  },
+  fiber: Fiber
+}, function(err, result) {
+  // ...
+});
+```
+
+- `funtions`
+  - defines additional built-in sass function but are avaliable in all stylesheet
+  - it's an object that key is sass function signatures, and value is javascript function
+  - if takes arbitrary arguments, function should take a single argument
+  - function return sync, unless `render()`
+  - function synchronously throws an error will reported to caller and stylesheet compilation fails, but async no way to report error
+  - custom function should ensure all arguments is expect type
+
+```javascript
+sass.render({
+  data: `
+  h1 {
+    font-size: pow(2, 5) * 1px;
+  }`,
+  function: {
+    // this function uses the syncronous api, and can be passed to 
+    // either rederSync() or render()
+    'pow($base, $exponent)': function(base, exponent) {
+      if (!(base instanceof sass.types.Number)) {
+        throw "$base: expected a number.";
+      } else if (base.getUnit()) {
+        throw "$base: expected a unitless number";
+      }
+      if (!(exponent instanceof sass.types.Number)) {
+        throw "$exponent:expected a number";
+      } else if (exponent.getUnit()) {
+        throw "$exponent:expected a unitless number";
+      }
+
+      return new sass.types.Number(
+        Math.pow(base.getValue(), exponent.getValue());
+      )
+    },
+
+    // this function uses the asynchronous api
+    // and can only be pased to render()
+    "sqrt($number)": function(number, done) {
+      if (!(number instanceof sass.types.Number)) {
+        throw "$number: expected a number";
+      } else if (number.getUnit()) {
+        throw "$number:expected a unitless number";
+      }
+      done(new sass.types.Number(Math.sqrt(number.getValue())));
+    }
+  }
+}, function(err,result) {
+  console.log(result.css.toString());
+  // h1 {
+  //    font-size: 32px;
+  // }
+});
+```
+
+#### importer
+
+```javascript
+sass.render({
+  file: "style.scss",
+  importer: [
+    // this importer uses the synchronous api,
+    // and can be passed to either rendersync() or render()
+    function(url, prev) {
+      // this generates a stylesheet from scratch for `@use "big-headers"`
+      if (url != "big-headers") return null;
+
+      return {
+        contents: `
+        h1 {
+          font-size:40px;
+        }`
+      };
+    },
+    // this importer uses the asynchronous api
+    // and can only be passed to render()
+    function(url, prev, done) {
+      // convert `@use "foo/bar"` to "node_modules/foo/sass/bar"
+      var components = url.split("/");
+      var innerPath = components.slice(1).join("/");
+      done({
+        file: `node_modules/${components.first}/sass/${innerPath}`
+      });
+    }
+  ]
+}, function(err, result) {
+  // ...
+})
+```
+
+### value type
+
+```javascript
+new sass.types.Number(0.5); // == 0.5
+new sass.types.Number(10, "px");  // == 10px
+new sass.types.Number(10, "px*px"); // == 10px * 1px
+new sass.types.Number(10, "px/s");  // == 10px * 1s
+new sass.types.Number(10, "px*px/s*s"); // 10px * 1px / 1s /1s
+
+var number = new sass.types.Number(10, "px");
+console.log(number.getVaule()); // 10
+
+// number is `10px`
+console.log(number.getUnit());  // "px"
+
+// number is `10px / 1s`
+console.log(number.getUnit());  // "px/s"
+
+```
+
+```javascript
+new sass.types.String("Arial"); // == Arial
+
+// string is `Arial`
+string.getValue();  // "Arial"
+
+// string is `"Helvetica Neue"`
+string.getValue();  // "Helvetica Neue"
+
+// string is `\1f46d`
+string.getValue();  // "\\1f46d"
+
+// string is `"\1f46d"`
+string.getValue();  // "👭"
+
+```
+
+
+```javascript
+new sass.types.Color(107, 113, 127);  // #6b717f
+new sass.types.Color(0, 0, 0, 0); // rgba(0, 0, 0, 0)
+
+new sass.types.Color(0xff6b717f); // #6b717f
+new sass.types.Color(0x00000000); // rgba(0, 0, 0, 0)
+
+// color is `#6b717f`
+color.getR(); // 107
+
+// color is `#b37399`
+color.getR(); // 179
+
+// color is `#6b717f`
+color.getG(); // 113
+
+// color is `#b37399`
+color.getG(); // 115
+
+// color is `#6b717f`
+color.getB(); // 127
+
+// color is `#b37399`
+color.getB(); // 153
+
+// color is `#6b717f`
+color.getA(); // 1
+
+// color is `transparent`
+color.getA(); // 0
+
+```
+
+
+```javascript
+// boolean is `true`
+boolean.getValue(); // true
+boolean === sass.types.Boolean.TRUE;  // true
+
+// boolean is `false`
+boolean.getValue(); // false
+boolean === sass.types.Boolean.FALSE; // false
+```
+
+```javascript
+var list = new sass.types.List(3);
+list.setValue(0, new sass.types.Number(10, "px"));
+list.setValue(1, new sass.types.Number(10, "px"));
+list.setValue(2, new sass.types.Number(32, "px"));
+
+// list is `10px, 15px, 32px`
+list.getValue(0); // 10px
+list.getValue(2); // 32px
+
+// list is `10px, 15px, 32px`
+list.getSeparator();  // true
+
+list is `1px solid`
+list.getSeparator();  // false
+
+// list is `10px, 15px, 32px`
+list.getLength(); // 3
+
+// list is `1px solid`
+list.getLength();// 2
+
+// list is `10px, 15px, 32px`
+list.setValue(1, new sass.types.Number(18, "px"));
+list; // 10px, 18px, 32px
+```
+
+```javascript
+var map = new sass.types.Map(2);
+map.setKey(0, new sass.types.String("width"));
+map.setValue(0, new sass.types.Number(300, "px"));
+map.setKey(1, new sass.types.String("height"));
+map.setValue(1, new sass.types.Number(100px, "px"));
+map;  // (width: 300px, height: 100px)
+
+// map is `(width:300px, height: 100px)`
+map.getKey(0);  // width
+map.getKey(1);  // height
+
+// map is `(width: 300px, height: 100px)`
+map.getValue(0);  // 300px
+map.getValue(1);  // 100px
+
+// map is `("light": 200, "medium": 400, "bold": 600)`
+map.getLength();  // 3
+
+// map is `(width: 300px, height: 100px)`
+map.getLength();  // 2
+
+// map is `("light": 200, "medium": 400, "bold": 600)`
+map.setKey(0, new sass.types.String("lighter"));
+map;  // (lighter: 200, "medium": 400, "bold": 600)
+
+// map is `("light": 200, "medium": 400, "bold": 600)`
+map.setKey(1, new sass.types.Number(300));
+map;  // ("light": 200, "medium": 300, "bold": 600)
+
+```
+

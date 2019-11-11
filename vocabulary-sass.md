@@ -47,7 +47,7 @@ version    : 0.0.1-alpha
 |extremely|极其，非常|
 |powerful|强大的，高效能的，有影响力的|
 |consistent|一致的，一致性，连贯的|
-|separate|分隔，隔开|**['sep(ə).reɪt]**|
+|separate|分隔，隔开，分离，单独的，不同的|**['sep(ə).reɪt]**|
 |separately|单独地，分别地|
 |colon|冒号|**[ˈkoʊlən]**|
 |semicolon|分号|
@@ -206,6 +206,7 @@ version    : 0.0.1-alpha
 |mathematical|数学（上）的|
 |usual|通常的，普通的，常见的|
 |meaning|含义|
+|meaningless|毫无意义的，无价值的，不相关的|
 |match|与..相配，使..一致|
 |scientific|科学的，严谨的|
 |unit|单位，单元|
@@ -597,3 +598,8 @@ version    : 0.0.1-alpha
 |precision|精（密）度，精确（的），细致|
 |line feed|换行（符）|
 |carriage return（cr | \r）|回车（符），换行|
+|omit|省略，删节，遗漏|
+|prepend|预置，预先准备，前置信息|
+|crash|崩溃，瘫痪，倒闭，失败，撞击|
+|worse|更糟（的），更坏（的）|
+|wrapper|包装类，基本类型包装器|**['ræpər]**|
