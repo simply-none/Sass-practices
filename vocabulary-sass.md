@@ -591,3 +591,9 @@ version    : 0.0.1-alpha
 |hit|打击，使受严重影响，碰撞，命中|**[hɪt]**|
 |buffer|缓存（区），保护|
 |minus|减去，减号，负值，缺少，缺点|**[ˈmaɪnəs]**|
+|stdin|标准输入（流），标准输入设备|
+|duration|持续时间|**[dʊ'reɪʃ(ə)n]**|
+|compact|小而紧凑的，紧密的，把..紧压在一起|
+|precision|精（密）度，精确（的），细致|
+|line feed|换行（符）|
+|carriage return（cr | \r）|回车（符），换行|

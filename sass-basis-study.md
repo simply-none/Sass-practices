@@ -4046,3 +4046,244 @@ $ sass --version
 1.23.3
 ```
 
+## javascript api
+
+dart sass is `sass` package, and libsass is `node-sass` package, the sass module provides two function with similar apis
+
+### usage
+
+- `renderSync()` 
+  - using synchronously compiles a sass file to css
+  - if it succeeds return result, otherwise throws an error
+  - it take an options object must set `file` option or `data` option
+- `render()` 
+  - using asynchronously compiles a sass file to css, 
+  - when rendering is completely will call a callback with result or error
+  - it take an options object must set `file` or `data` option
+- using dart-sass, `renderSync()` is almost twice as fast as `render()` by default due to overhead of evaluation process, so to avoid performance hit should pass `fiber` option to `render()`
+- `info` property contain a tab-separated information string about sass-version and compilation-version
+
+```javascript
+var sass = require("sass"); // or require("node-sass");
+
+var result = sass.renderSync({file: "style.scss"});
+// ...
+
+sass.render({
+  file: "style.scss"
+}, function(err, result) {
+  // ...
+});
+
+console.log(sass.info); // about dart-sass
+// dart-sass  1.23.3  (Sass Compiler) [Dart]
+// dart2js  2.0.0 (Dart Compiler) [Dart]
+```
+
+- `result Object`: when `render(Sync)()` succees, they provide a contain compilation information result object
+  - `result.css` is compiled css as a buffer, by calling `Buffer.toString()`  convert to string
+  - `result.map` is compiled css to source files maps as a buffer, by calling `toString()` convert string
+    - this is null or undefined unless `sourceMap` option is string or `sourceMap` option is true and set `outFile` option
+    - the map uses absolute file:URLs to link sass-source or lists its URL as stdin with `data` option
+  - `result.stats.includedFiles` is an array of absolute paths of all sass files loaded during compilation
+    - if loaded from `importer` return the stylesheet's contents of raw string of @use or @import
+  - `result.stats.entry` is:
+    - absolute path of input as `file` option
+    - data as `data` option
+  - `result.stats.start` is milliseconds between 1970 at sass compilation began
+  - `result.stats.end` is millisecond between 1970 at sass compilation ended
+  - `result.stats.duration` is millisecond compile sass file equal to `start` minus `end`
+
+
+```javascript
+var result = sass.renderSync({file: "style.scss"});
+
+console.log(result.css.toString());
+
+var result = sass.renderSync({
+  file: "style.scss",
+  sourceMap: true,
+  outFile: "style.css"
+});
+
+console.log(result.map.toString());
+```
+
+- error object: when `render(Sync)()` fail, provide an contain compilation information error object
+  - `error.formatted` is error string, more detailed than `error.toString()` and `error.message`
+  - `error.file` return a error string occured stylesheet
+    - if loaded from disk, return absolute path
+    - if loaded from importer, return a raw string of @use or @import
+    - if occurred in data option, return string is `stdin` 
+  - `error.line` return line in error occurred
+  - `error.colum` return column in error occurred
+  - `error.status` return program exit status
+
+### options
+
+thest options control how sass loads it input files(compatibility with all dartsass and partial libsass)
+
+#### input, indentedSyntax, includePaths
+
+- `file` option
+  - string option is loaded file path, if file extension is .scss or no extension, is parsed as scss, .sass is parsed as indented syntax, .css parsed as plain css
+  - if `file` and `data` option are both passed, `file` as path of stylesheet for error reporting, `data` as contents of stylesheet
+
+```javascript
+sass.renderSync({file: "style.scss"});
+```
+
+- `data` provide to compile stylesheet contents, unless set `file` as well, the stylesheet URL is set to "stdin"
+  
+```javascript
+sass.renderSync({
+  data: `
+  h1 {
+    font-size: 40px;
+  }`
+});
+```
+
+- `indentedSyntax` option control whether the `data` is parsed as indented syntax or not, it defaults to false, don't effect on stylesheet loaded using file option
+
+```javascript
+sass.renderSync({
+  data: `
+  h1
+    font-size: 40px`,
+    indentedSyntax: true
+});
+```
+
+- `includePaths`: 
+  - provide load paths from sass to look for imports string array, earlier load precedence over later
+  - load paths are also loaded from SASS_PATH environment variable, and the variables should separated by `;`(only win) or `:`
+  - load path from `includePaths` precedence over SASS_PATH
+
+```javascript
+sass.renderSync({
+  file: "style.scss",
+  includePaths: ["node_modules/bootstrap/dist/css"]
+});
+```
+```bash
+$ SASS_PATH=node_modules/bootstrap/dist/css sass.scss style.css
+```
+
+#### output
+
+these options control how sass produces output files
+
+- `outputStyle` is a control result css style string, have four value
+  - `expanded`(default dart) each selector and declaration write on its own line
+  - `compressed` remove extra characters as possible, write entire stlesheet on a single line
+  - `nested`(default libsass, don't support dart) 
+  - `compact`(not support dart) put each css rule on its own single line
+
+```javascript
+var source = `
+h1 {
+  font-size: 40px;
+  code {
+    font-face: Roboto Mono;
+  }
+}`;
+
+var result = sass.renderSync({
+  data: source, 
+  outputStyle: "expanded"
+});
+console.log(result.css.toString());
+// h1 {
+//    font-size: 40px;
+// }
+// h1 code {
+//    font-face: Roboto Mono;
+// }
+
+result = sass.renderSync({
+  data: source,
+  outputStyle: "compressed"
+});
+console.log(result.css.toString());
+// h1{font-size:40px}h1 code{font-face:Roboto Mono}
+
+result = sass.renderSync({
+  data: source,
+  outputStyle: "nested"
+});
+console.log(result.css.toString());
+// h1 {
+//    font-size: 40px;}
+//    h1 code {
+//        font-face: Roboto Mono;}
+
+result = sass.renderSync({
+  data: source,
+  outputStyle: "compact"
+});
+console.log(result.css.toString());
+// h1 { font-size: 40px; }
+// h1 code { font-face: Roboto Mono; }
+```
+
+- `precision` option(no support sart), provide integer precision using generating css number, default is 5
+
+```javascript
+var result = sass.renderSync({
+  data: `
+  h1 {
+    font-size: (100px / 3);
+  }`,
+  precision: 20
+});
+
+console.log(result.css.toString());
+// h1 {
+//    font-size: 33.333333333333336px; }
+
+```
+
+- `indentType` option determines whether generated css should using `space` or `tab` for indentation, default is `space`
+
+```javascript
+var result = sass.renderSync({
+  file: "style.scss",
+  indentType: "tab",
+  indentWidth: 1
+});
+
+result.css.toString();
+// "h1 {\n\tfont-size: 40px;\n}\n"
+```
+
+- `indentWidth` option control how many spaces or tabs per indentation level, default is 2, between [0, 10]
+
+```javascript
+var result = sass.renderSync({
+  file: "style.scss",
+  indentWidth: 4
+});
+
+console.log(result.css.toString());
+// h1 {
+//    font-size: 40px;
+// }
+```
+
+- `linefeed` control each line ending using character string
+  - `lf` uses U+000A line feed
+  - `cr` uses U+000D carriage return
+  - `lfcr`
+  - `crlf`
+
+```javascript
+var result = sass.renderSync({
+  file: "style.scss",
+  linefeed: "crlf"
+});
+
+console.log(result.css.toString());
+// "h1 {\r\n font-size: 40px;\r\n}\r\n"
+```
+
