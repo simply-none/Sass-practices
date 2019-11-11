@@ -157,7 +157,7 @@ version    : 0.0.1-alpha
 |performance|性能，业绩，表现，表演，高性能的，执行|
 |order|命令，指令，规则，订单，顺序，次序|
 |mark|标志，标记，符号|
-|correspond|相一致，与..一致，对应|
+|correspond|通信，相一致，与..一致，对应|
 |corresponding|相应的，对应的，一致的|
 |plain|明显的，清楚的，显然，普通的|
 |determine|决定，决心，确定|

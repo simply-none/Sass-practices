@@ -4287,3 +4287,23 @@ console.log(result.css.toString());
 // "h1 {\r\n font-size: 40px;\r\n}\r\n"
 ```
 
+- `sourceComments` option causes sass to emit comment for every style rule, default false
+
+```javascript
+var result  = sass.renderSync({
+  file: "style.scss",
+  sourceComments: true
+});
+
+console.log(result.css.toString());
+// /* line 1, style.scss */
+// h1 {
+//   font-size: 40px;
+// }
+```
+
+#### source Maps
+
+- css corresponds to sass files, let source maps available using result.map field
+- the flag control whether source map are generated
+- 
