@@ -597,7 +597,7 @@ version    : 0.0.1-alpha
 |compact|小而紧凑的，紧密的，把..紧压在一起|
 |precision|精（密）度，精确（的），细致|
 |line feed|换行（符）|
-|carriage return（cr | \r）|回车（符），换行|
+|carriage return（cr\r）|回车（符），换行|
 |omit|省略，删节，遗漏|
 |prepend|预置，预先准备，前置信息|
 |crash|崩溃，瘫痪，倒闭，失败，撞击|
