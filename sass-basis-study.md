@@ -1,9 +1,9 @@
 # Sass
 
 ```
-insert-date : 2019/11/07 16:13:44
-author      : yuyuanqiu(漆无)
-version     : 0.0.1-alpha
+complete-date : 2019/11/12 09:40:26
+author        : yuyuanqiu(漆无)
+version       : 0.0.1-alpha
 ```
 
 ## basic tutorial
@@ -3502,7 +3502,7 @@ unit($number) // => quoted string
 
 #### mixins
 
-- meta.load-css($url, $width: null): loads the module at $url and includes its css, if passed $with, it must be a map(key without $), and $url can be relative
+- `meta.load-css($url, $width: null)`: loads the module at $url and includes its css, if passed $with, it must be a map(key without $), and $url can be relative
 - $url should be a string but not be a css url()
 - like the @use rule:
   - only evaluate the given module once
@@ -3532,7 +3532,235 @@ body.dark {
 }
 ```
 
+#### functions
 
+- `meta.call($function, $args...)` or `call($function, $args...)`:
+  - invoke $function with $args and return result
+  - $function should be a function returned by meta.get-function()
+
+```scss
+@use "sass:list";
+@use "sass:meta";
+@use "sass:string";
+
+// return a copy of $list with all elements for with $condition returns `true` removed
+@function remove-where($list, $condition) {
+  $new-list: ();
+  $separator: list.separactor($list);
+  @each $element in $list {
+    @if not meta.call($condition, $element) {
+      $new-list: list.append($new-list, $element, $separactor: $separactor);
+    }
+  }
+  @return $new-list;
+}
+
+$fonts: Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+content {
+  @function contains-helvetica($string)  {
+    @return string.index ($string, "Helvetica");
+  }
+  font-family: remove-where($fonts, meta.get-function("contains-helvetica"));
+}
+```
+
+- meta.content-exists() or content-exists()
+  - return boolean whether the current mixin was passed a  block
+  - throws an error if called outside of a mixin
+
+```scss
+@mixin debug-content-exists {
+  @debug meta.content-exists();
+  @content;
+}
+
+@include debug-content-exists;	// false
+@include debug-content-exists {	// true
+  // content!
+}
+```
+
+- `meta.feature-exists($feature)` or `feature-exists($feature)`:
+  - return boolean whether the current sass-implementation support $feature
+  - $feature must be a string:
+    - global-variable-shadowing: means local variable will shadow a global variable unless it's !global flag
+    - extend-selector-psedoclass: means  rule will affect selector nested in pseudo-class like :not()
+    - units-level3: means unit arithmetic support units defined in css values and units level 3
+    - at-error: means support  rule
+    - custom-property: means custom property declaration values only support interpolation, doesn't support other expression
+    - any unrecognize $feature return false
+```scss
+@debug meta.feature-exists("at-error");	// true
+@debug meta.feature-exists("unrecognize");	// false
+```
+
+- `meta.function-exists($name)` or `function-exists($name)`: reurn boolean whether a function is defined
+
+```scss
+@debug meta.function-exists("scale-color");	// true
+@debug meta.function-exists("add");	// false
+
+@function add($num1, $num2) {
+  @return $num1 + $num2;
+}
+@debug meta.function-exists("add");	// true
+```
+
+- meta.get-function($name, $css: false) or get-function($name, $css: false): 
+  - return named $name function
+  - if named $name function not existing, will throws an error
+  - if $css is true, it instead returns a plain css function
+  - returned function can be called using meta.call()
+
+```scss
+@use "sass:list";
+@use "sass:meta";
+@use "sass:string";
+
+// return a copy of $list with all elements for which $condition returns `true` removed
+@function remove-where($list, $condition) {
+  $new-list: ();
+  $separactor: list.separactor($list);
+  @each $element in $list {
+    @if not meta.call($condition, $element) {
+      $new-list: list.append($new-list, $element, $separator: $srparator);
+    }
+  }
+  @return $new-list;
+}
+
+content {
+  @function contains-helvetica($string) {
+    @return string.index($string, "Helvetica");
+  }
+  font-family: remove-where($fonts, meta.get-function("contains-helvetica"));
+}
+```
+
+- `meta.global-variable-exists($name)` or `global-variable-exists($name)`: return boolean whether exist a named $name global variable
+
+```scss
+@debug meta.global-variable-exists("var1");	// false
+
+$var1: value;
+@debug meta.global-variable-exists("var1);	// true
+  
+h1 {
+  // $var2 is local
+  $var2: value;
+  @debug meta.global-variable-exists("var2");	// false
+}
+```
+
+- `meta.inspect($value)` or `inspect($value)`: return a unquoted string of any sass value not only css value, the function is intended for debugging
+
+```scss
+@debug meta.inspect(10px 20px 30px);	// unquote("10px 20px 30px")
+@debug meta.inspect(("width": 200px));	// unquote('("width": 200px)')
+@debug meta.inspect(null);	// unquote("null")
+@debug meta.inspect("Helvetica");	// unquote('"Helvetica"')
+```
+
+- `meta.keywords($args)` or `keywords($args)`: return keyword-map(key without $)  passed to mixin or function takes arbitrary arguments, $args must be an arguments list
+
+```scss
+@use "sass:meta";
+
+@mixin syntax-colors($args...) {
+  @debug meta.keywords($args);
+  // (string: #080, comment: #800, variable: #60b)
+ 	
+  @each $name, $color in meta.keywords($args) {
+    pre span.stx-#{$name} {
+      color: $color;
+    }
+  }
+}
+
+@include syntax-colors(
+  $string: #080,
+  $comment: #800,
+  $variable: #60b,
+  )
+```
+
+- `meta.mixin-exists($name)` or `mixin-exists($name)` return boolean whether named $name mixin exists
+
+```scss
+@debug meta.mixin-exists("shadow-none");	// false
+
+@mixin shadow-none {
+  box-shadow: none;
+}
+
+@debug meta.mixin-exists("shadow-none");	// true
+```
+
+- `meta.module-functions($module)` return have all function-key-value map in module, the $module must refer using @use rule
+
+```scss
+// _functions.scss
+@function pow($base, $exponent) {
+  $result: 1;
+  @for $_ from 1 through $exponent {
+    $result: $result + $base;
+  }
+  @return $result;
+}
+
+@use "sass:map";
+@use "sass:meta";
+
+@use "functions";
+
+@debug meta.module-functions("functions");	// ("pow": get-function("pow"))
+
+@debug meta.call(map.get(meta.module-variables("functions"), "pow"), 3, 4);	// 16
+```
+
+- `meta.module-variables($module)` return all variables-key-value-map(without $)  defined in a module, and need using @use rule
+
+```scss
+// _variables.scss
+$hopbush: #c69;
+$midnight-blue: #036;
+$wafer: #e1d7d2;
+
+@use "sass:meta";
+
+@use "variables";
+
+@debug meta.module-variales("variables");
+// (
+// 	"hopbush": #c69,
+// 	"midnight-blue": #036,
+// 	"wafer": #e1d7d2,
+//	)
+```
+
+- `meta.type-of($value)` or `type-of($value)` return the type of $value like these: number, string, color, list, mpa, bool, null, function, arglist, and () may return list or map, depending whether returned by map function
+
+```scss
+@debug meta.type-of(10px);	// number
+@debug meta.type-of(10px 20px 30px);	// list
+@debug meta.type-of(()); 	// list
+```
+
+- `meta.variale-exists($name)` or `variable-exists($name)` return boolean whether named $name variable existing in current scope
+
+```scss
+@debug meta.variable-exists("var1);	// false
+
+$var1: value;
+@debug meta.variable-exists("val1");	// true
+
+h1 {
+  // $var2 is local
+  $var2: value;
+  @debug meta.variable-exists("var2");	// true
+}
+```
 
 ### sass:selector
 
@@ -4465,6 +4693,25 @@ sass.render({
 
 #### importer
 
+- define one or more additional handlers for loading file when encountered @use or @import
+- it can either a signal js function or an function array
+- function always passed two arguments:
+  - @use or @import url as a string
+  - load from filesystem, it's absolute path of file
+  - load from impporter, it's url from @use or @import
+  - stylesheet from data option, it's string `"stdin"`
+- importer must return  types:
+  - an object with key is `contents` and value is contents of stylesheet(scss syntax), causes sass to load stylesheet's content
+  - an object with key `file` and value is path on disk
+  - null, indicates it doesn't recognize the url
+  - an error object, indecated importing failed
+- imports in order:
+  - loading relative file which @use or @import
+  - each custom importer
+  - loading relative file in currect working directory
+  - each path in includePaths
+  - each path in SASS_PATH  
+
 ```javascript
 sass.render({
   file: "style.scss",
@@ -4500,7 +4747,16 @@ sass.render({
 
 ### value type
 
+- in order to support custom functions, sass provides access to javascript wrappers for its various value types
+- all values types support modify the value objects methods
+- sass values are immutable, so should construct new objects
+
+- `types.Number`: this class represents a sass number
+  - `number.setValue/Unit(value)`
+
 ```javascript
+new types.Number(value [, unit = ""])
+
 new sass.types.Number(0.5); // == 0.5
 new sass.types.Number(10, "px");  // == 10px
 new sass.types.Number(10, "px*px"); // == 10px * 1px
@@ -4517,6 +4773,13 @@ console.log(number.getUnit());  // "px"
 console.log(number.getUnit());  // "px/s"
 
 ```
+
+- `types.String` represent a sass string
+  - this api currently no way to distinguishing between a quoted and unquoted string
+  - `new types.String(value)` is create a new unquoted sass string, no way to create a quoted string in currently
+  - `string.getValue()` return string, if its unquoted included literally escapes, if its quoted included escape value
+  - `string.setValue()` if the value is originally quoted, will cause it become unquoted
+  
 
 ```javascript
 new sass.types.String("Arial"); // == Arial
@@ -4535,6 +4798,10 @@ string.getValue();  // "👭"
 
 ```
 
+- `types.Color` represent a sass color
+  - `new types.Color(argb)` with two-byte chunks of hex number
+  - `new types.Color(r, g, b[, a])`
+  - `color.setR/G/B/A(value)`, R/G/B is [0, 255], A is [0, 1]
 
 ```javascript
 new sass.types.Color(107, 113, 127);  // #6b717f
@@ -4569,6 +4836,9 @@ color.getA(); // 0
 
 ```
 
+- `types.Boolean` represent a sass boolean
+  - custom functions should respect sass notion of truthiness by treat false and null as falsey
+  - calling `new sass.types.Boolean()` is forbidden
 
 ```javascript
 // boolean is `true`
@@ -4580,6 +4850,13 @@ boolean.getValue(); // false
 boolean === sass.types.Boolean.FALSE; // false
 ```
 
+- `types.List` represent a sass list
+  - this list type's method use 0-based-index but sass list use 1-based-index
+  - these methods don't support using negative numbers to index from backwards
+  - creat a new list with `new types.List(length [, comma= true])`, if comma is true using comma-separated, otherwise it's space-separated
+  - initial value of list ele are undefined, so must using `setValue` to set ele
+  - `list.getSeparator()` return boolean that true by comma-separated
+  - `list.setSeparator(comma)` whether list by comma-separated
 ```javascript
 var list = new sass.types.List(3);
 list.setValue(0, new sass.types.Number(10, "px"));
@@ -4607,6 +4884,13 @@ list.setValue(1, new sass.types.Number(18, "px"));
 list; // 10px, 18px, 32px
 ```
 
+- `types.Map` represent a sass map as a list of key-value pairs
+  - through this api create maps forbidden having duplicate keys
+  - `new types.Map(length)` create a new sass map
+  - initial key and value map are undefined, must using `setKey or setValue` to initial
+  - `map.getKey(index)` that 0-based index in map
+  - `map.setKey(index, key)` and `map.setValue(index, value)` that 0-based index
+  - 
 ```javascript
 var map = new sass.types.Map(2);
 map.setKey(0, new sass.types.String("width"));
@@ -4639,3 +4923,15 @@ map;  // ("light": 200, "medium": 300, "bold": 600)
 
 ```
 
+- `types.Null` represent sass null value
+  -  calling `new sass.types.Null()` is forbidden
+  -  `types.Null.NULL` is sass value null
+
+### integrations
+
+- most popular nodejs build system integration for avaliable js api
+  - **webpack**: sass-loader package
+  - **gulp**: gulp-sass package
+  - **broccoli**: broccoli-sass-source-maps package
+  - **ember**: ember-cli-sass package
+  - **grunt**: grunt-sass package

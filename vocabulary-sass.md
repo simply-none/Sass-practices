@@ -1,9 +1,10 @@
 # vocabulary for Sass
 
 ```
-create-time: 2019/10/29 15:29:00
-author     : yuyuanqiu(漆无)
-version    : 0.0.1-alpha
+create-time  : 2019/10/29 15:29:00
+complete-time: 2019/11/12 09:41:11
+author       : yuyuanqiu(漆无)
+version      : 0.0.1-alpha
 ```
 
 |词汇|词义|读音|
@@ -254,7 +255,7 @@ version    : 0.0.1-alpha
 |inject|添加，投入，注入|
 |commonly|通常的，一般的|
 |legacy|遗留问题|**['leɡəsi]**|
-|backward|向后（的）|
+|backward|向后（的），倒退的|
 |forwards-compatibility|向前兼容|
 |interpret|解释（型）|
 |dynamic|动态的，活跃的|**[daɪˈnæmɪk]**|
@@ -393,6 +394,7 @@ version    : 0.0.1-alpha
 |specification|规范，规格，说明书|**[.spesɪfɪ'keɪʃ(ə)n]**|
 |indicate|象征，指示，表示，表明|
 |integrate|使融入，使加入，合并，成为一体|
+|integration|一体化，集成，整合|**[ˌɪntəˈɡreɪʃ(ə)n]**|
 |seamlessly|无缝的|
 |transitive|传递性，传递的|
 |careful|小心的，当心的，仔细的|
@@ -603,3 +605,7 @@ version    : 0.0.1-alpha
 |crash|崩溃，瘫痪，倒闭，失败，撞击|
 |worse|更糟（的），更坏（的）|
 |wrapper|包装类，基本类型包装器|**['ræpər]**|
+|construct|构建，创建|
+|respect|遵守，尊重，关于|
+|respective|分别的，各自的，各个的|
+|notion|概念，看法|**['noʊʃ(ə)n]**|
