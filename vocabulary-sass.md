@@ -153,6 +153,7 @@ version      : 0.0.1-alpha
 |currently|现在，目前，普遍地|
 |as such|因此，照此，同样地|
 |initially|首先，最初的|**[ɪ'nɪʃ(ə)li]**|
+|initialize|初始化|**[ɪ'nɪʃ(ə)l.aɪz]**|
 |available|可得到的，可获得的，可用的|**[ə'veɪləb(ə)l]**|
 |perform|表演，表现，执行|
 |performance|性能，业绩，表现，表演，高性能的，执行|
@@ -609,3 +610,4 @@ version      : 0.0.1-alpha
 |respect|遵守，尊重，关于|
 |respective|分别的，各自的，各个的|
 |notion|概念，看法|**['noʊʃ(ə)n]**|
+|tuple|元组|**[ˈtjʊpəl; ˈtʌpəl]**|
