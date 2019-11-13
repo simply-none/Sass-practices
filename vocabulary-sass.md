@@ -607,7 +607,49 @@ version      : 0.0.1-alpha
 |worse|更糟（的），更坏（的）|
 |wrapper|包装类，基本类型包装器|**['ræpər]**|
 |construct|构建，创建|
-|respect|遵守，尊重，关于|
+|respect|（在这个）方面，遵守，尊重，关于|
 |respective|分别的，各自的，各个的|
 |notion|概念，看法|**['noʊʃ(ə)n]**|
 |tuple|元组|**[ˈtjʊpəl; ˈtʌpəl]**|
+|mention|提到，说起，提及，推荐|
+|gotcha|陷阱，公开欺骗，嘲笑，明白了|**[ˈɡɑːtʃə]**|
+|run into|遇到（问题、困难），陷入（困境），撞上|
+|prevent|阻止，预防，制止，避免|**[prɪ'vent]**|
+|preferable|更好的，更合适的，更可取|**['pref(ə)rəb(ə)l]**|
+|elaborate|详细描述，精心设计的，复杂的，详尽的|**[ɪ'læb(ə)rət]**|
+|offhand|立刻，不加思索的，未经核实的，漫不经心的|
+|intimately|精通的，深刻的，紧密的，密切的，私下的，暗示|**[ˈɪntəmɪtlɪ]
+**|
+|quirk|怪癖，怪异模式，嘲讽，双关语|**[kwɜrk]**|
+|ahead|提前，超前的，领先的，在前面| 
+|figure out|估计，解决，想出，弄明白|
+|capture|捕获，夺取，代表，表现，吸引|
+|tie|与..相关，约束，捆，系|
+|yet|仍（然），还（是），却又，目前为止|
+|exacerbate|（使）加剧，（使）恶化|**[iɡˈzæsə(r)beɪt]**|
+|matrix|矩阵，条件，社会环境|**[ˈmeɪtrɪks]**|
+|experienced|经验丰富的，有经验的，有阅历的，有见识的|**[ɪk'spɪriənst]**|
+|code review|代码审查|
+|sort|种类，把..分类，整理，解决，各种各样的|
+|slip|过错，疏漏，逃脱|
+|endless|无穷尽的，无休止的|
+|frustration|沮丧，挫败，失败|
+|certainly|当然，肯定，无疑|
+|common|常见的，普通的，共有的|
+|iteration|迭代，反复|**[.ɪtə'reɪʃ(ə)n]**|
+|state|状态，说明，陈述，规定|
+|odd-looking|相貌奇特的，外表怪异的，奇形怪状的|
+|precisely|确实地，精确地，恰恰，的确，正好|**[prɪ'saɪsli]**|
+|apart from|除..之外，此外|
+|dive into|钻研，跳入|
+|leak out|泄露，漏出|
+|nearest|靠近，在..附近，接近|**['nɪərɪst]**|
+|clause|子句，分句，条款|**[klɔz]**|
+|temporal|临时的，暂时的|**['temp(ə)rəl]**|
+|temporal dead zone|暂时性死区|
+|sophisticated|复杂的，精密的，高级的|**[sə'fɪstɪ.keɪtəd]**|
+|catch|捕捉，捕获，抓住|
+|modern|最新的，新式的，现代的|
+|source|来源，根源，原因，资料来源|
+|end up|最后成为，以..告终|
+|distinctly|不同的，明显的，有区别于|
