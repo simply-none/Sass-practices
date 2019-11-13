@@ -1,0 +1,28 @@
+{
+  "name": "client-side",
+  "version": "1.0.0",
+  "description": "source code of ts-learning",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --host 127.0.0.1 --port 8000  --config ./build/webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.js"
+  },
+  "keywords": [
+    "typescript",
+    "source_code",
+    "yuyuanqiu"
+  ],
+  "author": "yuyuanqiu <jousindea@163.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^6.0.3",
+    "html-webpack-plugin": "^3.2.0",
+    "ts-loader": "^6.2.1"
+  },
+  "dependencies": {
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2"
+  }
+}
