@@ -18,6 +18,7 @@ version      : 0.0.1-alpha
 |pretty|相当，很，几乎，差不多，漂亮的|
 |external|外部（的），表面的，客观的，形式，外观|**[ɪkˈstɜrnl]**|
 |pure|纯粹的，标准的，真正的，抽象的，完全的|
+|implement|实施，执行，实现，工具|
 |implementation|履行，实施，工具，器具|**[ˌɪmplɪmənˈteʃən]**|
 |browse|浏览，翻阅，随便看看|
 |recommend|推荐，介绍，建议，劝说|
@@ -83,7 +84,7 @@ version      : 0.0.1-alpha
 |noted|注意，记录|
 |notice|注意，留意，通知|
 |notify|通知，报告，告知|
-|compatible|兼容的|**[kəm'pætəb(ə)l]**|
+|compatible|兼容的，可共用的，可以并存的|**[kəm'pætəb(ə)l]**|
 |incompatible|不兼容的|
 |compatibility|兼容性|**[kəm.pætə'bɪləti]**|
 |mixin|混合类型|
@@ -245,7 +246,7 @@ version      : 0.0.1-alpha
 |the rest of|其余的，剩下的|
 |comment|注释，注解，评论|
 |comment out|标注出，注释|
-|annotation|注释，评注|
+|annotation|注释，评注，标注|
 |document|文档，记录，记载|
 |beneath|在..之下|
 |above|在..上面|
@@ -300,7 +301,7 @@ version      : 0.0.1-alpha
 |potentially|潜在的，可能的，大概的|**[pə'tenʃəli]**|
 |relevant|有关的，相关的，适当的|
 |unfortunately|不幸的是，遗憾的|**[ʌnˈfɔrtʃənətli]**|
-|workaround|变通方案，变通方法|**['wɜ:kəraʊnd]**|
+|workaround|变通方案，变通方法，工作区|**['wɜ:kəraʊnd]**|
 |preserve|保持，维持，保留|
 |invent|发明，创造，虚拟|
 |way|形式，方面，情况，路线，方向|
@@ -337,7 +338,7 @@ version      : 0.0.1-alpha
 |equivalent|等同物，相等物，等值|**[ɪ'kwɪvələnt]**|
 |migrate|移动，迁移|**['maɪ.ɡreɪt]**|
 |migration|移动，迁移|**[maɪ'ɡreɪʃ(ə)n]**|
-|override|覆盖，重写|
+|override|覆盖，重写，撤销|
 |access|存取，访问，进入|**[ˈækˌses]**|
 |ensure|保证，确保，担保|
 |accidentally|意外的，偶然的|
@@ -423,7 +424,7 @@ version      : 0.0.1-alpha
 |track|跟踪，追踪|
 |encounter|遇到，遭遇|
 |efficient|效率高的，有效的|
-|edge|边界，临界点
+|edge|边界，临界点，刀刃|
 |edge-case|边界情况，边缘用例|
 |substantial|大量的，价值巨大的，可观的|**[səb'stænʃ(ə)l]**|
 |weird|怪异的，奇怪的|
@@ -464,7 +465,7 @@ version      : 0.0.1-alpha
 |count up|数到，数完，把..加起来，共计|
 |count down|倒数，倒计时，倒计数|
 |clearer|明白的，清楚地，易懂的，清除，退去|**['klɪərə]**|
-|cover|覆盖，包括|
+|cover|覆盖，包括，讨论，涉及，报道|
 |almost|几乎，差不多|
 |natively|原生（的）|
 |keyframe|关键帧|
@@ -550,6 +551,7 @@ version      : 0.0.1-alpha
 |fluidly|灵活的，流畅的|
 |complement|补充（物），补足（物），补集，补码|**['kɑmplə.ment]**|
 |fix|修理，修复，处理，解决，整理，理解，认识，操纵|
+|fix up|修理，解决，安排|
 |fixed|固定的，确定的，不变的|
 |certain|确定的，肯定的，无疑的，特定的|
 |existing|现行的，现存的，目前的|**[ɪɡˈzɪstɪŋ]**|
@@ -607,6 +609,7 @@ version      : 0.0.1-alpha
 |worse|更糟（的），更坏（的）|
 |wrapper|包装类，基本类型包装器|**['ræpər]**|
 |construct|构建，创建|
+|constructor|构造函数，构造器|
 |respect|（在这个）方面，遵守，尊重，关于|
 |respective|分别的，各自的，各个的|
 |notion|概念，看法|**['noʊʃ(ə)n]**|
@@ -653,3 +656,70 @@ version      : 0.0.1-alpha
 |source|来源，根源，原因，资料来源|
 |end up|最后成为，以..告终|
 |distinctly|不同的，明显的，有区别于|
+|double-edged sword|双刃剑|
+|for instance|例如|
+|scenario|方案，前景，情况，场景|**[səˈnɛrioʊ]**|
+|briefly|简要的，短暂的，简言之|
+|touch|谈及，涉及，触摸，接触|
+|intuition|直觉，直观|**[.ɪntu'ɪʃ(ə)n]**|
+|recall|回想起，记起，记忆力，召回|
+|in effect|事实上，实际上，总之|
+|pain|（使）苦恼，（使）痛苦|
+|drastically|彻底的，大幅度的，巨大的|**[ˈdræstɪklɪ]**|
+|anyway|不管怎样，总之，至少，到底，那么|
+|const|常量，恒定的|
+|imply|暗示，表明，含有...的意思|
+|bound|限制，约束，被禁止，跳跃（着前进）|
+|confused|糊涂的，迷惑的，混乱的|
+|idea|主意，概念，意见|
+|measure|措施，办法，测量，判断|**['meʒər]**|
+|it depends|看情况|
+|privilege|特权，优惠，荣幸|**['prɪvəlɪdʒ]**|
+|rational|基本理论，基本原理，根本原因|
+|consult|咨询，查询，请教，商量|
+|matter|事情，问题，状况，要紧，有关系|
+|majority|大多数，大部分|
+|handbook|手册，指南，说明书|
+|remaining|仍需处理的，剩余的|
+|in case|以防万一，如果|
+|straightforward|简单的，易懂的，坦率的|
+|tricky|难办的，棘手的|
+|inference|推断（结果），结论|**['ɪnfərəns]**|
+|Initializer|初始化程序|**[ɪ'nɪʃəlaɪzə]**|
+|supply|提供，供应|
+|demonstrate|表明，证明，显示，表露|**['demən.streɪt]**|
+|pile on|堆积，积累|
+|spread|铺开，将..散开，伸展|**[spred]**|
+|proceed|继续（做），发生|**[prə'sid]**|
+|generic|一般的，普通的，泛型|**[dʒə'nerɪk]**|
+|interface|接口（程序），界面|
+|contract|合约，契约，收缩|**['kɒntrækt]**|
+|lenient|仁慈的，宽大的|**['liniənt]**|
+|in a bit|过一会儿|
+|requirement|要求，必要条件，需求|
+|denote|表示，指示，是..的标志|**[dɪ'noʊt]**|
+|mistyped|错误输入|
+|mutate|变化，突变|**['mju.teɪt]**|
+|assertion|断言，声明|
+|whereas|但是，然而，反之|**[hwer'æz]**|
+|so-called|所谓的，号称的|
+|naively|天真的|
+|sneak in|潜入，渐入|
+|insignificant|无价值的，无意义的，不重要的|**[.ɪnsɪɡ'nɪfɪkənt]**|
+|stance|态度，立场|
+|undergo|经历，遭受，忍受|**[.ʌndər'ɡoʊ]**|
+|excess|额外的，多余的，过多的，大量|**[ˈɛkˌsɛs]**|
+|approach|方法，接近，建议|
+|discuss|讨论，商量，详述|
+|get around|避开，克服，解决|
+|keep in mind|牢记，记住|
+|technique|技巧，方法，技能|**[tek'nik]**|
+|revise|修改，调整，修订，复习|**[rɪ'vaɪz]**|
+|reflect|反映，显示，表现|
+|capable|有能力的，胜任的|**['keɪpəb(ə)l]**|
+|contextual|与上下文有关的，与语境有关的|**[kən'tekstʃuəl]**|
+|infer|推断，暗示|
+|indexable|可加索引的，可变址的|**[ɪn'dekseɪbl]**|
+|enforce|强制实施，迫使|
+|indice|index的复数|
+|prohibit|阻止，禁止|**[proʊ'hɪbɪt]**|
