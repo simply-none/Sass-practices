@@ -21,7 +21,8 @@ module.exports = {
         contentBase: "./dist",
         stats: "errors-only",
         compress: false,
-        host: "loacalhost",
+        // 这里若没有使用两个参数，可在package.json中配置webpack-dev-server --host 127.0.0.1 --port 8089
+        host: "localhost",
         port: 8089
     },
     plugins: [

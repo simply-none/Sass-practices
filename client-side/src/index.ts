@@ -1,5 +1,3 @@
-let num: Number =  123;
+document.title = new Date() + "";
 
-document.title = "刘洋不是大佬";
-
-document.body.innerHTML = "即使 技术";
+document.body.innerHTML = "<h1>" + Math.random() + "</h1>";
