@@ -63,6 +63,7 @@ skills       : separating-words like downleveling to down-leveling
 |quote|引号，引用|
 |unquote|不带引号的|
 |slash|斜杠|
+|ellipse|省略（号）|**[ɪ'lɪpsɪs]**|
 |nest|嵌套，套入|
 |visual|可视化，看得见的|
 |hierarchy|层级，层次， 分级结构|**['haɪə.rɑrki]**|
@@ -387,7 +388,7 @@ skills       : separating-words like downleveling to down-leveling
 |relative|相关的，相对的|
 |mess up|搞砸，弄乱|
 |convention|约定，管理，常规|
-|leave off|剔除，排除，停止|
+|leave off|剔除，排除，停止，中断|
 |expose|暴露，揭露，公开|
 |downstream|在后阶段的，在下游的|
 |discourage|阻止，阻碍，使泄气，使沮丧|
@@ -452,7 +453,7 @@ skills       : separating-words like downleveling to down-leveling
 |subtle|细微的，不易察觉的，不明显的|**['sʌt(ə)l]**|
 |heuristics|探索法，启发法|**[hju'rɪstɪks]**|
 |ancestor|原型，祖先|
-|assume|假定，设想，采用|
+|assume|假定，设想，采用，承担，呈现|
 |duplicate|复制，重复，复写|
 |expect|盼望，预期，期待|
 |occur|发生，出现，想起，存在|
@@ -679,6 +680,7 @@ skills       : separating-words like downleveling to down-leveling
 |const|常量，恒定的|
 |imply|暗示，表明，含有...的意思|
 |bound|限制，约束，被禁止，跳跃（着前进）|
+|boundless|无限的，无止境的|
 |confused|糊涂的，迷惑的，混乱的|
 |idea|主意，概念，意见|
 |measure|措施，办法，测量，判断|**['meʒər]**|
@@ -779,3 +781,11 @@ skills       : separating-words like downleveling to down-leveling
 |firm|坚定地，确切的|
 |mechanic|运作方式，方法，技巧|**[mɪˈkænɪk]**|
 |type|类型，种类，字体，打字，输入|
+|equation|等式，方程式，平衡|**[ɪ'kweɪʒ(ə)n]**|
+|form|形式，类型，外形，组成，表格|
+|effort|尽力，尝试，费力（的事），努力|
+|in short|总而言之，简言之|
+|rest|剩余部分，其余|
+|ultimately|最后，终究|**[ˈʌltɪmətli]**|
+|gather|聚集，收集，集中|
+|notoriously|非常，众所周知地|**[noʊˈtɔrɪəslɪ]**|
