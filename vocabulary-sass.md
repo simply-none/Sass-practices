@@ -5,6 +5,7 @@ create-time  : 2019/10/29 15:29:00
 complete-time: 2019/11/12 09:41:11
 author       : yuyuanqiu(漆无)
 version      : 0.0.1-alpha
+skills       : separating-words like downleveling to down-leveling
 ```
 
 |词汇|词义|读音|
@@ -43,6 +44,7 @@ version      : 0.0.1-alpha
 |variable|变量，因素，可变的|
 |store|存储，储存，保存，储备，商店|
 |reuse|重用，重复使用，再利用|**[riˈjuz]**|
+|reusable|可重复使用的，可再次使用的|
 |throughout|自始至终，从头到尾，遍及，到处|
 |stack|大量，许多，堆栈|
 |symbol|标志，象征，符号，记号|
@@ -112,6 +114,7 @@ version      : 0.0.1-alpha
 |elsewhere|在别处，其他地方|
 |unintended|无意的，非故意的|**[.ʌnɪn'tendəd]**|
 |handful|少量，一把|
+|grid|网格，系统网络，栅格|
 |fluid grid|流动布局|
 |pixel|像素|**['pɪks(ə)l]**|
 |convert|转换，转变，换算|
@@ -131,7 +134,7 @@ version      : 0.0.1-alpha
 |contents|内容，目录|
 |otherwise|除此之外，否则，要不然，另外|
 |it's up to you|由你决定，取决于你|
-|exception|例外，异常（情况）|
+|exception|例外（状况），异常（情况）|
 |essentially|基本上，大体上，实质上|**[ɪ'senʃ(ə)li]**|
 |valid|有效的，正确的，合法的|**['vælɪd]**|
 |invalid|无效的，作废的，错误的|
@@ -139,6 +142,7 @@ version      : 0.0.1-alpha
 |similarity|相似（性），类似|**[.sɪmɪ'lerəti]**|
 |superset|超集|
 |indented|缩进（式）|**[ɪn'dentɪd]**|
+|origin|起源，源头|
 |original|原始的，最初的，首创的|
 |originally|原来，最初|
 |counts|数量，认为，包括|
@@ -176,6 +180,8 @@ version      : 0.0.1-alpha
 |strictly|完全，仅限于，严格的|**['strɪk(t)li]**|
 |implementation|实现，实施，工具|**[.ɪmpləmən'teɪʃ(ə)n]**|
 |access|访问，进入|
+|accessor|存取器，访问器，访问方法|
+|accessible|可访问的|
 |structure|结构，构造|**['strʌktʃər]**|
 |make up|组成，构成，编造|
 |mainly|主要地，大多数地|
@@ -362,18 +368,21 @@ version      : 0.0.1-alpha
 |strangely|奇怪的，异常的|
 |rarely|难见的，少见的，难得|
 |definitely|当然，肯定，明确的，确定的|**['defənɪtli]**|
-|further|更多的，进一步（的）|
+|further|更多的，进一步（的），向前推进的，另外的|**[ˈfɜrðə(r)]
+**|
 |safeguard|保护（措施），防护物，安全保障|**['seɪf.ɡɑrd]**|
 |terms|用..术语（字眼），在..方面|
 |bogus|假的，伪造的，非法的|**['boʊɡəs]**|
 |tempting|吸引人的，诱人的|
 |functionality|功能性，设计功能|
+|compiler|编译器，编译程序|
 |compilation|编译，编辑|**[.kɑmpɪ'leɪʃ(ə)n]**|
 |other than|除..之外，而不是|
 |forward|转交，转发，向前，前面的|
 |encourage|鼓励，激励|
 |entrypoint|入口函数，程序入口|
 |hide|隐藏，躲避|
+|hiding|隐藏，躲藏|
 |locate|定位，找出|
 |relative|相关的，相对的|
 |mess up|搞砸，弄乱|
@@ -642,7 +651,7 @@ version      : 0.0.1-alpha
 |iteration|迭代，反复|**[.ɪtə'reɪʃ(ə)n]**|
 |state|状态，说明，陈述，规定|
 |odd-looking|相貌奇特的，外表怪异的，奇形怪状的|
-|precisely|确实地，精确地，恰恰，的确，正好|**[prɪ'saɪsli]**|
+|precisely|确实地，精确地（说），恰恰，的确，正好|**[prɪ'saɪsli]**|
 |apart from|除..之外，此外|
 |dive into|钻研，跳入|
 |leak out|泄露，漏出|
@@ -715,11 +724,58 @@ version      : 0.0.1-alpha
 |keep in mind|牢记，记住|
 |technique|技巧，方法，技能|**[tek'nik]**|
 |revise|修改，调整，修订，复习|**[rɪ'vaɪz]**|
+|revision|修订，修改，复习|
 |reflect|反映，显示，表现|
 |capable|有能力的，胜任的|**['keɪpəb(ə)l]**|
+|capability|性能，能力|
 |contextual|与上下文有关的，与语境有关的|**[kən'tekstʃuəl]**|
 |infer|推断，暗示|
 |indexable|可加索引的，可变址的|**[ɪn'dekseɪbl]**|
 |enforce|强制实施，迫使|
 |indice|index的复数|
 |prohibit|阻止，禁止|**[proʊ'hɪbɪt]**|
+|nature|本质，性质|
+|occasionally|偶尔，有时候|
+|interact|交互作用，互动，相互影响|**[.ɪntər'ækt]**|
+|pattern|模式，方式，图案，模型|
+|hybrid|混合的，混合物|**['haɪbrɪd]**|
+|inherit|继承|**[ɪn'herɪt]**|
+|protected|受保护的|**[prə'tektɪd]**|
+|besides|此外，而且，再说|
+|originate|起源，发源，来自，产生|**[ə'rɪdʒə.neɪt]**|
+|object-oriented|面向对象的，对象式的|
+|awkward|难处理的，难使用的，笨拙的|
+|platform|平台，纲领，机会|
+|fundamental|最基本的，最重要的，必须的|
+|drived|衍生的，派生的，源于，导出|**[dɪ'raɪvd]**|
+|prior|在先的，在..之前，更重要的，优先的|**['praɪr]**|
+|accomplish|实现，完成，达到|
+|label|标记，标签，用标签说明|
+|play out|发生，出现，展开，做完|
+|in term of|按照，在某方面，依据|
+|understanding|理解，了解，掌握，宽容的|
+|modifier|修饰语，修饰符|**['mɑdɪ.faɪər]**|
+|instantiate|实例化|**[ɪns'tænʃɪeɪtid]**|
+|drop|丢下，扔下，放弃，把..除名|
+|altogether|完全，显然，非常，总之|
+|consolidate|合并，联合，加强|**[kən'sɑlɪ.deɪt]**|
+|likewise|同样的，类似的|**['laɪk.waɪz]**|
+|intercept|拦截，截取|**[.ɪntər'sept]**|
+|handy|有用的，方便的，手巧的|
+|randomly|随机的，任意的，随意的|
+|constraint|约束（条件），限制|**[kən'streɪnt]**|
+|retrieve|找回，挽回，检索|**[rɪ'triv]**|
+|prove|证明，展现，显示，验证|
+|up to this point|到目前为止，就此而言|
+|general|一般的，普通的|
+|layer|层（次），等级|
+|mimicking|模仿，学..的样子|
+|anonymous|匿名的|**[ə'nɑnɪməs]**|
+|appropriate|适当的，合适的，恰当的|**[əˈproʊpriət]**|
+|one-off|一次性的|
+|hand-off|转换，切换|
+|recap|概况，简要回顾|**[.ri'kæp]**|
+|trade-off|权衡，协调，交换|
+|firm|坚定地，确切的|
+|mechanic|运作方式，方法，技巧|**[mɪˈkænɪk]**|
+|type|类型，种类，字体，打字，输入|
