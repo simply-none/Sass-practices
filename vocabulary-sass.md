@@ -59,6 +59,7 @@ skills       : separating-words like downleveling to down-leveling
 |dot|小圆点，点|
 |brace|大括号，花括号|
 |bracket|中括号，方括号|
+|angle bracket|尖角括号|
 |parenthesis|小括号，圆括号|**[pə'renθəsɪs]**|
 |quote|引号，引用|
 |unquote|不带引号的|
@@ -228,6 +229,7 @@ skills       : separating-words like downleveling to down-leveling
 |precedence|优先级|
 |call|调用，访问|
 |called|称呼，被叫做|
+|callee|被调用函数|
 |function call|函数调用|
 |library|程序库，函数库|
 |hex|十六进制|
@@ -253,6 +255,7 @@ skills       : separating-words like downleveling to down-leveling
 |the rest of|其余的，剩下的|
 |comment|注释，注解，评论|
 |comment out|标注出，注释|
+|annotate|注释|**[ˈænoˌtet]**|
 |annotation|注释，评注，标注|
 |document|文档，记录，记载|
 |beneath|在..之下|
@@ -288,6 +291,7 @@ skills       : separating-words like downleveling to down-leveling
 |bandwidth|带宽|
 |shallow|浅的，浅层|**['ʃæloʊ]**|
 |handle|处理，操纵|
+|handler|处理器，处理函数|
 |descendant|后代，子孙|**[dɪ'sendənt]**|
 |particularly|特别，尤其|**[pər'tɪkjələrli]**|
 |parameter|参数|**[pə'ræmɪtər]**|
@@ -610,6 +614,7 @@ skills       : separating-words like downleveling to down-leveling
 |stdin|标准输入（流），标准输入设备|
 |duration|持续时间|**[dʊ'reɪʃ(ə)n]**|
 |compact|小而紧凑的，紧密的，把..紧压在一起|
+|precise|准确的，确切的|**[prɪˈsaɪs]**|
 |precision|精（密）度，精确（的），细致|
 |line feed|换行（符）|
 |carriage return（cr\r）|回车（符），换行|
@@ -679,7 +684,7 @@ skills       : separating-words like downleveling to down-leveling
 |anyway|不管怎样，总之，至少，到底，那么|
 |const|常量，恒定的|
 |imply|暗示，表明，含有...的意思|
-|bound|限制，约束，被禁止，跳跃（着前进）|
+|bound|绑定，限制，约束，被禁止，跳跃（着前进）|
 |boundless|无限的，无止境的|
 |confused|糊涂的，迷惑的，混乱的|
 |idea|主意，概念，意见|
@@ -730,6 +735,7 @@ skills       : separating-words like downleveling to down-leveling
 |reflect|反映，显示，表现|
 |capable|有能力的，胜任的|**['keɪpəb(ə)l]**|
 |capability|性能，能力|
+|context|上下文，与上下文有关的，环境，语境|
 |contextual|与上下文有关的，与语境有关的|**[kən'tekstʃuəl]**|
 |infer|推断，暗示|
 |indexable|可加索引的，可变址的|**[ɪn'dekseɪbl]**|
@@ -789,3 +795,20 @@ skills       : separating-words like downleveling to down-leveling
 |ultimately|最后，终究|**[ˈʌltɪmətli]**|
 |gather|聚集，收集，集中|
 |notoriously|非常，众所周知地|**[noʊˈtɔrɪəslɪ]**|
+|arrow|箭头|**['æroʊ]**|
+|implicit|隐式的，不言明的|**[ɪm'plɪsɪt]**|
+|fake|假货，伪造（的）|
+|unusable|无法使用的，不可用的|
+|standalone|独立的|
+|detect|测出，查出，发现|
+|downside|不利的一面，缺点，负面|
+|prototype|原型|**['proʊtə.taɪp]**|
+|overload|重载|
+|inherently|从根本上来说，内在的，固有的|**[ɪn'herəntlɪ]**|
+|pick|挑选，选择|
+|proceed|开始，继续（做）|
+|variety|变化，种类，多样化|**[vəˈraɪɪti]**|
+|identity function|恒等函数|
+|inspection|检查，查看，审查|
+|version|版本，描述，形式，变种|
+|alternatively|或者，要不然|
