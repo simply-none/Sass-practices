@@ -603,6 +603,7 @@ skills       : separating-words like downleveling to down-leveling
 |verbose|冗长的，啰嗦的|
 |unrecognize|未被认识的，未被承认的， 被忽略的|
 |recognized|承认，认出，认可|
+|revoke|取消，废除，撤销|
 |invoke|调用，激活，请求，提及|
 |contrast|对比，对照，反差|
 |relative|相对的，相关的，比较的|
@@ -670,6 +671,7 @@ skills       : separating-words like downleveling to down-leveling
 |modern|最新的，新式的，现代的|
 |source|来源，根源，原因，资料来源|
 |end up|最后成为，以..告终|
+|distinct|清晰的，不同的，明白的，独特的|
 |distinctly|不同的，明显的，有区别于|
 |double-edged sword|双刃剑|
 |for instance|例如|
@@ -812,3 +814,41 @@ skills       : separating-words like downleveling to down-leveling
 |inspection|检查，查看，审查|
 |version|版本，描述，形式，变种|
 |alternatively|或者，要不然|
+|command line interface|命令行接口（CLI）|
+|registry|注册处，登记处|**['redʒɪstri]**|
+|profile|配置文件，轮廓，概述|
+|incorporate|包含，吸收，合并，结合|**[ɪn'kɔrpə.reɪt]**|
+|coordinate|协调，配合的，调整|
+|underlying|基础的，根本的，下层的|
+|puzzle|迷惑，难题|
+|collaborate|合作，协作|**[kə'læbə.reɪt]**|
+|upgrade|升级，更新，提升|**[ˈʌpˌɡred]**|
+|update|更新，升级，修改|
+|sign up|注册，报名，签约|
+|sign in|登录，登入|
+|log in|登录，登陆，登入|
+|sign out|登出，注销|
+|enterprise|企业，公司，项目|**[ˈentərpraɪz]**|
+|upcoming|即将发生的，即将到来的|
+|credential|凭据，证书|**[krə'denʃl]**|
+|field|信息组，栏，字段，领域|
+|guideline|指南，准则，参考|
+|newsletter|简讯，简报|
+|policy|（安全）策略，原则，政策|**['pɑləsi]**|
+|verification|验证，核实，确认，证明|**[ˌvɛrəfɪˈkeʃən]**|
+|contact|（与..保持）联络，（和..取得）联系|**['kɑn.tækt]**|
+|prompt|提示（符），促使，迅速的|**[prɑmpt]**|
+|authentication|认证，验证，鉴定|**[ɔ.θentɪ'keɪʃ(ə)n]**|
+|factor|因素，要素，因子|
+|two-factor authentication|双重认证|
+|N/A|不适用，没有|
+|against|预防，阻止，防备，违反，反对|
+|protect|保护，防止|
+|tablet|平板电脑|**['tæblət]**|
+|enable|启动，启用，授权，许可，使能够|
+|attacker|攻击者|
+|publish|发布，公布，发行|
+|unpublish|取消发布，解除发表|
+|grant|允许，授予，承认，同意|
+|one-time password|一次性密码（OTP）|
+|misplace|暂时丢失，放错位置|
