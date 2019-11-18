@@ -852,3 +852,19 @@ skills       : separating-words like downleveling to down-leveling
 |grant|允许，授予，承认，同意|
 |one-time password|一次性密码（OTP）|
 |misplace|暂时丢失，放错位置|
+|column|列|
+|row|行|
+|bill|账单，法案|
+|cycle|周期，整套，一段时间，循环|
+|dialog|对话（框）|
+|payment|支付（方式），付款（方式）|
+|expire|到期，失效，过期|
+|expiration|终止，截止，到期|**[.ekspɪ'reɪʃ(ə)n]**|
+|receipt|收据，收入，字据|
+|corner|角落|
+|charge|收费，费用，主管，指控|
+|grace|宽限期|
+|value added tax|增值税|
+|record|记录，记载|
+|downgrade|降级，低估|
+|avatar|头像|**[ˈævəˌtɑː(r)]**|
