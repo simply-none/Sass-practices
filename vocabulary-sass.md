@@ -39,6 +39,7 @@ skills       : separating-words like downleveling to down-leveling
 |individual|单独的，个人的，个别的|
 |flag|标志，标记|
 |instead of|替代，代替，而不是|
+|manual|说明书，指南，手工的，手动的|
 |manually|手工（地），手动（地）|
 |think of|记起，想起，考虑，认为|
 |variable|变量，因素，可变的|
@@ -794,7 +795,7 @@ skills       : separating-words like downleveling to down-leveling
 |effort|尽力，尝试，费力（的事），努力|
 |in short|总而言之，简言之|
 |rest|剩余部分，其余|
-|ultimately|最后，终究|**[ˈʌltɪmətli]**|
+|ultimately|最后，终究，最终的|**[ˈʌltɪmətli]**|
 |gather|聚集，收集，集中|
 |notoriously|非常，众所周知地|**[noʊˈtɔrɪəslɪ]**|
 |arrow|箭头|**['æroʊ]**|
@@ -842,7 +843,7 @@ skills       : separating-words like downleveling to down-leveling
 |factor|因素，要素，因子|
 |two-factor authentication|双重认证|
 |N/A|不适用，没有|
-|against|预防，阻止，防备，违反，反对|
+|against|预防，阻止，防备，违反，反对，和..对比|
 |protect|保护，防止|
 |tablet|平板电脑|**['tæblət]**|
 |enable|启动，启用，授权，许可，使能够|
@@ -868,3 +869,15 @@ skills       : separating-words like downleveling to down-leveling
 |record|记录，记载|
 |downgrade|降级，低估|
 |avatar|头像|**[ˈævəˌtɑː(r)]**|
+|cadence|节奏，韵律|**['keɪd(ə)ns]**|
+|workflow|工作流程，作业流程，工作流管理|
+|stable|稳定的，稳定性|
+|trick|诀窍，诡计，欺骗|
+|admirable|令人羡慕的，值得赞赏的|
+|diagnose|诊断，判断，分析|**[ˌdaɪəgˈnoʊs]**|
+|consequence|结果，影响，后果，重要性|
+|stick|粘贴|
+|outline|概述，概要，大纲，略图|
+|potentially|潜在的，可能的，大概的|
+|quota|配额，定额，指标|
+|community|社区|
