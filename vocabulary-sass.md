@@ -19,6 +19,7 @@ skills       : separating-words like downleveling to down-leveling
 |pretty|相当，很，几乎，差不多，漂亮的|
 |external|外部（的），表面的，客观的，形式，外观|**[ɪkˈstɜrnl]**|
 |pure|纯粹的，标准的，真正的，抽象的，完全的|
+|purely|完全，仅仅，纯粹的|
 |implement|实施，执行，实现，工具|
 |implementation|履行，实施，工具，器具|**[ˌɪmplɪmənˈteʃən]**|
 |browse|浏览，翻阅，随便看看|
@@ -617,6 +618,7 @@ skills       : separating-words like downleveling to down-leveling
 |duration|持续时间|**[dʊ'reɪʃ(ə)n]**|
 |compact|小而紧凑的，紧密的，把..紧压在一起|
 |precise|准确的，确切的|**[prɪˈsaɪs]**|
+|precisely|准确地，确实地，恰恰，确实如此|
 |precision|精（密）度，精确（的），细致|
 |line feed|换行（符）|
 |carriage return（cr\r）|回车（符），换行|
@@ -658,6 +660,7 @@ skills       : separating-words like downleveling to down-leveling
 |common|常见的，普通的，共有的|
 |iteration|迭代，反复|**[.ɪtə'reɪʃ(ə)n]**|
 |state|状态，说明，陈述，规定|
+|odd|奇怪的，怪异的，奇数的|
 |odd-looking|相貌奇特的，外表怪异的，奇形怪状的|
 |precisely|确实地，精确地（说），恰恰，的确，正好|**[prɪ'saɪsli]**|
 |apart from|除..之外，此外|
@@ -881,3 +884,10 @@ skills       : separating-words like downleveling to down-leveling
 |potentially|潜在的，可能的，大概的|
 |quota|配额，定额，指标|
 |community|社区|
+|standard|规范，标准（的），正常的|
+|primitive|原始的，基本的|**[ˈprɪmɪtɪv]**|
+|situation|情况，形势，环境|
+|impact|影响，有作用，撞击|
+|alleviate|减轻，缓解|**[əˈliviˌet]**|
+|augmentation|增大，加强，提高|
+|interfere|干预，妨碍，冲突|**[.ɪntər'fɪr]**|
