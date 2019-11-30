@@ -530,6 +530,7 @@ skills       : separating-words like downleveling to down-leveling
 |opacity|模糊，不透明，费解，难懂|**[oʊˈpæsəti]**|
 |transparent|透明的，透明色|**[træns'perənt]**|
 |opaque|不透明的，模糊，难懂的，晦涩的|**[oʊ'peɪk]**|
+|mutable|可变的|
 |immutable|不可（改）变的|**[ɪˈmjutəb(ə)l]**|
 |sneaky|鬼祟的，悄悄地，秘密的|**[ˈsniki]**|
 |creep|蔓延，蠕动|
@@ -711,7 +712,7 @@ skills       : separating-words like downleveling to down-leveling
 |supply|提供，供应|
 |demonstrate|表明，证明，显示，表露|**['demən.streɪt]**|
 |pile on|堆积，积累|
-|spread|铺开，将..散开，伸展|**[spred]**|
+|spread|铺开，将..散开，伸展，扩散，展开|**[spred]**|
 |proceed|继续（做），发生|**[prə'sid]**|
 |generic|一般的，普通的，泛型|**[dʒə'nerɪk]**|
 |interface|接口（程序），界面|

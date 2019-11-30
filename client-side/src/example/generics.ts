@@ -11,4 +11,6 @@ const getArray = (value: any, times: number = 5): any[] => {
     return new Array(times).fill(value);
 }
 
+document.body.innerHTML = "<h1>hello</h1>";
+
 console.log(getArray("abc", 1000));
