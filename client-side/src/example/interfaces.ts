@@ -292,3 +292,30 @@ c(10);
 c.reset();
 c.interval = 5.0;
 
+// interfaces extending classes
+// it inherit the members of the class but not their implementations, even inherit private and protected members
+// interface type only be implements by that class or subclass of it
+class Control {
+    private state: any;
+}
+
+interface SelectableControl extends Control {
+    select(): void;
+}
+
+class Button extends Control implements  SelectableControl {
+    select() {}
+}
+
+class TextBox extends Control {
+    select() {}
+}
+
+// class Image implements SelectableControl {
+//     private state: any;
+//     select() {}
+// }
+
+// class Location {
+
+// }

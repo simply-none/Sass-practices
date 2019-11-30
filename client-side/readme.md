@@ -100,6 +100,8 @@ var package_json = {
  * 自动初始化项目配置：npm init -y
  * 初始化ts配置生成tsconfig.json文件：tsc --init
  * 
+ * 安装项目的依赖： npm install
+ * 启动项目：npm start
  * 项目依赖：
  * 全局依赖：typescript tslint
  * 本地依赖：typescript
