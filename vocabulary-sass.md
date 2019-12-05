@@ -592,6 +592,7 @@ skills       : separating-words like downleveling to down-leveling
 |minor|小的，次要的，不重要的|
 |major|大的，主要的，重要的，主修|
 |disruptive|颠覆性，破坏性的，引起混乱的|**[dɪs'rʌptɪv]**|
+|apply|适用（于），应用|
 |apply to|应用于，应用到，适用于|
 |especially|尤其，特别，非常|
 |executable|可执行的（程序）|**['eksə.kjutəb(ə)l]**|
@@ -758,12 +759,13 @@ skills       : separating-words like downleveling to down-leveling
 |protected|受保护的|**[prə'tektɪd]**|
 |besides|此外，而且，再说|
 |originate|起源，发源，来自，产生|**[ə'rɪdʒə.neɪt]**|
+|orient|适应，使面对，使朝向|**['ɔri.ent]**|
 |object-oriented|面向对象的，对象式的|
 |awkward|难处理的，难使用的，笨拙的|
 |platform|平台，纲领，机会|
 |fundamental|最基本的，最重要的，必须的|
 |drived|衍生的，派生的，源于，导出|**[dɪ'raɪvd]**|
-|prior|在先的，在..之前，更重要的，优先的|**['praɪr]**|
+|prior|在先的，先前的，在..之前，更重要的，优先的|**['praɪr]**|
 |accomplish|实现，完成，达到|
 |label|标记，标签，用标签说明|
 |play out|发生，出现，展开，做完|
@@ -779,7 +781,7 @@ skills       : separating-words like downleveling to down-leveling
 |handy|有用的，方便的，手巧的|
 |randomly|随机的，任意的，随意的|
 |constraint|约束（条件），限制|**[kən'streɪnt]**|
-|retrieve|找回，挽回，检索|**[rɪ'triv]**|
+|retrieve|找回，取回，恢复，挽回，检索|**[rɪ'triv]**|
 |prove|证明，展现，显示，验证|
 |up to this point|到目前为止，就此而言|
 |general|一般的，普通的|
@@ -892,3 +894,5 @@ skills       : separating-words like downleveling to down-leveling
 |alleviate|减轻，缓解|**[əˈliviˌet]**|
 |augmentation|增大，加强，提高|
 |interfere|干预，妨碍，冲突|**[.ɪntər'fɪr]**|
+|derive|派生，导出，起源|**[dɪ'raɪv]**|
+|hold|保持，持有，握住|
