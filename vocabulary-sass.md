@@ -715,7 +715,7 @@ skills       : separating-words like downleveling to down-leveling
 |pile on|堆积，积累|
 |spread|铺开，将..散开，伸展，扩散，展开|**[spred]**|
 |proceed|继续（做），发生|**[prə'sid]**|
-|generic|一般的，普通的，泛型|**[dʒə'nerɪk]**|
+|generic|泛型，一般的，普通的|**[dʒə'nerɪk]**|
 |interface|接口（程序），界面|
 |contract|合约，契约，收缩|**['kɒntrækt]**|
 |lenient|仁慈的，宽大的|**['liniənt]**|
