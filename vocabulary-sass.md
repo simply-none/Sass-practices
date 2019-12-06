@@ -323,6 +323,7 @@ skills       : separating-words like downleveling to down-leveling
 |happen|出现，产生，碰巧|
 |compound|复合的，复合词，合成|**[kəm'paʊnd]**|
 |loosen|松动，放松，松散|
+|restrict|限制，制止，约束|
 |restriction|限定，约束|**[rɪ'strɪkʃ(ə)n]**|
 |look into|调查，过问|
 |alphanumeric|含有字母和数字的|**[.ælfənu'merɪk]**|
@@ -896,3 +897,7 @@ skills       : separating-words like downleveling to down-leveling
 |interfere|干预，妨碍，冲突|**[.ɪntər'fɪr]**|
 |derive|派生，导出，起源|**[dɪ'raɪv]**|
 |hold|保持，持有，握住|
+|line up|使排/对齐，排成一行|
+|so long as|只要...就，如果|
+|slightly|稍微，轻微地，略微|
+|dumb|沉默的，不能说话的|**[dʌm]**|
