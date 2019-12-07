@@ -901,3 +901,6 @@ skills       : separating-words like downleveling to down-leveling
 |so long as|只要...就，如果|
 |slightly|稍微，轻微地，略微|
 |dumb|沉默的，不能说话的|**[dʌm]**|
+|constant|常量，常数，恒定的，重复的|
+|serialize|序列化，连载|
+|debug|调试，排错|
