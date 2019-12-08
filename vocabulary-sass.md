@@ -194,7 +194,7 @@ skills       : separating-words like downleveling to down-leveling
 |definition|定义，释义，清晰，明确|
 |resulting|生产，造成，导致，结果|
 |in order to|为了，从而，以便|
-|evaluated|衡量，评估，可以评价为|
+|evaluated|求值，衡量，评估，可以评价为|
 |optional|可选择的，非强制的|
 |universal|普遍的，通用的，一般概念，通用原理|
 |flow|流（动），流程|
@@ -210,7 +210,7 @@ skills       : separating-words like downleveling to down-leveling
 |represent|相当于，代表着|
 |representation|表示，代表，描述|
 |refer to|查阅，参考，指的是|
-|literal|常量，字面量|**['lɪt(ə)rəl]**|
+|literal|常量，字面量，字面上的|**['lɪt(ə)rəl]**|
 |singleton|单件（模式），单例模式，单身人士|**['sɪŋɡ(ə)ltən]**|
 |enclosed|封闭的|
 |square|方的，方块|
@@ -519,7 +519,6 @@ skills       : separating-words like downleveling to down-leveling
 |permissive|允许的，许可的，放任的|
 |license|许可，批准，授权|
 |normalize|标准化，正规化，变得正常|
-|literal|字面上的，字面量|**['lɪt(ə)rəl]**|
 |channel|通道，信道，渠道，途径|**['tʃæn(ə)l]**|
 |rely on|依赖，依靠|
 |scale|缩放，规模，范围|
@@ -904,3 +903,25 @@ skills       : separating-words like downleveling to down-leveling
 |constant|常量，常数，恒定的，重复的|
 |serialize|序列化，连载|
 |debug|调试，排错|
+|usage|使用（方法），利用，用途|
+|recipient|接受者，受体，容纳的|**[rɪ'sɪpiənt]**|
+|compute|计算，求出，估计|
+|runtime|运行时（间），运行环境，执行时间|
+|concept|概念，设想，观念|
+|reverse|反面，反转，颠倒，相反的|
+|enumeration|枚举（enum），列举，计算|**[ɪˌnuːməˈreɪʃn]**|
+|operand|操作数，运算对象|**[ˈɒpəˌrændz]**|
+|infinity|无穷（大）|
+|effectively|实际上，有效的|
+|leverage|影响力，施加影响，杠杆作用|**['lev(ə)rɪdʒ]**|
+|circuit|电路，线路，回路|**[ˈsɜːrkɪt]**|
+|short-circuit|短路（规则）|
+|pass around|分发，传递，传送|
+|typical|典型的，标准的，独特的|
+|tight|困难的，吝啬的，紧紧的|
+|indirection|间接（性）|
+|completely|十分，非常，完全的，很|
+|since|因为，由于，既然，自从，此后|
+|site|位置，场所，地点|
+|ambient|外界的，周围的，环绕的|**[ˈæmbiənt]**|
+|constrast|对比，对照，比较，反差|**['kɑn.træst]**|
