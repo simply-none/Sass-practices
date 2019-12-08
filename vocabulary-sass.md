@@ -223,7 +223,7 @@ skills       : separating-words like downleveling to down-leveling
 |match|与..相配，使..一致|
 |scientific|科学的，严谨的|
 |unit|单位，单元|
-|consider|认为，考虑，留意|
+|consider|认为，考虑，思考，留意|
 |concatenate|连接（的）|**[kɑn'kæt(ə).neɪt]**|
 |explicit|显式，明确的，直言的|
 |explicitly|显式，直接地，明确地|**[ɪk'splɪsɪtlɪ]**|
@@ -267,6 +267,7 @@ skills       : separating-words like downleveling to down-leveling
 |integer|整数|**['ɪntədʒər]**|
 |as-is|原样，不予改变|
 |inject|添加，投入，注入|
+|common|常见的，普通的，共有的，普遍的|
 |commonly|通常的，一般的|
 |legacy|遗留问题|**['leɡəsi]**|
 |backward|向后（的），倒退的|
@@ -280,6 +281,7 @@ skills       : separating-words like downleveling to down-leveling
 |look|外观，查找|
 |affect|影响，使改变，作用|**['æfekt]**|
 |over and over again|反复（地），一次又一次|
+|side|（一）边，旁（边），一面，方面|
 |inside|在..里面，内部|
 |combine|结合，组合|**[dɪ'kler]**|
 |combinator|组合器，连接符|**['kɒmbɪneɪtə]**|
@@ -401,7 +403,7 @@ skills       : separating-words like downleveling to down-leveling
 |discourage|阻止，阻碍，使泄气，使沮丧|
 |gradually|逐渐的，逐步的|
 |phase out|使逐步淘汰，逐步取消|
-|issue|问题，争论点|
+|issue|问题，争论点，发表，发布，发出|
 |collision|冲突，碰撞|
 |bloated|臃肿的，膨胀的|**['bloʊtəd]**|
 |inaccessible|难以达到的，不可得到的|
@@ -482,7 +484,7 @@ skills       : separating-words like downleveling to down-leveling
 |count up|数到，数完，把..加起来，共计|
 |count down|倒数，倒计时，倒计数|
 |clearer|明白的，清楚地，易懂的，清除，退去|**['klɪərə]**|
-|cover|覆盖，包括，讨论，涉及，报道|
+|cover|覆盖，包括，讨论，涉及，报道，适用于，掩饰|
 |almost|几乎，差不多|
 |natively|原生（的）|
 |keyframe|关键帧|
@@ -696,6 +698,7 @@ skills       : separating-words like downleveling to down-leveling
 |boundless|无限的，无止境的|
 |confused|糊涂的，迷惑的，混乱的|
 |idea|主意，概念，意见|
+|ideally|理想情况下，理论上，最适合地，完美地|**[aɪˈdiəli]**|
 |measure|措施，办法，测量，判断|**['meʒər]**|
 |it depends|看情况|
 |privilege|特权，优惠，荣幸|**['prɪvəlɪdʒ]**|
@@ -708,7 +711,7 @@ skills       : separating-words like downleveling to down-leveling
 |in case|以防万一，如果|
 |straightforward|简单的，易懂的，坦率的|
 |tricky|难办的，棘手的|
-|inference|推断（结果），结论|**['ɪnfərəns]**|
+|inference|推断（结果），推理，推论，结论|**['ɪnfərəns]**|
 |Initializer|初始化程序|**[ɪ'nɪʃəlaɪzə]**|
 |supply|提供，供应|
 |demonstrate|表明，证明，显示，表露|**['demən.streɪt]**|
@@ -745,7 +748,7 @@ skills       : separating-words like downleveling to down-leveling
 |capability|性能，能力|
 |context|上下文，与上下文有关的，环境，语境|
 |contextual|与上下文有关的，与语境有关的|**[kən'tekstʃuəl]**|
-|infer|推断，暗示|
+|infer|推断，推论，推理，猜想，推测，暗示|
 |indexable|可加索引的，可变址的|**[ɪn'dekseɪbl]**|
 |enforce|强制实施，迫使|
 |indice|index的复数|
@@ -805,7 +808,7 @@ skills       : separating-words like downleveling to down-leveling
 |gather|聚集，收集，集中|
 |notoriously|非常，众所周知地|**[noʊˈtɔrɪəslɪ]**|
 |arrow|箭头|**['æroʊ]**|
-|implicit|隐式的，不言明的|**[ɪm'plɪsɪt]**|
+|implicit|隐式的，不言明的，含蓄的，内含的，固有的|**[ɪm'plɪsɪt]**|
 |fake|假货，伪造（的）|
 |unusable|无法使用的，不可用的|
 |standalone|独立的|
@@ -814,7 +817,7 @@ skills       : separating-words like downleveling to down-leveling
 |prototype|原型|**['proʊtə.taɪp]**|
 |overload|重载|
 |inherently|从根本上来说，内在的，固有的|**[ɪn'herəntlɪ]**|
-|pick|挑选，选择|
+|pick|挑选，选择，采取|
 |proceed|开始，继续（做）|
 |variety|变化，种类，多样化|**[vəˈraɪɪti]**|
 |identity function|恒等函数|
@@ -925,3 +928,10 @@ skills       : separating-words like downleveling to down-leveling
 |site|位置，场所，地点|
 |ambient|外界的，周围的，环绕的|**[ˈæmbiənt]**|
 |constrast|对比，对照，比较，反差|**['kɑn.træst]**|
+|namely|即，也就是，换句话说|
+|take place|发生，举行，就位|
+|nuance|细微差异|**['nu.ɑns]**|
+|explore|探索，考察，研究|
+|candidate|候选人，适合..的人（物）|**[ˈkændɪˌdet, -dɪt]**|
+|log|记载，记录，日志|
+|correct|纠正，修正，精确的，正确的，恰当的|
