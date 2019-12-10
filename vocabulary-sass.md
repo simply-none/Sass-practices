@@ -436,7 +436,7 @@ skills       : separating-words like downleveling to down-leveling
 |lexical|词法的，词汇的|**['leksɪk(ə)l]**|
 |lexical scope|词法作用域|
 |invoke|调用，请求，激活|
-|terse|简洁的，精炼的|**[tɜrs]**|
+|terse|简洁的，简短的，精炼的|**[tɜrs]**|
 |formula|结构式，方程式，方案，方法|**['fɔrmjələ]**|
 |readable|可读的，易读的|
 |universal|普遍的，通用的，全体的|
@@ -703,6 +703,7 @@ skills       : separating-words like downleveling to down-leveling
 |boundless|无限的，无止境的|
 |confused|糊涂的，迷惑的，混乱的|
 |idea|主意，概念，意见|
+|ideal|完美的，理想的，最合适的|
 |ideally|理想情况下，理论上，最适合地，完美地|**[aɪˈdiəli]**|
 |measure|措施，办法，测量，判断|**['meʒər]**|
 |it depends|看情况|
@@ -952,3 +953,17 @@ skills       : separating-words like downleveling to down-leveling
 |guarantee|保证（书、金），确保，必然发生，担保|
 |constituent|成分，要素，组成的，形成的，选民|**[kən'stɪtʃuənt]**|
 |branch|分支，部门|
+|predicate|谓词，谓语，基于，断言|**['predɪkeɪt]**|
+|narrow|狭小的，使狭小，变小，勉强的|
+|pain|（使）痛苦，（使）烦恼|
+|industrial|工业的，产业的|**[ɪnˈdʌstriəl]**|
+|inventor|发明者，创造者|
+|onward|向前的，前进的，发展的，（从某时起）一直|
+|elimination|消除，消灭，淘汰|**[ɪˌlɪmɪˈneɪʃn]**|
+|epithet|绰号，修饰符，别称|**['epɪ.θet]**|
+|postfix|加后缀于，把..加在后面|
+|alias|别名，假名|**['eɪliəs]**|
+|terribly|非常，很，极度地|
+|mind-bending|令人费解的|
+|hover|悬浮|
+|express|表达，表示，特快的，快速的，快件服务|
