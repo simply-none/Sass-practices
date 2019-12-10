@@ -153,6 +153,7 @@ skills       : separating-words like downleveling to down-leveling
 |curly|卷曲的，绻缩的|
 |additional|另外的，附加的|
 |difference|区别，差异（性）|
+|differentiate|区分，辨别，使产生差异|**[ˌdɪfəˈrenʃieɪt]**|
 |overview|概述，概论，总览|
 |sequence|次序，序列，一连串|
 |parse|解析，作语法分析|**[pɑrs]**|
@@ -164,7 +165,7 @@ skills       : separating-words like downleveling to down-leveling
 |initially|首先，最初的|**[ɪ'nɪʃ(ə)li]**|
 |initialize|初始化|**[ɪ'nɪʃ(ə)l.aɪz]**|
 |available|可得到的，可获得的，可用的|**[ə'veɪləb(ə)l]**|
-|perform|表演，表现，执行|
+|perform|表演，表现，执行，进行|
 |performance|性能，业绩，表现，表演，高性能的，执行|
 |order|命令，指令，规则，订单，顺序，次序|
 |mark|标志，标记，符号|
@@ -176,6 +177,7 @@ skills       : separating-words like downleveling to down-leveling
 |encounter|遭遇，遇到，接触|
 |present|目前，现在，显示，出席|
 |presented|提供，展示，导致，目前|
+|presence|出席，到场，存在，在..面前，仪态|
 |specific|具体的，特定的|
 |specify|具体说明，指定，详列|**['spesɪ.faɪ]**|
 |rather than|而不是|
@@ -253,6 +255,7 @@ skills       : separating-words like downleveling to down-leveling
 |strip|除去，剥去|
 |compress|压缩，压紧|
 |mode|模式，风格|
+|mold|模具，模型|
 |though|然而，不过，但是|
 |the rest of|其余的，剩下的|
 |comment|注释，注解，评论|
@@ -283,7 +286,7 @@ skills       : separating-words like downleveling to down-leveling
 |over and over again|反复（地），一次又一次|
 |side|（一）边，旁（边），一面，方面|
 |inside|在..里面，内部|
-|combine|结合，组合|**[dɪ'kler]**|
+|combine|联合，结合，组合，兼备，兼有|
 |combinator|组合器，连接符|**['kɒmbɪneɪtə]**|
 |combination|组合，联合，混合|
 |decoration|装饰（物）|**[.dekə'reɪʃ(ə)n]**|
@@ -339,6 +342,7 @@ skills       : separating-words like downleveling to down-leveling
 |mandate|授权，委托|**['mæn.deɪt]**|
 |placeholder|占位符|
 |simple|简单的，容易的，易于理解的|**['sɪmp(ə)l]**|
+|simply|只不过，仅仅，完全地，简直|
 |simplicity|简单，容易|
 |despite|尽管，虽然，即使|**[dɪ'spaɪt]**|
 |repetitive|重复的，反复的|
@@ -380,6 +384,7 @@ skills       : separating-words like downleveling to down-leveling
 |definitely|当然，肯定，明确的，确定的|**['defənɪtli]**|
 |further|更多的，进一步（的），向前推进的，另外的|**[ˈfɜrðə(r)]
 **|
+|guard|监视，保护，看守，看守|
 |safeguard|保护（措施），防护物，安全保障|**['seɪf.ɡɑrd]**|
 |terms|用..术语（字眼），在..方面|
 |bogus|假的，伪造的，非法的|**['boʊɡəs]**|
@@ -935,3 +940,15 @@ skills       : separating-words like downleveling to down-leveling
 |candidate|候选人，适合..的人（物）|**[ˈkændɪˌdet, -dɪt]**|
 |log|记载，记录，日志|
 |correct|纠正，修正，精确的，正确的，恰当的|
+|intersection|交叉，相交，交集|**['ɪntər.sekʃ(ə)n]**|
+|closely|紧密地，接近地，相似地，不相上下地，仔细地|
+|abstract|抽象的，概要，提取|
+|overkill|多此一举，适得其反|
+|concise|简明的，简练的|**[kənˈsaɪs]**|
+|vertical|竖直的，垂线，垂直方向|
+|bar|条，棒|
+|intuition|直觉，直观|
+|idiom|习语，惯用语，风格|**['ɪdiəm]**|
+|guarantee|保证（书、金），确保，必然发生，担保|
+|constituent|成分，要素，组成的，形成的，选民|**[kən'stɪtʃuənt]**|
+|branch|分支，部门|

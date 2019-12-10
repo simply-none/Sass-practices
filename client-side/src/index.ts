@@ -4,4 +4,5 @@
 // import "./example/functions";
 // import "./example/generics";
 // import "./example/enums";
-import "./example/type_inference";
+// import "./example/type_inference";
+import "./example/advanced_types";
