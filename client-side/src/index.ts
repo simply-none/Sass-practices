@@ -5,4 +5,5 @@
 // import "./example/generics";
 // import "./example/enums";
 // import "./example/type_inference";
-import "./example/type_compatibility";
+// import "./example/type_compatibility";
+import "./example/advanced_types";

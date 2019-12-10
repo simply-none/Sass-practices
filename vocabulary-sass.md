@@ -40,10 +40,12 @@ skills       : separating-words like downleveling to down-leveling
 |watch|密切注意，关注，监视|
 |individual|单独的，个人的，个别的|
 |flag|标志，标记|
+|instead|代替，反而，却|
 |instead of|替代，代替，而不是|
 |manual|说明书，指南，手工的，手动的|
 |manually|手工（地），手动（地）|
 |think of|记起，想起，考虑，认为|
+|variant|变体，变形，各种各样的，不一致的|
 |variable|变量，因素，可变的|
 |store|存储，储存，保存，储备，商店|
 |reuse|重用，重复使用，再利用|**[riˈjuz]**|
@@ -71,6 +73,7 @@ skills       : separating-words like downleveling to down-leveling
 |nest|嵌套，套入|
 |visual|可视化，看得见的|
 |hierarchy|层级，层次， 分级结构|**['haɪə.rɑrki]**|
+|hierarchical|分层的，按等级划分的|
 |aware|意识到，明白|
 |overly|过度的，极度的|
 |result in|导致，造成，结果是|
@@ -155,6 +158,7 @@ skills       : separating-words like downleveling to down-leveling
 |additional|另外的，附加的|
 |differ|相异，有区别，不同于|
 |difference|区别，差异（性）|
+|differentiate|区分，辨别，使产生差异|**[ˌdɪfəˈrenʃieɪt]**|
 |overview|概述，概论，总览|
 |sequence|次序，序列，一连串|
 |parse|解析，作语法分析|**[pɑrs]**|
@@ -166,7 +170,7 @@ skills       : separating-words like downleveling to down-leveling
 |initially|首先，最初的|**[ɪ'nɪʃ(ə)li]**|
 |initialize|初始化|**[ɪ'nɪʃ(ə)l.aɪz]**|
 |available|可得到的，可获得的，可用的|**[ə'veɪləb(ə)l]**|
-|perform|表演，表现，执行|
+|perform|表演，表现，执行，进行|
 |performance|性能，业绩，表现，表演，高性能的，执行|
 |order|命令，指令，规则，订单，顺序，次序|
 |mark|标志，标记，符号|
@@ -178,7 +182,8 @@ skills       : separating-words like downleveling to down-leveling
 |encounter|遭遇，遇到，接触|
 |present|目前，现在，显示，出席|
 |presented|提供，展示，导致，目前|
-|specific|具体的，特定的|
+|presence|出席，到场，存在，在..面前，仪态|
+|specific|具体的，特定的，特有的|
 |specify|具体说明，指定，详列|**['spesɪ.faɪ]**|
 |rather than|而不是|
 |immediately|立刻，立即地，直接地|
@@ -256,6 +261,7 @@ skills       : separating-words like downleveling to down-leveling
 |strip|除去，剥去|
 |compress|压缩，压紧|
 |mode|模式，风格|
+|mold|模具，模型|
 |though|然而，不过，但是|
 |the rest of|其余的，剩下的|
 |comment|注释，注解，评论|
@@ -287,7 +293,7 @@ skills       : separating-words like downleveling to down-leveling
 |over and over again|反复（地），一次又一次|
 |side|（一）边，旁（边），一面，方面|
 |inside|在..里面，内部|
-|combine|结合，组合|**[dɪ'kler]**|
+|combine|联合，结合，组合，兼备，兼有|
 |combinator|组合器，连接符|**['kɒmbɪneɪtə]**|
 |combination|组合，联合，混合|
 |decoration|装饰（物）|**[.dekə'reɪʃ(ə)n]**|
@@ -343,6 +349,7 @@ skills       : separating-words like downleveling to down-leveling
 |mandate|授权，委托|**['mæn.deɪt]**|
 |placeholder|占位符|
 |simple|简单的，容易的，易于理解的|**['sɪmp(ə)l]**|
+|simply|只不过，仅仅，完全地，简直|
 |simplicity|简单，容易|
 |despite|尽管，虽然，即使|**[dɪ'spaɪt]**|
 |repetitive|重复的，反复的|
@@ -382,7 +389,13 @@ skills       : separating-words like downleveling to down-leveling
 |strangely|奇怪的，异常的|
 |rarely|难见的，少见的，难得|
 |definitely|当然，肯定，明确的，确定的|**['defənɪtli]**|
+<<<<<<< HEAD
 |further|更多的，进一步（的），向前推进的，另外的|**[ˈfɜrðə(r)]**|
+=======
+|further|更多的，进一步（的），向前推进的，另外的|**[ˈfɜrðə(r)]
+**|
+|guard|监视，保护，看守，看守|
+>>>>>>> acc2a7eb588504d81bdc06a433eca50ae04cbf5e
 |safeguard|保护（措施），防护物，安全保障|**['seɪf.ɡɑrd]**|
 |term|术语，期限|
 |terms|用..术语（字眼），在..方面|
@@ -435,7 +448,7 @@ skills       : separating-words like downleveling to down-leveling
 |lexical|词法的，词汇的|**['leksɪk(ə)l]**|
 |lexical scope|词法作用域|
 |invoke|调用，请求，激活|
-|terse|简洁的，精炼的|**[tɜrs]**|
+|terse|简洁的，简短的，精炼的|**[tɜrs]**|
 |formula|结构式，方程式，方案，方法|**['fɔrmjələ]**|
 |readable|可读的，易读的|
 |universal|普遍的，通用的，全体的|
@@ -469,6 +482,7 @@ skills       : separating-words like downleveling to down-leveling
 |assume|假定，设想，采用，承担，呈现|
 |duplicate|复制，重复，复写|
 |expect|盼望，预期，期待|
+|unexpected|出乎意料的，想不到的，意外的|
 |occur|发生，出现，想起，存在|
 |optimal|最适宜的，最好的|**['ɑptɪm(ə)l]**|
 |along with|与..一起，伴随|
@@ -704,6 +718,7 @@ skills       : separating-words like downleveling to down-leveling
 |boundless|无限的，无止境的|
 |confused|糊涂的，迷惑的，混乱的|
 |idea|主意，概念，意见|
+|ideal|完美的，理想的，最合适的|
 |ideally|理想情况下，理论上，最适合地，完美地|**[aɪˈdiəli]**|
 |measure|措施，办法，测量，判断|**['meʒər]**|
 |it depends|看情况|
@@ -975,3 +990,37 @@ skills       : separating-words like downleveling to down-leveling
 |mutual|相互的，共同的|
 |mechanism|机制，结构|**['mekə.nɪzəm]**|
 |dictate|命令，决定，影响，告诉|**[dikˈteitid]**|
+|intersection|交叉，相交，交集|**['ɪntər.sekʃ(ə)n]**|
+|closely|紧密地，接近地，相似地，不相上下地，仔细地|
+|abstract|抽象的，概要，提取|
+|overkill|多此一举，适得其反|
+|concise|简明的，简练的|**[kənˈsaɪs]**|
+|vertical|竖直的，垂线，垂直方向|
+|bar|条，棒|
+|intuition|直觉，直观|
+|idiom|习语，惯用语，风格|**['ɪdiəm]**|
+|guarantee|保证（书、金），确保，必然发生，担保|
+|constituent|成分，要素，组成的，形成的，选民|**[kən'stɪtʃuənt]**|
+|branch|分支，部门|
+|predicate|谓词，谓语，基于，断言|**['predɪkeɪt]**|
+|narrow|狭小的，使狭小，变小，勉强的|
+|pain|（使）痛苦，（使）烦恼|
+|industrial|工业的，产业的|**[ɪnˈdʌstriəl]**|
+|inventor|发明者，创造者|
+|onward|向前的，前进的，发展的，（从某时起）一直|
+|elimination|消除，消灭，淘汰|**[ɪˌlɪmɪˈneɪʃn]**|
+|epithet|绰号，修饰符，别称|**['epɪ.θet]**|
+|postfix|加后缀于，把..加在后面|
+|alias|别名，假名|**['eɪliəs]**|
+|terribly|非常，很，极度地|
+|mind-bending|令人费解的|
+|hover|悬浮|
+|express|表达，表示，特快的，快速的，快件服务|
+|ease|缓慢地移动，降低，缓解，减轻，容易|
+|seldom|几乎不，很少，不常的|**['seldəm]**|
+|discriminate|区分，辨别，区别|**[dɪ'skrɪmɪ.neɪt]**|
+|discriminat|可辨别的因素，判别式|**[dɪ'skrɪmənənt]**|
+|algebraic|代数的|**[.ældʒə'breɪɪk]**|
+|ingredient|成分，因素|**[ɪn'ɡridɪənt]**|
+|exhaustive|详尽的，彻底的，全面的，穷尽的|**[ɪɡ'zɔstɪv]**|
+|polymorphic|多态的|**[pɑlɪ'mɔrfɪk]**|
