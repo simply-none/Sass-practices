@@ -26,6 +26,7 @@ skills       : separating-words like downleveling to down-leveling
 |recommend|推荐，介绍，建议，劝说|
 |go ahead|继续，前进，干吧，着手|
 |maintain|维护，维持，宣称，供养|
+|process|进程，流程，工序，处理，加工，程序|
 |preprocess|预处理，预加工|
 |preprocessor|预处理器（程序）|
 |feature|特点，特性，特征|
@@ -152,6 +153,7 @@ skills       : separating-words like downleveling to down-leveling
 |counts|数量，认为，包括|
 |curly|卷曲的，绻缩的|
 |additional|另外的，附加的|
+|differ|相异，有区别，不同于|
 |difference|区别，差异（性）|
 |overview|概述，概论，总览|
 |sequence|次序，序列，一连串|
@@ -187,6 +189,7 @@ skills       : separating-words like downleveling to down-leveling
 |accessor|存取器，访问器，访问方法|
 |accessible|可访问的|
 |structure|结构，构造|**['strʌktʃər]**|
+|structural|结构（上）的，构造上的|**['strʌktʃ(ə)rəl]**|
 |make up|组成，构成，编造|
 |mainly|主要地，大多数地|
 |alongside|在..旁边，与..同时（存在/发生）|
@@ -197,7 +200,7 @@ skills       : separating-words like downleveling to down-leveling
 |evaluated|求值，衡量，评估，可以评价为|
 |optional|可选择的，非强制的|
 |universal|普遍的，通用的，一般概念，通用原理|
-|flow|流（动），流程|
+|flow|流（动），流程，流畅，传播，充满|
 |produce|生产，造成，产出，产品，提供|
 |statement|声明，陈述|
 |except|除..之外，不包括|
@@ -223,7 +226,7 @@ skills       : separating-words like downleveling to down-leveling
 |match|与..相配，使..一致|
 |scientific|科学的，严谨的|
 |unit|单位，单元|
-|consider|认为，考虑，思考，留意|
+|consider|认为，考虑，思考，留意，顾及|
 |concatenate|连接（的）|**[kɑn'kæt(ə).neɪt]**|
 |explicit|显式，明确的，直言的|
 |explicitly|显式，直接地，明确地|**[ɪk'splɪsɪtlɪ]**|
@@ -233,7 +236,7 @@ skills       : separating-words like downleveling to down-leveling
 |called|称呼，被叫做|
 |callee|被调用函数|
 |function call|函数调用|
-|library|程序库，函数库|
+|library|程序库，函数库，图书馆|
 |hex|十六进制|
 |hexadecimal|十六进制的|
 |decimal|十进制，小数|
@@ -277,6 +280,7 @@ skills       : separating-words like downleveling to down-leveling
 |clever|巧妙的，聪明的|
 |cleverness|聪明的|**[ ˈklɛvɚnəs]**|
 |as soon as|一..就，一经|
+|found|建立，创建，成立，把..基于|
 |foundation|基础，地基，根据|
 |look|外观，查找|
 |affect|影响，使改变，作用|**['æfekt]**|
@@ -348,7 +352,7 @@ skills       : separating-words like downleveling to down-leveling
 |declarative|声明式，陈述句|**[dɪ'klerətɪv]**|
 |identifier|标识符|**[aɪ'dentɪ'faɪəz]**|
 |identical|完全相同的，同样的|
-|treat|视为，对待，处理|
+|treat|视为，对待，处理，治疗|
 |historical|历史上的，基于历史的|
 |holdover|剩余物|
 |equivalent|等同物，相等物，等值|**[ɪ'kwɪvələnt]**|
@@ -372,15 +376,15 @@ skills       : separating-words like downleveling to down-leveling
 |at a glance|一看就，瞥一眼，扫视|
 |embed|使嵌入，内嵌|**[ɪm'bed]**|
 |chunk|大块，大部分，区块|**[tʃʌŋk]**|
-|wrap|包裹，用..包裹|
+|wrap|包裹，用..包裹，换行|
 |practical|实用的，可行的，实际的|
 |purpose|意义，用途，目的，决心|
 |strangely|奇怪的，异常的|
 |rarely|难见的，少见的，难得|
 |definitely|当然，肯定，明确的，确定的|**['defənɪtli]**|
-|further|更多的，进一步（的），向前推进的，另外的|**[ˈfɜrðə(r)]
-**|
+|further|更多的，进一步（的），向前推进的，另外的|**[ˈfɜrðə(r)]**|
 |safeguard|保护（措施），防护物，安全保障|**['seɪf.ɡɑrd]**|
+|term|术语，期限|
 |terms|用..术语（字眼），在..方面|
 |bogus|假的，伪造的，非法的|**['boʊɡəs]**|
 |tempting|吸引人的，诱人的|
@@ -554,13 +558,14 @@ skills       : separating-words like downleveling to down-leveling
 |violate|违反，侵犯，违背|**['vaɪə.leɪt]**|
 |transitivity|传递性，可递性|**[ˌtrænsə'tɪvəti]**|
 |compare|比较，相比，对比|
+|comparision|比较，对比，相比|**[kəm'perɪsən]**|
 |remainder|余数，剩余物，剩余的|
 |modulo|取模，模数|**['mɒdjəˌloʊ]**|
 |subtract|减去，减法，扣除，差集|
 |negation|否定（式），否认，拒绝|
 |negative|负的，否定（的）|
 |disambiguate|消除歧义，解疑|**[.dɪsæm'bɪɡju.eɪt]**|
-|force|强迫，迫使|
+|force|强迫，迫使，力量|
 |opposite|反面，对立面，与..相对|
 |eventually|最后，终于|
 |remain|保持，继续存在，遗留，残余|
@@ -572,7 +577,7 @@ skills       : separating-words like downleveling to down-leveling
 |fix|修理，修复，处理，解决，整理，理解，认识，操纵|
 |fix up|修理，解决，安排|
 |fixed|固定的，确定的，不变的|
-|certain|确定的，肯定的，无疑的，特定的|
+|certain|确定的，肯定的，无疑的，特定的，某些，一定的|
 |existing|现行的，现存的，目前的|**[ɪɡˈzɪstɪŋ]**|
 |fade in|淡入，渐显|
 |fade out|淡出，渐隐，消失|
@@ -599,7 +604,7 @@ skills       : separating-words like downleveling to down-leveling
 |especially|尤其，特别，非常|
 |executable|可执行的（程序）|**['eksə.kjutəb(ə)l]**|
 |necessary|必要的，必须的，必然的|**['nesə.seri]**|
-|alternative|另类的，非主流的，可供替代的|
+|alternative|另类的，非主流的，可供替代的，选择，方案|
 |abbreviate|缩写，缩短，简称|**[əˈbriːviːeɪt]**|
 |expand|扩展，扩大，展开|
 |compress|压缩，精简|
@@ -684,6 +689,7 @@ skills       : separating-words like downleveling to down-leveling
 |double-edged sword|双刃剑|
 |for instance|例如|
 |scenario|方案，前景，情况，场景|**[səˈnɛrioʊ]**|
+|brief|简短的，简单的，短暂的|
 |briefly|简要的，短暂的，简言之|
 |touch|谈及，涉及，触摸，接触|
 |intuition|直觉，直观|**[.ɪntu'ɪʃ(ə)n]**|
@@ -709,7 +715,7 @@ skills       : separating-words like downleveling to down-leveling
 |handbook|手册，指南，说明书|
 |remaining|仍需处理的，剩余的|
 |in case|以防万一，如果|
-|straightforward|简单的，易懂的，坦率的|
+|straightforward|简单的，易懂的，直接的，坦率的|
 |tricky|难办的，棘手的|
 |inference|推断（结果），推理，推论，结论|**['ɪnfərəns]**|
 |Initializer|初始化程序|**[ɪ'nɪʃəlaɪzə]**|
@@ -790,7 +796,7 @@ skills       : separating-words like downleveling to down-leveling
 |general|一般的，普通的|
 |layer|层（次），等级|
 |mimicking|模仿，学..的样子|
-|anonymous|匿名的|**[ə'nɑnɪməs]**|
+|anonymous|匿名的，不具名的|**[ə'nɑnɪməs]**|
 |appropriate|适当的，合适的，恰当的|**[əˈproʊpriət]**|
 |one-off|一次性的|
 |hand-off|转换，切换|
@@ -891,7 +897,7 @@ skills       : separating-words like downleveling to down-leveling
 |quota|配额，定额，指标|
 |community|社区|
 |standard|规范，标准（的），正常的|
-|primitive|原始的，基本的|**[ˈprɪmɪtɪv]**|
+|primitive|原始的，基本的，简单的，基元，图元|**[ˈprɪmɪtɪv]**|
 |situation|情况，形势，环境|
 |impact|影响，有作用，撞击|
 |alleviate|减轻，缓解|**[əˈliviˌet]**|
@@ -927,11 +933,45 @@ skills       : separating-words like downleveling to down-leveling
 |since|因为，由于，既然，自从，此后|
 |site|位置，场所，地点|
 |ambient|外界的，周围的，环绕的|**[ˈæmbiənt]**|
-|constrast|对比，对照，比较，反差|**['kɑn.træst]**|
+|contrast|对比，对照，比较，反差|**['kɑn.træst]**|
 |namely|即，也就是，换句话说|
 |take place|发生，举行，就位|
 |nuance|细微差异|**['nu.ɑns]**|
 |explore|探索，考察，研究|
 |candidate|候选人，适合..的人（物）|**[ˈkændɪˌdet, -dɪt]**|
 |log|记载，记录，日志|
+|assignment|分配，任务，布置，作业|
 |correct|纠正，修正，精确的，正确的，恰当的|
+|caret|插入符，脱字符|**['kærət]**|
+|solely|只，仅仅，完全，独自地|**['soʊlli]**|
+|relate|联系，叙述，讲述，有关（联）|
+|relatively|相当程度上，相对而言，相对地，相当地|
+|nominal|名义上的，有名无实的，象征性的|**['nɑmɪn(ə)l]**|
+|widely|广泛地，大量地，普遍地，更多地|
+|what if|如果..将会怎样|
+|duck|鸭子|
+|overall|全部（的），整体，总的，大致上|
+|primarily|主要地，根本地，起初|
+|complicate|复杂的，使复杂化，变复杂|**['kɑmplɪ.keɪt]**|
+|demonstrate|演示，证明，示范，论证，显示|**['demən.streɪt]**|
+|sound|可靠的，明智的，合理的，正确的，发声|
+|soundness|可靠性，安定性，稳固，完善，印象，声音|**[saʊndnəs]**|
+|motivate|激发，激励，驱使，使决心做|
+|behind|支持，在..的后面，落后于|
+|scenario|方案，前景，情况，场景，设想，情节|**[səˈnɛrioʊ]**|
+|start out|开始，出发，动身，着手|
+|recursive|递归的，循环的|**[rɪ'kɜrsɪv]**|
+|proceed|接下来做，继续（进行），持续，前进，收入|**[proʊˈsid]**|
+|involved|难处理的，复杂难懂的，棘手的，参与的，卷入的，涉及的|
+|wonder|琢磨，寻思，惊奇，感到疑惑，纳闷|
+|discard|抛弃，丢弃，放弃|
+|nevertheless|然而，不过，尽管如此|
+|bivariate|二元（变量）的|**[baɪ'værɪɪt]**|
+|bivariance|协变|
+|undesirable|不想要的，易惹麻烦的，有害的|**[ˌʌndɪˈzaɪrəbəl]**|
+|presence|存在，在..面前，仪态，出席，到场|**['prezəns]**|
+|wholly|完全，全面，整体地|
+|perspective|观点，看法，视角，角度|**[pərˈspektɪv]**|
+|mutual|相互的，共同的|
+|mechanism|机制，结构|**['mekə.nɪzəm]**|
+|dictate|命令，决定，影响，告诉|**[dikˈteitid]**|

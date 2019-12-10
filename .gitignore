@@ -1,4 +1,5 @@
 .history/
+.idea/
 typescript/lesson1/node_modules/
 client-side/.history/
 client-side/dist/
