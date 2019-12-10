@@ -67,7 +67,7 @@ function padLeft(value: string, padding: any) {
 padLeft("Hello world", 4);  // return "     hello world"
 
 // althrough arguments neighter number nor string, but ts allow that:
-let indentedString = padLeft("hello world", true);
+// let indentedString = padLeft("hello world", true);
 
 // use union type instead any:
 function padLeft1(value: string, padding: string | number) {
@@ -89,7 +89,7 @@ interface Fish {
 }
 
 function getSmallPet(): Fish | Bird {
-    return {} as Fish | Bird;
+    return {layEggs(){}, fly(){}} as Bird;
 }
 
 let pet = getSmallPet();
@@ -308,6 +308,8 @@ function fixed(name: string | null): string {
 /**
  * Type Aliases:
  *      create a new name for a type(any type)
+ * 
+ * type aliases can also be generic
  */
 
 type Name_at = string;
@@ -317,3 +319,227 @@ function getName_at(n: NameOrResolver): Name_at {
     if (typeof n === "string") return n;
     else return n();
 }
+
+// as a generic:
+type Container<T> = {value: T};
+// refer to itself:
+type Tree<T> = {
+    value: T;
+    left: Tree<T>;
+    right: Tree<T>;
+}
+// together with intersection types(make it mind-bending):
+type LinkeedList<T> = T & { next: LinkeedList<T> };
+
+interface Person_at2 {
+    name: string;
+}
+
+/* var p_at1: LinkeedList<Person_at2> = {
+    name: " ",
+    next: {
+        name: " ",
+        next: {
+            name: " ",
+            next: {}
+        }
+    }
+}
+var s_at1 = p_at1.name; 
+var s_at1 = p_at1.next.name;
+var s_at1 = p_at1.next.next.name;
+var s_at1 = p_at1.next.next.next.name;
+ */
+// it's not appear on right side of the declaration:
+// type Yikes = Array<Yikes>;// TS2314: Generic type 'Array<T>' requires 1 type argument(s).
+
+/**
+ * interfaces vs aliases:
+ *      interfaces create a new name, aliases not
+ *          example: error message won't use alias name
+ * 
+ * because ideal property is open to extension, so use interface to instead, but can't express with interface , you will use it 
+ *      older version, aliases don't extend or implement(and be extended or implemented), but ts-2.7, aliases can be extended by creating a new intersection type(type a = A & {B})
+ * 
+ */
+
+type Alias = {num: number};
+interface Interface_at {
+    num: number;
+}
+declare function aliased(arg: Alias): Alias;
+declare function interfaced(arg: Interface_at): Interface_at;
+
+/**
+ * String Literal Types:
+ *      specify exact value for string
+ *  it combine with union types, type guards, type aliases: get enum-like behavior
+ */
+
+ type Easing = "ease-in" | "ease-out" | "ease-in-out";
+ class UIElement {
+    animate(dx: number, dy: number, easing: Easing) {
+        if (easing === "ease-in") {}
+        else if (easing === "ease-out") {}
+        else if (easing === "ease-in-out") {}
+        else {throw new Error(`${easing} is not allow here.`)}
+    }
+ }
+
+ let button_at = new UIElement();
+ button_at.animate(0, 0, "ease-in");
+//  button_at.animate(0, 0, "uneasy");// TS2345: Argument of type '"uneasy"' is not assignable to parameter of type 'Easing'
+
+// string literal types used in distinguish overloads:
+function createElement(tagName: "img"): HTMLImageElement;
+function createElement(tagName: "imput"): HTMLInputElement;
+// ...more overloads...
+function createElement(tagName: string): Element {
+    return new Element();// its rest in doc
+}
+
+/**
+ * Numeric Literal Types:
+ *      useful with narrow issues and catch bugs
+ */
+
+ function rollDice(): 1 | 2 | 3 | 4 | 5 | 6 {return 1};
+ function foo_at(x: number) {
+     /* if (x !== 1 || x !== 2) {
+         //  TS2367: This condition will always return 'true' since the types '1' and '2' have no overlap.
+     } */
+ }
+
+ /**
+  * Enum Member Types:
+  *     all member must literal-init for this case
+  */
+
+/**
+ *  Discriminated Unions:
+ *      combine singleton types, union types ,type guard, type aliases (called tagged unions or algebraic data types also )
+ *      useful for funcitonal program
+ * 
+ *      three ingredients:
+ *          have a common type, singleton type property(discriminant)
+ *          a union type's aliase( union )
+ *          common property's type guard
+ * 
+ * 
+ */  
+
+ interface Square_at {
+     kind: "square";
+     size: number;
+ }
+ interface Rectangle_at {
+     kind: "rectangle";
+     width: number;
+     height: number;
+ }
+ interface Circle_at {
+     kind: "circle";
+     radius: number;
+ }
+
+ // put to union: `kind` property is called `discriminant` or `tag`
+ type Shape_ts = Square_at | Rectangle_at | Circle_at;
+
+ // using it:
+ function area(s: Shape_ts) {
+     switch (s.kind) {
+         case "square": return s.size * s.size;
+         case "rectangle": return s.height * s.width;
+         case "circle": return s.radius ** 2 * Math.PI;
+     }
+ }
+
+ /**
+  * exhaustiveness checking:
+  *         let compiler tell us don't cover all variants of the discriminated union ways:
+  *             a: turn on `--strictNullChecks`(not well in old code) and specify a return type
+  *             b: using `never` type to check for exhaustiveness
+  */
+
+  // update: 
+  interface Triangle_at {
+      kind: "triangle";
+      other: number;
+  }
+  type Shape_at1 = Square_at | Rectangle_at | Circle_at | Triangle_at;
+  function area1(s: Shape_at1) {
+      switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.height * s.width;
+        case "circle": return s.radius ** 2 * Math.PI;
+      }
+      // should error here - we didn't handle case 'triangle'
+  }
+
+//   console.log(area1({kind: "square", other: 10}));
+  // TS2345: Argument of type '{ kind: "square"; other: number; }' is not assignable to parameter of type 'Shape_at1'.
+  // Object literal may only specify known properties, and 'other' does not exist in type 'Square_at'.
+
+// because `switch` not exhaustive write, ts return `undefined` sometimes
+
+ /*  function area2(s: Shape_at1): number { // TS2366: Function lacks ending return statement and return type does not include 'undefined'.
+      switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.height * s.width;
+        case "circle": return s.radius ** 2 * Math.PI;
+      }
+  }
+   */
+
+   // doc is `x: never`
+   function assertNever(x: any): never {
+       throw new Error(`unexpected object ${x}`);
+   }
+   function area3(s: Shape_at1) {
+    switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.height * s.width;
+        case "circle": return s.radius ** 2 * Math.PI;
+        default: return assertNever(s);
+      }
+   }
+//    console.log(area3({kind: "triangle", other: 2}));
+
+/**
+ * Polymorphic `this` types:
+ *      represent a subtype of contain class or interface(called F-bounded polymorphism)
+ */
+
+ class BasicCalculator {
+     public constructor(protected value: number = 0) { }
+     public currentValue(): number {
+         return this.value;
+     }
+     public add(operand: number): this {
+         this.value += operand;
+         return this;
+     }
+     public multiply(operand: number): this {
+         this.value *= operand;
+         return this;
+     }
+     // ... other operations go here
+ }
+
+ let v_at = new BasicCalculator(2).multiply(5).add(1).currentValue();
+ console.log(v_at); // 11
+
+ // since class use this type, allow extend it, new class can use old methods:
+ class ScientificCalculator extends BasicCalculator {
+     public constructor(value = 0) {
+         super(value);
+     }
+     public sin() {
+         this.value = Math.sin(this.value);
+         return this;
+     }
+     // ... ohter operations go here ...
+ }
+
+ let v_at1 = new ScientificCalculator(2).multiply(5).sin().add(1).currentValue();
+ console.log(v_at1); // 0.4559788891106302

@@ -39,10 +39,12 @@ skills       : separating-words like downleveling to down-leveling
 |watch|密切注意，关注，监视|
 |individual|单独的，个人的，个别的|
 |flag|标志，标记|
+|instead|代替，反而，却|
 |instead of|替代，代替，而不是|
 |manual|说明书，指南，手工的，手动的|
 |manually|手工（地），手动（地）|
 |think of|记起，想起，考虑，认为|
+|variant|变体，变形，各种各样的，不一致的|
 |variable|变量，因素，可变的|
 |store|存储，储存，保存，储备，商店|
 |reuse|重用，重复使用，再利用|**[riˈjuz]**|
@@ -70,6 +72,7 @@ skills       : separating-words like downleveling to down-leveling
 |nest|嵌套，套入|
 |visual|可视化，看得见的|
 |hierarchy|层级，层次， 分级结构|**['haɪə.rɑrki]**|
+|hierarchical|分层的，按等级划分的|
 |aware|意识到，明白|
 |overly|过度的，极度的|
 |result in|导致，造成，结果是|
@@ -178,7 +181,7 @@ skills       : separating-words like downleveling to down-leveling
 |present|目前，现在，显示，出席|
 |presented|提供，展示，导致，目前|
 |presence|出席，到场，存在，在..面前，仪态|
-|specific|具体的，特定的|
+|specific|具体的，特定的，特有的|
 |specify|具体说明，指定，详列|**['spesɪ.faɪ]**|
 |rather than|而不是|
 |immediately|立刻，立即地，直接地|
@@ -470,6 +473,7 @@ skills       : separating-words like downleveling to down-leveling
 |assume|假定，设想，采用，承担，呈现|
 |duplicate|复制，重复，复写|
 |expect|盼望，预期，期待|
+|unexpected|出乎意料的，想不到的，意外的|
 |occur|发生，出现，想起，存在|
 |optimal|最适宜的，最好的|**['ɑptɪm(ə)l]**|
 |along with|与..一起，伴随|
@@ -967,3 +971,11 @@ skills       : separating-words like downleveling to down-leveling
 |mind-bending|令人费解的|
 |hover|悬浮|
 |express|表达，表示，特快的，快速的，快件服务|
+|ease|缓慢地移动，降低，缓解，减轻，容易|
+|seldom|几乎不，很少，不常的|**['seldəm]**|
+|discriminate|区分，辨别，区别|**[dɪ'skrɪmɪ.neɪt]**|
+|discriminat|可辨别的因素，判别式|**[dɪ'skrɪmənənt]**|
+|algebraic|代数的|**[.ældʒə'breɪɪk]**|
+|ingredient|成分，因素|**[ɪn'ɡridɪənt]**|
+|exhaustive|详尽的，彻底的，全面的，穷尽的|**[ɪɡ'zɔstɪv]**|
+|polymorphic|多态的|**[pɑlɪ'mɔrfɪk]**|
