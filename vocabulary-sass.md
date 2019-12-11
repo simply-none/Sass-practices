@@ -1047,3 +1047,5 @@ skills       : separating-words like downleveling to down-leveling
 |extract|取出，提取，摘录，推断出|**[ɪkˈstrækt]**|
 |presumably|大概，很可能，也许，据推测|**[prɪˈzuməbli]**|
 |exclude|不包括，排除|
+|furthermore|此外，而且，再者|
+|multiple|数量多的，多重的|

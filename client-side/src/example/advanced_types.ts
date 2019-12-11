@@ -1,4 +1,6 @@
 import { join } from "path";
+import { type } from "os";
+import { promises } from "dns";
 
 /**
  * Intersection Types:
@@ -748,3 +750,231 @@ let values2: Dictionary_at1<number>[42];    // number
   }
 
   let originalProps = unproxify(proxyProps);
+
+  /**
+   * Conditional Types:
+   *        ts2.8+ introduce, select one of two possible types
+   *    condition express: `T extends U ? X: Y`
+   *        either resolved to X/Y, or deferred
+   *            determined by type system whether or not info to conclude
+   */
+
+   // immediately resoved: 
+   declare function f_at3<T extends boolean>(x: T): T extends true? string: number;
+   
+   // type is 'string | number '
+   let x = f_at3(Math.random() < 0.5);
+
+   // using nested conditional types with type alias:
+   type TypeName<T> = 
+        T extends string ? "string" :
+        T extends number ? "number" :
+        T extends boolean ? "boolean" :
+        T extends undefined ? "undefined" :
+        T extends Function ? "function" :
+        "object";
+    
+    type T0 = TypeName<string>; // "string"
+    type T1 = TypeName<"a">;    // "string"
+    type T2 = TypeName<true>;   // "boolean"
+    type T3 = TypeName<() => void>; // "function"
+    type T4 = TypeName<string[]>;   // "object"
+
+    // conditional type are deferred: 
+    interface Foo_at {
+        propA: boolean;
+        propB: boolean;
+    }
+
+    declare function f_at4<T>(x: T): T extends Foo_at ? string : number;
+
+    function foo_at1<U>(x: U) {
+        // has type 'u extends foo ? string : number'
+        // hasn't yet chosen a beanch, using some type instead U in code ends up call foo
+        let a = f_at4(x);
+
+        // this assignment is allowed though!
+        /**
+         * conditional type(include each branch cases) assign to target type 
+         */
+        let b: string | number = a;
+    }
+
+    /**
+     * Distributive conditional types:
+     *      define: checked type is a naked type parameter
+     *      
+     *      automatically distributed over union type during instantiation
+     * 
+     *          example: `T extends U ? X : Y` and `T` is `A | B | C`
+     *              resolved as :
+     *              (A extends U ? X : Y) | (B extends U ? X: Y) | (C extends U ? X : Y)
+     */   
+    /* 
+    type TypeName<T> = 
+    T extends string ? "string" :
+    T extends number ? "number" :
+    T extends boolean ? "boolean" :
+    T extends undefined ? "undefined" :
+    T extends Function ? "function" :
+    "object";
+ */
+    type T10 = TypeName<string | (() => void)>; // "string" | "function"
+    type T11 = TypeName<string | string[] | undefined>; // "string" | "object" | "undefined"
+    type T12 = TypeName<string[] | number[]>;   // "object"
+
+
+    type BoxedValue<T> = { value: T };
+    type BoxedArray<T> = { array: T[] };
+    type Boxed<T> = T extends any[] ? BoxedArray<T[number]> : BoxedValue<T>;
+
+    type T20 = Boxed<string>;   // BoxedValue<string>;
+    type T21 = Boxed<number[]>; // BoxedArray<number>;
+    type T22 = Boxed<string | number[]>;    // BoxedValue<string> | BoxedArray<number>;
+
+    // distributive property of conditional types can conveniently be used to filter union types:
+    type Diff<T, U> = T extends U ? never : T;  // remove types from T that are assignable to U
+    type Filter<T, U> = T extends U ? T : never;// remove types from T that are not assignable to U
+
+    type T30 = Diff<"a" | "b" | "c" | "d", "a" | "c" | "f">;    // "b" | "d"
+    type T31 = Filter<"a" | "b" | "c" | "d", "a" | "c" | "f">;  // "a" | "c"
+    type T32 = Diff<string | number | (() => void), Function>; // string | number
+    type T33 = Filter<string | number |(() => void), Function>;// () => void
+
+    type NonNullable<T> = Diff<T, null | undefined>;    // remove null and undefined from T
+
+    type T34 = NonNullable<string | number | undefined>; // string | number
+    type T35 = NonNullable<string | string[] | null | undefined>;   // string  | string[]
+
+    function f_at5<T>(x: T, y: NonNullable<T>) {
+        x = y; // ok
+        // y = x;  // TS2322: Type 'T' is not assignable to type 'Diff<T, null | undefined>'.
+        // let s_at2: string = x; // TS2322: Type 'T' is not assignable to type 'string'.
+        /**
+         * diff with doc:
+         */
+        // let s_at3: string = y; // TS2322: Type 'Diff<T, null | undefined>' is not assignable to type 'string'.
+        // Type 'T' is not assignable to type 'string'.
+    }
+
+    /* 
+    type Pick<T, K extends keyof T> = {
+      [P in K]: T[P];
+    }
+    */
+    // conditional types is useful when combined with mapped types:
+    type FunctionPropertyNames<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];
+    type FunctionProperties<T> = Pick<T, FunctionPropertyNames<T>>;
+
+    type NonFunctionPropertyNames<T> = { [K in keyof T]: T[K] extends Function ? never : K}[keyof T];
+    type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;
+
+    interface Part {
+        id: number;
+        name: string;
+        subparts: Part[];
+        updatePart(newName: string): void;
+    }
+
+    type T40 = FunctionPropertyNames<Part>; // "updatePart"
+    type T41 = NonFunctionPropertyNames<Part>;  // "id" | "name" | "subparts"
+    type T42 = FunctionProperties<Part>;    // {updatePart(newName: string): void}
+    type T43 = NonFunctionProperties<Part>; // {id: number, name: string, subparts: Part[]}
+
+    // like union and intersection types: conditional type aren't reference itself recursively:
+
+    // type ElementType<T> = T extends any[] ? ElementType<T[number]> : T;
+    // TS2315: Type 'ElementType' is not generic.
+
+    /**
+     * Type inference in conditional types:
+     *      conditional type extends clause allow a `infer` declarations
+     *          allow using multiply `infer`
+     * 
+     */
+
+     type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
+
+     // nested conditional type:
+     type Unpacked<T> = 
+        T extends (infer U)[] ? U :
+        T extends (...args: any[]) => infer U ? U :
+        T extends Promise<infer U> ? U :
+        T;
+
+    type T50 = Unpacked<string>;    // string
+    type T51 = Unpacked<string[]>;  // string
+    type T52 = Unpacked< () => string>; // string
+    type T53 = Unpacked<Promise<string>>;   // string
+    type T54 = Unpacked<Promise<string>[]>; // Promise<string>
+    type T55 = Unpacked<Unpacked<Promise<string>[]>>;   // string
+
+    // multiple candidates for same type variable in co-variant positions causes a union type to be inferred:
+    type Foo_at2<T> = T extends { a: infer U, b: infer U } ? U : never;
+    type T60 = Foo_at2<{a: string, b: string}>; // string
+    type T61 = Foo_at2<{a: string, b: number }> ;   // string | number
+
+    // // multiple candidates for same type variable in co-variant positions causes a intersection type to be inferred:
+    type Bar<T> = T extends { a: (x: infer U) => void, b: (x: infer U) => void} ? U : never;
+    type T70 = Bar<{a: (x: string) => void, b: (x: string) => void}>;// string
+    /**
+     * doc is // string & number, but
+     */
+    type T72 = Bar<{a: (x: string)=> void, b: (x: number) => void}>; // never
+
+    // inferring from type with multiple call signatures, inference are made from last signature:
+    declare function foo(x: string): number;
+    declare function foo(x: number): string;
+    declare function foo(x: string | number): string | number;
+    type T80 = ReturnType<typeof foo>;// string | number
+
+    // it's not using `infer` in constraion clauses for regular type parameter:
+    // type ReturnType2<T extends (...args: any[]) => infer R> = R;
+    // TS1338: 'infer' declarations are only permitted in the 'extends' clause of a conditional type.
+
+    // get same like: by erasing type variables in constraint and instead specifying a conditional type:
+    type AnyFunction = (...args: any[]) =>  any;
+    type ReturnType3<T extends AnyFunction> = T extends (...args: any[]) => infer R ? R : any;
+
+    /**
+     * predefined conditional types: ts2.8+ to lib.d.ts
+     *      Exclude<T, U>: 
+     *      Extract<T, U>
+     *      NonNullable<T>
+     *      ReturnType<T>
+     *      InstanceType<T>
+     */
+
+     type T00 = Exclude<"a"|"b"|"c"|"d", "a"|"c"|"f">;// "b"|"d"
+     type T01 = Extract<"a"|"b"|"c"|"d", "a"|"c"|"f">;  // "a"|"c"
+     type T02 = Extract<string|number|(()=>void), Function>;// string|number
+     type T03 = Extract<string | number | (() => void), Function>;// ()=> void
+     type T04 = NonNullable<string|number|undefined>;   // string | number
+     type T05 = NonNullable<(()=>string) | string[] | null |undefined>;// (()=>string) | string[]
+
+     function f_at6(s: string) {
+         return {a: 1, b: s};
+     }
+
+     class C_at6 {
+         x = 0;
+         y = 0;
+     }
+
+     type T06 = ReturnType<()=>string>;// string
+     type T07 = ReturnType<(s: string) => void>;    // void
+     type T08 = ReturnType<(<T>()=>T)>; // {} OR unknow?
+     type T09 = ReturnType<(<T extends U, U extends number[]>() => T)>; // number[] 
+     type T010 = ReturnType<typeof f_at6>;// {a: number, b: string}
+     type T011 = ReturnType<any>;   // any
+     type T012 = ReturnType<never>; // never
+     type T013 = ReturnType<string>;//any
+     type T014  = ReturnType<Function>; // any
+
+     type T015 = InstanceType<typeof C_at6>; // c_at6
+     type T016 = InstanceType<any>;// any
+     type T017 = InstanceType<never>;// never
+    //  type T018 = InstanceType<string>;// TS2344: Type 'string' does not satisfy the constraint 'new (...args: any) => any'
+    // type T018 = InstanceType<Function>;
+    // TS2344: Type 'Function' does not satisfy the constraint 'new (...args: any) => any'.
+    // Type 'Function' provides no match for the signature 'new (...args: any): any'.
