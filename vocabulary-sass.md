@@ -389,13 +389,10 @@ skills       : separating-words like downleveling to down-leveling
 |strangely|奇怪的，异常的|
 |rarely|难见的，少见的，难得|
 |definitely|当然，肯定，明确的，确定的|**['defənɪtli]**|
-<<<<<<< HEAD
 |further|更多的，进一步（的），向前推进的，另外的|**[ˈfɜrðə(r)]**|
-=======
 |further|更多的，进一步（的），向前推进的，另外的|**[ˈfɜrðə(r)]
 **|
 |guard|监视，保护，看守，看守|
->>>>>>> acc2a7eb588504d81bdc06a433eca50ae04cbf5e
 |safeguard|保护（措施），防护物，安全保障|**['seɪf.ɡɑrd]**|
 |term|术语，期限|
 |terms|用..术语（字眼），在..方面|
@@ -440,6 +437,7 @@ skills       : separating-words like downleveling to down-leveling
 |semantic|语义的|
 |collection|集合，收集|
 |distribute|分发，分配，分送|
+|distributive|分发的，分配的|
 |encapsulate|封装，压缩，概括|**[ɪn'kæpsjə.leɪt]**|
 |trailing|结尾|**['treɪlɪŋ]**|
 |refactor|重构（代码）|
@@ -474,6 +472,7 @@ skills       : separating-words like downleveling to down-leveling
 |unification|统一，一致，联合|
 |interleave|交错，交叉|
 |intersection|交叉（点），相交，交点|
+|interchangeable|可交换的，可互换的|
 |incompatible|不兼容（的）|**[.ɪnkəm'pætəb(ə)l]**|
 |mandatory|强制性的，命令的|**['mændə.tɔri]**|
 |subtle|细微的，不易察觉的，不明显的|**['sʌt(ə)l]**|
@@ -623,6 +622,7 @@ skills       : separating-words like downleveling to down-leveling
 |expand|扩展，扩大，展开|
 |compress|压缩，精简|
 |oppose|反对，抵制，阻挠|
+|interact|相互作用，相互影响，交流|
 |interactive|交互的，人机对话的，合作的，相互影响的|
 |summary|总结性的，概要（的），摘要|
 |verbose|冗长的，啰嗦的|
@@ -739,7 +739,7 @@ skills       : separating-words like downleveling to down-leveling
 |pile on|堆积，积累|
 |spread|铺开，将..散开，伸展，扩散，展开|**[spred]**|
 |proceed|继续（做），发生|**[prə'sid]**|
-|generic|泛型，一般的，普通的|**[dʒə'nerɪk]**|
+|generic|泛型，一般的，普通的，通用的|**[dʒə'nerɪk]**|
 |interface|接口（程序），界面|
 |contract|合约，契约，收缩|**['kɒntrækt]**|
 |lenient|仁慈的，宽大的|**['liniənt]**|
@@ -1024,3 +1024,26 @@ skills       : separating-words like downleveling to down-leveling
 |ingredient|成分，因素|**[ɪn'ɡridɪənt]**|
 |exhaustive|详尽的，彻底的，全面的，穷尽的|**[ɪɡ'zɔstɪv]**|
 |polymorphic|多态的|**[pɑlɪ'mɔrfɪk]**|
+|pluck|采，拔，拉，勇气，决心|
+|manufacture|大量生产，制造，产品，捏造，虚构|**[.mænjə'fæktʃərər]**|
+|manufacturer|厂商|
+|instantiate|实例化，具体化，用具体例证说明|**[ɪns'tænʃɪeɪt]**|
+|task|工作，任务，派给...（工作）|
+|enough|很，十分，相当，足够（地），充分（地）|
+|resemble|与..（类似），与..（相像）|**[riˈzɛmb(ə)l]**|
+|hard-coded|写死，硬编码|
+|in some way|以某种方式，在某种程度上|
+|homomorphic|同态的，同型的|**[ˌhoʊmə'mɔrfɪk]**|
+|clue|线索，提示，迹象|
+|uniform|一致的，统一的，一律的|
+|conclude|推断出，总结，结束，达成|
+|resolve|分解为，决定，下定决心，解决|
+|defer|推迟，延缓，听从|
+|stick around|逗留，待在原处|
+|substitute|取代，代替|
+|in the meantime|在这期间，与此同时|
+|naked|裸露的，无遮盖的，明显的|**['neɪkəd]**|
+|therefore|因此，所以|
+|extract|取出，提取，摘录，推断出|**[ɪkˈstrækt]**|
+|presumably|大概，很可能，也许，据推测|**[prɪˈzuməbli]**|
+|exclude|不包括，排除|

@@ -543,3 +543,208 @@ function createElement(tagName: string): Element {
 
  let v_at1 = new ScientificCalculator(2).multiply(5).sin().add(1).currentValue();
  console.log(v_at1); // 0.4559788891106302
+
+/**
+ * Index types:
+ *      function: using it, compiler can use dynamic property names to check code
+ * 
+ *      `keyof T`: index type query operator
+ *              is union of know, public property names of T
+ *      `T[K]`: indexed access operator
+ *              type syntax reflects exp syntax,
+ *               means `person["name"]` has the type `Person["name"]`   
+ *      
+ *      keyof and T[K] interact with index signatures
+ *          index signature param type must be "string" or "number"
+ *          
+ *          string index: 
+ *              keyof T => string | number, 
+ *              T[string] => type of index signature
+ *          number index:
+ *              keyof T => number
+ */
+
+
+ /**
+  * if like: 
+  * let modelYear = pluck(taxi, ["model", "year"]);
+  * so type of K is `string | number`
+  * so type of K[] is `(string | number)[]`
+  * type of T[K][] is type  like `[T[K1], T[K2]...]`
+  */
+ // using index type query and indexed access operators:
+ function pluck<T, K extends keyof T>(o: T, propertyNames: K[]): T[K][] {
+     return propertyNames.map(n => o[n]);
+ }
+
+ interface Car_at {
+     manufacturer: string;
+     model: string;
+     year: number;
+ }
+ let taxi: Car_at = {
+     manufacturer: "Toyota",
+     model: "Camry",
+     year: 2014,
+ };
+
+ // manufacturer and model are both of type string,
+ // so we can pluck themm both into a typed string array:
+ let makeAndModel: string[] = pluck(taxi, ["manufacturer", "model"]);
+
+ // if we try to pluck model and year, we get an
+ // array of a union type: (string | number)[]:
+ let modelYear = pluck(taxi, ["model", "year"]);
+
+ // the union of ("manufacturer" | "model" | "year")
+ // when update car properties, keyof Car will auto-update
+ // using keyof in contexts, dont know property name ahead of time, so
+ // compiler will check passed property whether right
+ let carProps: keyof Car_at;
+
+//  TS2322: Type 'string' is not assignable to type '"manufacturer" | "model" | "year"'.
+//  pluck(taxi, ["year", "unknown"]); 
+
+// o: T and propertyName: K  =>  o[propertyName]: T[K]
+function getProperty<T, K extends keyof T>(o: T, propertyName: K): T[K] {
+    return o[propertyName]; // o[propertyName] is of type T[K]
+}
+
+// according to request property to return type:
+let name_at: string = getProperty(taxi, "manufacturer");
+let year_at: number = getProperty(taxi, "year");
+// TS2345: Argument of type '"unknown"' is not assignable to parameter of type '"manufacturer" | "model" | "year"'.
+// let unknow_at = getProperty(taxi, "unknown");
+
+/**
+ * index types and index signatures:
+ * 
+ * 
+ */
+
+ interface Dictionary_at<T> {
+     [key: string]: T;
+ }
+ let keys: keyof Dictionary_at<number>;  // string | number
+ let values: Dictionary_at<number>["foo"];  // number
+
+ interface Dictionary_at1<T> {
+     [key: number]: T;
+ }
+ let keys1: keyof Dictionary_at1<number>;   // number
+//  let values1: Dictionary_at1<number>["foo"];// TS2339: Property 'foo' does not exist on type 'Dictionary_at1<number>'.
+let values2: Dictionary_at1<number>[42];    // number
+
+/**
+ * Mapped types:
+ *    new type transforms each property in old type  
+ * 
+ */
+
+ // make all properties of a type readonly or optional:
+ type Readonly<T> = {
+     readonly [P in keyof T]: T[P];
+ }
+ type Partial<T> = {
+     [P in keyof T]?: T[P];
+ }
+ // use it: this syntax describe a type(notice)
+ type PersonPartial = Partial<Car_at>;
+ type ReadonlyPersion = Readonly<Car_at>;
+
+ // add members using intersection types:
+ type PartialWithNewMember<T> = {
+     [P in keyof T]?: T[P];
+ } & { newMember: boolean};
+ // don't use the following:
+ type PartialWithNewMemberError<T> = {
+     [P in keyof T]?: T[P];
+     // TS2693: 'boolean' only refers to a type, but is being used as a value here.
+    //  newMember: boolean;
+ }
+
+ /**
+  * [K in Keys]: boolean; like for...in with index signature:
+  *     three parts:
+  *         type variable `K`, bound to each property
+  *         string literal union `Keys`, contains property names in iterate
+  *         result type of property `boolean`
+  */
+ // simplest mapped type:
+ type Keys = 'option1' | 'option2';
+ type Flags = { [K in Keys]: boolean };
+
+ // equal to:
+ type FlagsCopy = {
+     option1: boolean;
+     option2: boolean;
+ }
+
+ // with keyof and indexed access types:
+ type NullablePerson = { [P in keyof FlagsCopy]: FlagsCopy[P] | null}
+ type PartialPerson = { [P in keyof FlagsCopy]?: FlagsCopy[P] }
+
+ // useful with generic(good template, is homomorphic):
+ // mapping only apply to properties of T: 
+ // compiler will copy all property modifiers
+ type NullableF<T> = { [P in keyof T]: T[P] | null }
+ type PartialF<T> = { [P in keyof T]?: T[P] }
+
+ // T[P] warpprd in Proxy<T> class:
+ type T = {
+    a: string;
+    b: number;
+    c: boolean;
+}
+
+ type Proxy<T> = {
+     get(): T;
+     set(value: T): void;
+ }
+
+ type Proxify<T> = {
+     [P in keyof T]: Proxy<T[P]>;
+ }
+
+ function proxify<T>(o: T): Proxify<T> {
+     // doc not it:
+     return {} as Proxify<T>;
+ }
+
+
+ let t_at: T = {
+    a: " ",
+    b: 1,
+    c: false,
+ };
+ let proxyProps = proxify(t_at);
+
+ /**
+  * (Readonly<T> , Partial<T>, Pick)( `homomorphic` ), Record included in ts-standard library
+  */
+
+  type Pick<T, K extends keyof T> = {
+      [P in K]: T[P];
+  }
+
+  type Record<K extends keyof any, T> = {
+      [P in K]: T;
+  }
+
+  // no-homomorphic types: creating new properties, can't coopy property modifiers
+  type ThreeStringProps = Record<'prop1' | 'prop2' | 'prop3', string>;
+
+  /**
+   * inference from mapped types:
+   *    unwrapping inference only work on homomorphic mapped types
+   *        if not-homomo, need explicit type
+   */
+  function unproxify<T>(t: Proxify<T>): T {
+      let result = {} as T;
+      for (const k in t) {
+          result[k] = t[k].get();
+      }
+      return result;
+  }
+
+  let originalProps = unproxify(proxyProps);
