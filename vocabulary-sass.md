@@ -2,10 +2,13 @@
 
 ```
 create-time  : 2019/10/29 15:29:00
-complete-time: 2019/11/12 09:41:11
+complete-in-sass-time: 2019/11/12 09:41:11
 author       : yuyuanqiu(漆无)
 version      : 0.0.1-alpha
+high-version : move to webstorm[github]
 skills       : separating-words like downleveling to down-leveling
+
+noticed:     : this version will not updated, you should up-to-date in yuyuanqiu/webstorm[github repo]
 ```
 
 |词汇|词义|读音|
@@ -85,6 +88,7 @@ skills       : separating-words like downleveling to down-leveling
 |leading|首位的，居前的，主要的，领导|
 |underscore|下划线，强调|
 |generated|生成，产生，造成，发生|
+|generator|生成器，发电机，产生者|**[ˈdʒɛnəˌretɚ]**|
 |don't have to|不需要，不必|
 |however|不管怎样，无论如何|
 |load|加载|
@@ -432,6 +436,7 @@ skills       : separating-words like downleveling to down-leveling
 |integration|一体化，集成，整合|**[ˌɪntəˈɡreɪʃ(ə)n]**|
 |seamlessly|无缝的|
 |transitive|传递性，传递的|
+|transition|过渡，转变|**[træn'zɪʃ(ə)n]**|
 |careful|小心的，当心的，仔细的|
 |retain|保存，保持，保留|
 |semantic|语义的|
@@ -442,7 +447,7 @@ skills       : separating-words like downleveling to down-leveling
 |trailing|结尾|**['treɪlɪŋ]**|
 |refactor|重构（代码）|
 |arbitrary|任意的，武断的|**['ɑrbɪ.treri]**|
-|in addition to|此外，除了..之外|
+|in addition to|此外，除了（..之外）|
 |lexical|词法的，词汇的|**['leksɪk(ə)l]**|
 |lexical scope|词法作用域|
 |invoke|调用，请求，激活|
@@ -497,6 +502,8 @@ skills       : separating-words like downleveling to down-leveling
 |falsehood|错误，谬误|
 |in turn|依次，轮流，反过来|
 |iterate|迭代，重复|
+|iterator|迭代器（模式），迭代程序|
+|iterable|可迭代的，可迭代对象，可遍历对象|
 |destructuring|解构（赋值）|
 |count up|数到，数完，把..加起来，共计|
 |count down|倒数，倒计时，倒计数|
@@ -548,6 +555,7 @@ skills       : separating-words like downleveling to down-leveling
 |alpha|透明度|
 |opacity|模糊，不透明，费解，难懂|**[oʊˈpæsəti]**|
 |transparent|透明的，透明色|**[træns'perənt]**|
+|transparency|透明度，透明化，透明效果|**[træns'perənsi]**|
 |opaque|不透明的，模糊，难懂的，晦涩的|**[oʊ'peɪk]**|
 |mutable|可变的|
 |immutable|不可（改）变的|**[ɪˈmjutəb(ə)l]**|
@@ -626,6 +634,7 @@ skills       : separating-words like downleveling to down-leveling
 |interactive|交互的，人机对话的，合作的，相互影响的|
 |summary|总结性的，概要（的），摘要|
 |verbose|冗长的，啰嗦的|
+|recognize|认出，识别，承认，接受，认可，赞赏|
 |unrecognize|未被认识的，未被承认的， 被忽略的|
 |recognized|承认，认出，认可|
 |revoke|取消，废除，撤销|
@@ -772,7 +781,7 @@ skills       : separating-words like downleveling to down-leveling
 |infer|推断，推论，推理，猜想，推测，暗示|
 |indexable|可加索引的，可变址的|**[ɪn'dekseɪbl]**|
 |enforce|强制实施，迫使|
-|indice|index的复数|
+|indice|index的复数，指数，（为...加）索引，指标|
 |prohibit|阻止，禁止|**[proʊ'hɪbɪt]**|
 |nature|本质，性质|
 |occasionally|偶尔，有时候|
@@ -1049,3 +1058,38 @@ skills       : separating-words like downleveling to down-leveling
 |exclude|不包括，排除|
 |furthermore|此外，而且，再者|
 |multiple|数量多的，多重的|
+|well-known|众所周知的，有名的，熟知的|
+|deem|认为，当成，相信，视为|
+|qualify|限定，符合，修饰，胜任|
+|qualifier|限定符，修饰符|
+|interaction|互动，交互作用，相互作用|**[.ɪntər'ækʃən]**|
+|reaction|反应，回应，反对，抵制|
+|curate|管理，组织，展出|**[kjə'reɪt]**|
+|refine|精炼，精制，提炼，改良|
+|reveal|显示，展示，透露，启示|
+|emphasis|强调，重点，重读，重要性|**['emfəsɪs]**|
+|scrutiny|仔细检查，详细审查，细看，监视|**['skrut(ə)ni]**|
+|degree|程度，度数，学历，等级|
+|it's worth nothing that|值得注意的是|
+|stress|强调，着重指出|
+|region|区域，范围|
+|polygon|多边形|
+|bounce|弹跳，跳动，弹性，反射|**[baʊns]**|
+|assets|资源，资产|**['æset]**|
+|serve|服务，提供|
+|payload|负载，装载量|
+|middleware|中间件|
+|third-party|第三方的|
+|render|渲染|
+
+
+
+
+
+
+|:-|:-|:-|
+||***essential grammar in use***|
+|elementary|简单的，基本的，初级的|**[.elə'ment(ə)ri]**|
+|essential|基本的，根本的，绝对必要的，基础，要点，本质，必需品|**[ɪ'senʃ(ə)l]**|
+|in order|按次序，整整齐齐，合规则|
+|perfect|（动词的）完成时态，完美的，十分合适的，完全的，使完美|

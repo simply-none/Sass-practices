@@ -6,4 +6,5 @@
 // import "./example/enums";
 // import "./example/type_inference";
 // import "./example/type_compatibility";
-import "./example/advanced_types";
+// import "./example/advanced_types";
+import "./example/symbols";
